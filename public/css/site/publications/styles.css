@@ -1,0 +1,71 @@
+.page-content {
+    margin: 4em 0 0 0;
+}
+
+
+.publication-img {
+    width: 100%;
+    height: 20em;
+    background-size: cover;
+}
+
+
+.publications-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: center;
+}
+
+.publication-item {
+    width: 20em;
+    position: relative;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 2px;
+    background-color: #00000008;
+    box-shadow: rgb(9 30 66 / 25%) 0px 1px 1px, rgb(9 30 66 / 13%) 0px 0px 1px 1px;
+}
+
+.publication-content-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: Oswald,arial,Georgia, serif;
+    margin: 16px 0 0 0;
+}
+
+.publication-content-text {
+    margin: 10px 0;
+    text-align: justify;
+}
+
+.publication-content-title p, .publication-content-text p {
+    margin: 0;
+}
+
+.publication-content-categories {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    color: #fff;
+    margin: 0 0 15px 0;
+}
+
+.publication-content-categories p {
+    background-color: #0000005c;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 2px;
+}
+
+.publication-content-date {
+    width: 100%;
+    position: absolute;
+    font-size: 12px;
+    text-align: -webkit-right;
+    bottom: 4px;
+    right: 8px;
+}
+
+

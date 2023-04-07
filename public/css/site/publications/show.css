@@ -1,0 +1,142 @@
+.publication-title {
+    font-family: Oswald,arial,Georgia, serif;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.publication-title  p {
+    margin: 0;
+}
+
+.publication-categories {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    color: #fff;
+    margin: 0 0 15px 0;
+}
+
+.publication-categories p {
+    background-color: #0000005c;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 2px;
+}
+
+.publication-date {
+    width: 100%;
+    font-size: 13px;
+    text-align: -webkit-right;
+}
+
+.page-content {
+    margin: 2em 0 0 0;
+}
+
+.publication-imagens {
+    display: flex;
+    width: 40%;
+    margin: 5px;
+    width: 100%;
+    overflow: scroll hidden;
+}
+
+.publication-imagens::-webkit-scrollbar {
+    width: 0;
+}
+
+.publication-imagen {
+    margin: 2em 0 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.publication-imagen a {
+    width: 100%;
+    display: flex;
+    position: relative;
+    cursor: auto;
+    justify-content: center;
+}
+
+.publication-imagen a img {
+    box-shadow: rgb(100 100 100 / 88%) 0px 2px 4px, rgb(255 255 255 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
+    border-radius: 2px;
+}
+
+.publication-imagen img {
+    width: auto;
+    height: 22em;
+}
+
+.imagens-in-publication {
+    margin: 2px;
+}
+
+.imagens-in-publication img {
+    height: 110px;
+    width: auto;
+    margin: 10px 10px 0px 0px;
+    filter: brightness(1) contrast(1) grayscale(0) hue-rotate(0deg) invert(0) opacity(0.9) saturate(1) sepia(0) blur(1px);
+    box-shadow: rgb(100 100 100 / 18%) 0px 2px 4px, rgb(255 255 255 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
+    cursor: pointer;
+}
+
+.navigate {
+    display: flex;
+    align-items: center;
+}
+
+.navigate-page {
+    margin: 0 5px 0 5px;
+}
+
+.navigation-pages {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigate-page {
+    margin: 0 5px 0 5px;
+}
+
+.navigate-page a {
+    color: #333;
+    text-decoration: none;
+}
+
+.navigate-page-lab {
+    color: #999;
+    font-size: 14px;
+}
+
+.fa-angles-left, .fa-angles-right {
+    color: #999;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+@media (max-width: 560px) {
+
+    .publication-imagen a img {
+        width: 15em;
+        height: auto;
+    }
+
+    .imagens-in-publication img {
+        width: auto;
+        height: 3.5em;
+    }
+    
+    }
+ 
+    @media (pointer: coarse) {
+        .imagens-in-publication img, 
+        .publication-imagen a   {
+          cursor: none;
+        }
+      }

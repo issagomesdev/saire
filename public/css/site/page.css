@@ -1,0 +1,44 @@
+.pagination {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+.pages {
+    display: flex;
+    margin: 5px;
+}
+
+.page {
+    margin: 3px;
+    padding: 5px 13px;
+    border-radius: 2px;
+    background-color: #00000008;
+    box-shadow: rgb(9 30 66 / 25%) 0px 1px 1px, rgb(9 30 66 / 13%) 0px 0px 1px 1px;
+}
+
+.page-control {
+    padding: 0 3px;
+    height: 22px;
+    align-items: center;
+    display: flex;
+}
+
+.pages {
+    display: flex;
+    margin: 5px;
+    align-items: center;
+}
+
+.page a {
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+.page.active {
+    background-color: #0000001f;
+}
+
+.page.active a {
+    text-decoration: none;
+}

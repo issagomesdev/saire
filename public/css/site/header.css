@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    }
+
+.top_access {
+    width: 100%;
+    height: 2.5em;
+    background-color: #2d2d50;
+}
+
+.widget-container-social {
+    position: absolute;
+    right: 0;
+    margin: 5px;
+}
+
+.widget-container-social a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 2px;
+}
+
+.widget-container-social a::before {
+    font-size: 1.5em;
+}
+
+.content {
+    margin: 0 3rem 4em 3rem;
+	}
+
+header {
+        position: relative;
+    }
+    
+    div.drop-menu {
+        background-color: #2d2d50;
+        color: #ddd;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    
+    div.drop-menu p {
+        padding: 10px;
+        margin: 0;
+        font-family: Oswald,arial,Georgia, serif;
+        cursor: pointer;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .nav[active="true"] {
+        background-color: #1e1e36;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        justify-content: space-evenly;
+        border-width: 0 0 5px 0;
+    }
+    
+	.nav div {
+    color: white;
+    font-weight: 900;  
+    padding: 20px 10px 20px 10px;
+    text-transform: uppercase;
+    text-align: center;
+	}
+
+	.active {
+    background-color: #2d2d50;
+}
+
+	header img {
+    margin: 1em;
+    width: 20rem;
+    height: auto;
+	}
+
+	.nav div a {
+    color: #ddd;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: Oswald,arial,Georgia, serif;
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    
+}
+
+.parent-menu {
+    cursor: pointer;
+    position: relative;
+}
+
+.child-menu {
+    display: none;
+}
+
+
+.child-menu[active="true"] {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: #17172e;
+    z-index: 999;
+    border-radius: 2px;
+    width: 100%;
+    right: 0;
+    top: 45px;
+    padding: 0;
+}
+
+.child-menu a {
+    padding: 10px;
+}
+
+.child-menu a.active {
+    background-color: #2c2c2c;
+    width: 100%;
+    padding: 10px 0;
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+
+    header img {
+        width: 100%;
+        margin: 0;
+    }
+
+
+  }
