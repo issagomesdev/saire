@@ -1,6 +1,12 @@
 <?php
 
+use App\Models\Publication;
+use App\Models\Page;
+use App\Models\Gallery;
+use Illuminate\Http\Request;
+
 //Route::redirect('/', '/login');
+Auth::routes(['register' => false]);
 
 Route::get('/home', function () {
     if (session('status')) {
@@ -10,16 +16,27 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
+    // site
+    Route::get('/', 'SitesController@index')->name('site.index');
+    Route::get('/galeria', 'SitesController@galleries')->name('site.gallery');
+    Route::get('/noticias', 'SitesController@publications')->name('site.publications');
+    Route::get('/noticias/{title}', 'SitesController@show')->name('site.publications.show');
+    Route::get('/pagina/{title}', 'SitesController@page')->name('site.page');
+    Route::get('/pesquisa', 'SitesController@search')->name('site.search');    
+    Route::get('/pesquisa/publications', function (Request $request) {
+        $publications = Publication::with(['categories'])->orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
+        return response()->json($publications);
+    }); 
+    Route::get('/pesquisa/pages', function (Request $request) {
+        $page = Page::orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
+        return response()->json($page);
+    }); 
+    Route::get('/pesquisa/galleries', function (Request $request) {
+        $galleries = Gallery::with(['categories'])->orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
+        return response()->json($galleries);
+    });
 
-Route::get('/', 'SitesController@index')->name('site.index');
-Route::get('/galeria', 'SitesController@galleries')->name('site.gallery');
-Route::get('/noticias', 'SitesController@publications')->name('site.publications');
-Route::get('/noticias/{title}', 'SitesController@show')->name('site.publications.show');
-Route::get('/pagina/{title}', 'SitesController@page')->name('site.page');
-
-Auth::routes(['register' => false]);
-
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');

@@ -1,7 +1,10 @@
 
 // featured publications
 
-const features = document.querySelector(".features");
+if(featuredPublications.length > 0){
+
+  const features = document.querySelector(".features");
+
 const photoDots = document.createElement("div");
 photoDots.classList.add("photo-dots");
 features.append(photoDots);
@@ -123,9 +126,16 @@ function previousCard() {
 displayCard();
 setInterval(nextCard, 5000);
 
+} else {
+
+
+}
+
 // Gallery
 
 const images = document.querySelector('.images');
+
+if(galleries.length > 0){
 
 const imgs = galleries.map(function(gallery) {
   const photos = [];
@@ -137,12 +147,22 @@ const imgs = galleries.map(function(gallery) {
   return photos;
 });
 
-
 images.append(...[].concat(...imgs));
+
+} else {
+    const empty = document.createElement("div");
+    empty.classList.add("empty");
+    const emptyP = document.createElement("p");
+    emptyP.innerHTML = "Desculpe-nos pela inconveniência! Estamos trabalhando para adicionar fotos à galeria o mais rápido possível. Obrigado pela compreensão! "
+    empty.append(emptyP);
+    images.append(empty)
+};
 
 // publications
 
 const publicationsDiv = document.querySelector('.publications');
+
+if(publications.length > 0){
 
 const cards = publications.map(function(publication) {
   const card = document.createElement("div");
@@ -187,4 +207,14 @@ const cards = publications.map(function(publication) {
 
 publicationsDiv.append(...cards);
 
+} else {
+  const viewmore = document.querySelector('.view-more#publications');
+  viewmore.style.display = 'none';
+  const empty = document.createElement("div");
+  empty.classList.add("empty");
+  const emptyP = document.createElement("p");
+  emptyP.innerHTML = "Desculpe-nos pela inconveniência! Estamos trabalhando para adicionar publicações ao site o mais rápido possível. Obrigado pela compreensão! "
+  empty.append(emptyP);
+  publicationsDiv.append(empty);
 
+}

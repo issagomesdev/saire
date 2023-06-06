@@ -6,14 +6,14 @@
 <div class="gallery-content">
 <div class="display-imagen" visible="false">
 
-<div class="details">
-<div class="open-details"> <i class="fa-solid fa-ellipsis-vertical"> </i> </div>
-</div>
+  <div class="details">
+   <div class="open-details"> <i class="fa-solid fa-ellipsis-vertical"> </i> </div>
+  </div>
 
   <div class="details-item" visible="false">
 
   <div class="items-data">
-  <div id="title" class="item-data">
+    <div id="title" class="item-data">
     <i class="fa-solid fa-file-signature"></i>
     <p> </p>
     </div>

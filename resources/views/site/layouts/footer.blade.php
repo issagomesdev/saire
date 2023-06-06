@@ -10,8 +10,8 @@
 
 			<div class="footer-widget-container">
 				<p> <i class="fa-solid fa-location-dot"></i> Avenida Cel. José Pessoa, S/N Centro, Sairé/PE CEP: 55.695-000 </p>
-				<p> <i class="fa-solid fa-phone-flip"></i> (81) 3748-1156 </p>
-				<p> <i class="fa-solid fa-envelope"></i> imprensa@saire.pe.gov.br </p>
+				<p> <i class="fa-solid fa-phone-flip"></i> (81) 98219-6602 </p>
+				<p> <i class="fa-solid fa-envelope"></i> governodesaire2021.2024@gmail.com </p>
 				<p> <i class="fa-solid fa-clock"></i> 08:00 as 13:00 </p>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 				<p> <a href="pagina/Município"> Município </a> </p>
 				<p> <a href="pagina/Governo-Municipal"> Governo Municipal </a> </p>
 				<p> <a href="pagina/Secretarias"> Secretarias </a> </p>
-				<p> <a href="https://transparencia.saire.pe.gov.br/portal/v81/p_index/p_index.php"> Portal da Transparencia </a> </p>
+				<p> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=inst"> Portal da Transparencia </a> </p>
 				<p> <a href="https://transparencia.saire.pe.gov.br/portal/v81/p_acesso_rapido/p_acesso_rapido.php"> Ouvidoria </a> </p>
 			</div>
 		</div>

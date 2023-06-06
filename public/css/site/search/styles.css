@@ -1,0 +1,368 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rokkitt:wght@700&display=swap');
+
+.search-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.search-lab {
+    font-family: 'Rokkitt', serif;
+    font-size: 4em;
+    color: #1e1e36;
+    left: 24px;
+    position: relative;
+}
+
+.lab-color {
+    width: 120%;
+    height: 30%;
+    bottom: 12px;
+    right: -34px;
+    position: absolute;
+    background-color: #ddddd3;
+    z-index: -9;
+    border-radius: 15px;
+}
+
+.items-conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 2em;
+    width: 100%;
+    position: relative;
+}
+
+.info-content {
+    margin: 20px;
+}
+
+.items-content {
+    display: flex;
+    width: 100%;
+    max-height: 25em;
+    overflow: hidden scroll;
+    flex-wrap: wrap;
+}
+
+.items-content::-webkit-scrollbar{
+    width: 10px;
+    height: 3px;
+}
+
+.items-content::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+}
+
+.items-content::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #1e1e36;
+}
+
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.card-container h1 {
+    font: normal normal 600 1.5em/1.6em 'Outfit', sans-serif;
+    color: white;
+}
+
+.card-container h2 {
+    font: normal normal 400 1em/1em 'Outfit', sans-serif;
+    color: white;
+}
+
+.card-container p {
+    font: normal normal 300 1em/1.55em 'Outfit', sans-serif;
+    color: hsl(215, 51%, 70%);
+    margin: 0;
+}
+
+.card-container span {
+    color: white;
+}
+
+.card-container {
+    width: 100%;
+    margin: 0 0.5em;
+    background-color: #1e1e36;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    padding: 2rem;
+}
+
+.card-content {
+    display: flex;
+}
+
+div.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.coin-base, .time-left, .card-attribute {
+    display: flex;
+    align-items: center;
+    padding: 1em 0;
+}
+
+.card-attribute {
+    padding-bottom: 1.5em;
+    border-top: 2px solid hsl(215, 32%, 27%);
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-tags p {
+    margin: 2px;
+    padding: 5px 10px;
+    background-color: #3b3b50;
+    border-radius: 15px;
+    white-space: nowrap;
+}
+
+img.card-image {
+    width: 40%;
+    height: 10em;
+    object-fit: cover;
+    margin-right: 1em;
+}
+
+.main-content {
+    width: 60%;
+}
+
+a.card-image-container {
+    position: relative;
+    display: block;
+}
+
+.card-image-container::after {
+    content: '';
+    background-image: url("https://i.postimg.cc/9MtT4GZY/view.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 5rem;
+    background-color: hsla(178, 100%, 50%, 0.3);
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.card-image-container:hover::after {
+  opacity: 1;
+}
+
+.small-image {
+    width: 1.2em;
+    margin-right: .5em;
+}
+
+.small-avatar {
+    width: 2em;
+    border-radius: 200px;
+    outline: 2px solid white;
+    margin-right: 1.4em;
+}
+
+div.attribution {
+    margin: 0 auto;
+    width: 100%;
+    font: normal normal 300 1em/1.55em 'Outfit', sans-serif;
+    text-align: center;
+    padding: 1.5em 0 4em 0;
+    color: hsl(215, 32%, 27%);
+}
+.attribution a {
+    color: hsl(215, 51%, 70%);
+}
+
+.spinner {
+    display: none;
+    border: 16px solid #f3f3f3; /* cor do spinner */
+    border-top: 16px solid #1e1e36; /* cor do topo do spinner */
+    border-radius: 50%;
+    position: relative;
+    top: 27px;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  .spinner-conteiner {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+}
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* galleries */
+
+  #galleries .card-container {
+    width: 43%;
+    margin: 0;
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+  #galleries .items-content {
+    justify-content: space-around;
+}
+
+#galleries .coin-base a {
+    cursor: pointer;
+}
+
+  @media (max-width: 1000px)  {
+
+    #galleries .card-container {
+        width: 100%;
+        margin: 0 0.5em;
+        margin-bottom: 1rem;
+    }
+
+    .search-content {
+        flex-direction: column;
+    }
+
+    .items-content {
+        display: flex;
+        width: 100%; 
+    }
+
+    .card-container {
+        width: 100%;
+    }
+
+    .card-container h1 {
+        text-align: center;
+    }
+
+    .card-content {
+        flex-direction: column;
+    }
+
+    img.card-image {
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    div.flex-row {
+        flex-direction: column;
+    }
+
+    .card-attribute {
+        justify-content: center;
+    }
+
+    .card-tags {
+        justify-content: space-evenly;
+    }
+
+    .card-container h2 {
+        margin-right: 0;
+    }
+
+    .spinner {
+    width: 50px;
+    height: 50px;
+    }
+    
+  }
+
+  @media (max-width: 350px) {
+    .card-container, #galleries .card-container {
+        width: 60%;
+    }
+
+    .search-lab {
+        left: 0;
+    }
+    
+  }
+
+  @media (min-width: 700px) and (max-width: 1000px) {
+    .search-content {
+        flex-direction: row;
+    }
+  }
+
+  @media (min-width: 480px) and (max-width: 699px)  {
+
+    .card-container {
+        width: 50%;
+    }
+
+    .search-lab {
+        left: -20px;
+    }
+
+    .items-conteiner {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .items-content {
+        justify-content: center;
+    }
+    
+  }
+
+  @media (min-width: 480px) and (max-width: 1090px)  {
+
+    #galleries .card-container {
+        width: 50%;
+    }
+
+    .search-lab {
+        left: -20px;
+    }
+
+    #galleries .items-conteiner {
+        justify-content: center;
+        align-items: center;
+    }
+
+    #galleries .items-content {
+        justify-content: center;
+    }
+    
+  }
+  

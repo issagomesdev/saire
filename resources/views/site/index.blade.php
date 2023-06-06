@@ -12,13 +12,15 @@
 				<a href="{{ route('site.gallery') }}"> galeria de fotos <i class="fa-solid fa-link"></i> </a> 
 			</div>
 			<div class="images"> </div>
-			<div class="view-more">
+			<div class="view-more" id="gallery">
 				<a href="{{ route('site.gallery') }}"> ver mais da galeria <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 			</div>
 		</section>
 	</div>
 
 	<section class="banners">
+		<div class="banner"> <a href="https://saire.pe.gov.br/pagina/Precat%C3%B3rio_FUNDEF_2023"> <img src="{{ asset('storage/img/banners/fundef.jpeg') }}" alt=" Precatório FUNDEF 2023"> </a> </div>
+		<div class="banner"> <a href="https://saire.pe.gov.br/pagina/Eleição_Conselho_Tutelar"> <img src="{{ asset('storage/img/banners/conselho.png') }}" alt="Processo de Escolha 2023 - Conselho Tutelar"> </a> </div>
 		<div class="banner"> <a href="http://www.ebminformatica.com/tributos/index.php"> <img src="{{ asset('storage/img/banners/iptu.png') }}" alt="iptu"> </a> </div>
 		<div class="banner"> <a href="https://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=holerite2"> <img src="{{ asset('storage/img/banners/contracheque.png') }}" alt="contracheque"> </a> </div>
 		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=lic"> <img src="{{ asset('storage/img/banners/licitacao.png') }}" alt="licitação"> </a> </div>
@@ -36,7 +38,7 @@
 			<a href="{{ route('site.publications') }}"> últimas notícias <i class="fa-solid fa-link"> </i> </a> 
 		</div>
 		<div class="publications"> </div>
-		<div class="view-more">
+		<div class="view-more"  id="publications">
 			<a href="{{ route('site.publications') }}"> ver todas as notícias <i class="fa-solid fa-arrow-up-right-from-square"></i> </a>
 		</div>
 	</section>
@@ -101,6 +103,15 @@
 	</script>
 <script src="{{ asset('js/he-master/he.js') }}"> </script>
 <script src="{{ asset('js/site/script.js') }}"> </script>
+
+	<style>
+	
+	span.text-big {
+	background-color: rgb(255 255 255 / 0%) !important;
+    color: #fff !important;
+    }
+	
+	</style>
 
 
 </body>

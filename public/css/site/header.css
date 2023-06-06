@@ -12,10 +12,11 @@ body {
     position: absolute;
     right: 0;
     margin: 5px;
+    display: flex;
 }
 
 .widget-container-social a {
-    color: #ddd;
+    color: #fff;
     text-decoration: none;
     margin: 2px;
 }
@@ -105,9 +106,8 @@ header {
     position: absolute;
     flex-direction: column;
     background-color: #17172e;
-    z-index: 999;
+    z-index: 9999;
     border-radius: 2px;
-    width: 100%;
     right: 0;
     top: 45px;
     padding: 0;

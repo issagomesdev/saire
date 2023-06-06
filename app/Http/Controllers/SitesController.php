@@ -24,6 +24,18 @@ class SitesController extends Controller
         return view('site.index', compact('publications', 'features', 'categories', 'galleries', 'menus'));
     }
 
+    public function search(Request $request){
+        $search = $request->search;
+        $menus = Menu::with(['submenuses', 'page'])->orderBy('position')->get();
+        $publications = Publication::orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
+        $pages = Page::orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(1);
+        //dd(count($pages));
+        $galleries = Gallery::orderBy('created_at', 'desc')->where('title', 'like', '%'.$search.'%')->paginate(6);
+        //sdd($pages);
+        
+        return view('site.search', compact('menus', 'search'));
+    }
+
     public function galleries()
     {
         $galleries = Gallery::with(['categories'])->orderBy('created_at', 'desc')->paginate(10);
