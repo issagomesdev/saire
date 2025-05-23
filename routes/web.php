@@ -8,34 +8,28 @@ use Illuminate\Http\Request;
 //Route::redirect('/', '/login');
 Auth::routes(['register' => false]);
 
-Route::get('/home', function () {
-    if (session('status')) {
-        return redirect()->route('admin.home')->with('status', session('status'));
-    }
-
-    return redirect()->route('admin.home');
-});
-
     // site
     Route::get('/', 'SitesController@index')->name('site.index');
-    Route::get('/galeria', 'SitesController@galleries')->name('site.gallery');
-    Route::get('/noticias', 'SitesController@publications')->name('site.publications');
-    Route::get('/noticias/{title}', 'SitesController@show')->name('site.publications.show');
-    Route::get('/pagina/{title}', 'SitesController@page')->name('site.page');
-    Route::get('/pesquisa', 'SitesController@search')->name('site.search');    
+    Route::get('/galeria', 'SitesController@galleries')->name('site.gallery'); // Galeria de fotos
+    Route::get('/noticias', 'SitesController@publications')->name('site.publications'); // publicações
+    Route::get('/noticias/{title}', 'SitesController@show')->name('site.publications.show'); // publicação view
+    Route::get('/pagina/{title}', 'SitesController@page')->name('site.page'); // pagina view
+    Route::get('/pesquisa', 'SitesController@search')->name('site.search');  // pesquisa global no site
     Route::get('/pesquisa/publications', function (Request $request) {
         $publications = Publication::with(['categories'])->orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
         return response()->json($publications);
-    }); 
+    });  // rota para obter publicações por nome
     Route::get('/pesquisa/pages', function (Request $request) {
         $page = Page::orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
         return response()->json($page);
-    }); 
+    });  // rota para obter páginas por nome
     Route::get('/pesquisa/galleries', function (Request $request) {
         $galleries = Gallery::with(['categories'])->orderBy('created_at', 'desc')->where('title', 'like', '%'.$request->search.'%')->paginate(6);
         return response()->json($galleries);
-    });
+    }); // rota para obter galerias por nome
 
+
+    // admin
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions

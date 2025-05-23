@@ -22,8 +22,8 @@ return [
         ],
     ],
     'role' => [
-        'title'          => 'Gargos',
-        'title_singular' => 'Gargo',
+        'title'          => 'Hierarquias',
+        'title_singular' => 'Hierarquia',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => ' ',
@@ -53,7 +53,7 @@ return [
             'email_verified_at_helper' => ' ',
             'password'                 => 'Senha',
             'password_helper'          => ' ',
-            'roles'                    => 'Cargo',
+            'roles'                    => 'Hierarquias',
             'roles_helper'             => ' ',
             'remember_token'           => 'Lembrar token',
             'remember_token_helper'    => ' ',

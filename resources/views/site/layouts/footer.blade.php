@@ -27,8 +27,6 @@
 				<p> <a href="pagina/Município"> Município </a> </p>
 				<p> <a href="pagina/Governo-Municipal"> Governo Municipal </a> </p>
 				<p> <a href="pagina/Secretarias"> Secretarias </a> </p>
-				<p> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=inst"> Portal da Transparencia </a> </p>
-				<p> <a href="https://transparencia.saire.pe.gov.br/portal/v81/p_acesso_rapido/p_acesso_rapido.php"> Ouvidoria </a> </p>
 			</div>
 		</div>
 
@@ -50,7 +48,7 @@
 
 	<div class="copyright"> 
 		<p> © Copyright - 2023 Prefeitura Municipal de Sairé - PE | Desenvolvido por  
-		<a href="https://www.linkedin.com/in/byissa/"> Hayssa Gomes </a> </p>
+		<a href="https://byissa.tech/"> Hayssa Gomes </a> </p>
 	</div>
 
 	</footer>

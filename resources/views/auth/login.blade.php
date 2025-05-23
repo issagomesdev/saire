@@ -68,11 +68,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .c-app.flex-row.align-items-center {
-    position: relative;
-    margin: 5em 0 0 0 !important;
-}
-</style>
 @endsection
