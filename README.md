@@ -21,9 +21,7 @@
 
 <h2 id="about">📌 About</h2>
 
-<p>
 This project is a municipal institutional website that includes a **dynamic CMS**, allowing administrators to manage menus, pages, publications, photo galleries, and other informational content through a friendly admin panel. The site is public-facing and was tailored for a local government audience.
-</p>
 
 [![project](https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project)](https://saire.byissa.tech/)
 
