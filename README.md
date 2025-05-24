@@ -13,7 +13,6 @@
   <a href="#about">About</a> •
   <a href="#features">Features</a> •
   <a href="#technologies">Technologies</a> • 
-  <a href="#structure">Structure</a> • 
   <a href="#routes">App Routes</a> • 
   <a href="#started">Getting Started</a> •
   <a href="#notes">Final Notes</a>
@@ -62,32 +61,6 @@ This CMS was built with a custom Laravel stack, using:
 - **Audit Logs** — Full change tracking for all major resources
 
 > ⚙️ The system was designed to be modular and easily expandable for other municipalities or small content-based platforms.
-
-
-<h2 id="structure">🗺️ Structure</h2>
-
-```txt
-📁 app/
- ┣ 📂 Http/
- ┃ ┣ 📂 Controllers/
- ┃ ┃ ┣ SitesController.php            # Public site logic
- ┃ ┃ ┗ 📂 Admin/                       # Admin panel controllers
- ┣ 📂 Models/
- ┃ ┗ All models: Page, Menu, Gallery, Publication, User, etc.
-
-📁 database/
- ┣ 📂 migrations/                     # DB tables
- ┣ 📂 seeders/                        # Default permissions and admin
-
-📁 public/
- ┗ 📂 css/, js/, images/, storage/    # Assets and uploads
-
-📁 resources/
- ┗ 📂 views/                          # Blade templates (public/admin)
-
-📁 routes/
- ┗ web.php                            # All defined routes
- ```
 
  <h2 id="routes">📍 Application Routes</h2>
 
