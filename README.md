@@ -5,7 +5,7 @@
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-![Preview do site](https://saire.byissa.tech/midia/img/preview.png)
+![Preview do site](https://saire.byissa.dev/midia/img/preview.png)
 
 > 📍 Developed as a freelance project for the Municipality of Sairé-PE, used officially for about 6 months in 2021.
 
@@ -22,7 +22,7 @@
 
 This project is a municipal institutional website that includes a **dynamic CMS**, allowing administrators to manage menus, pages, publications, photo galleries, and other informational content through a friendly admin panel. The site is public-facing and was tailored for a local government audience.
 
-[![project](https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project)](https://saire.byissa.tech/)
+[![project](https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project)](https://saire.byissa.dev/)
 
 
 <h2 id="features">✨ Features</h2>

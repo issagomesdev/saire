@@ -48,7 +48,7 @@
 
 	<div class="copyright"> 
 		<p> © Copyright - 2023 Prefeitura Municipal de Sairé - PE | Desenvolvido por  
-		<a href="https://byissa.tech/"> Hayssa Gomes </a> </p>
+		<a href="https://byissa.dev/"> Hayssa Gomes </a> </p>
 	</div>
 
 	</footer>
