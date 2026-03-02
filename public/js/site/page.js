@@ -9,7 +9,7 @@ const nextPaginations = nextPages.map(function(page) {
     const pages = document.createElement("div");
     pages.classList.add("page");
     const pageInPages = document.createElement("a");
-    pageInPages.href = url + "/?page=" + page;
+    pageInPages.href = url + "?page=" + page;
     pageInPages.innerHTML = page;
     pages.append(pageInPages);
 
@@ -23,7 +23,7 @@ if(next != 0){
   pagelast.classList.add("page");
   pagelast.classList.add("page-control");
   const pageInPagelast = document.createElement("a");
-  pageInPagelast.href = url + "/?page=" + lastPage;
+  pageInPagelast.href = url + "?page=" + lastPage;
   pageInPagelast.innerHTML = '<i class="fa-solid fa-caret-right"></i>' + '<i class="fa-solid fa-caret-right"></i>';
   pagelast.append(pageInPagelast);
   pagesnext.append(pagelast);
@@ -39,7 +39,7 @@ if(currentPage - 1 != 0){
     pageprevius.classList.add("page");
     pageprevius.classList.add("page-control");
     const pageInPageprevius = document.createElement("a");
-    pageInPageprevius.href = url + "/?page=" + (currentPage - 1);
+    pageInPageprevius.href = url + "?page=" + (currentPage - 1);
     pageInPageprevius.innerHTML = '<i class="fa-solid fa-caret-left"></i>';
     pagecurrent.append(pageprevius);
     pageprevius.append(pageInPageprevius);
@@ -49,7 +49,7 @@ const pages = document.createElement("div");
 pages.classList.add("page");
 pages.classList.add("active");
 const pageInPages = document.createElement("a");
-pageInPages.href = url + "/?page=" + currentPage;
+pageInPages.href = url + "?page=" + currentPage;
 pageInPages.innerHTML = currentPage;
 pagecurrent.append(pages);
 pages.append(pageInPages);
@@ -60,7 +60,7 @@ if(currentPage != lastPage){
     pagenext.classList.add("page");
     pagenext.classList.add("page-control");
     const pageInPagenext = document.createElement("a");
-    pageInPagenext.href = url + "/?page=" + (parseInt(currentPage) + 1);
+    pageInPagenext.href = url + "?page=" + (parseInt(currentPage) + 1);
     pageInPagenext.innerHTML = '<i class="fa-solid fa-caret-right"></i>';
     pagecurrent.append(pagenext);
     pagenext.append(pageInPagenext);
@@ -76,7 +76,7 @@ const previusPaginations = previusPages.reverse().map(function(page) {
     const pages = document.createElement("div");
     pages.classList.add("page");
     const pageInPages = document.createElement("a");
-    pageInPages.href = url + "/?page=" + page;
+    pageInPages.href = url + "?page=" + page;
     pageInPages.innerHTML = page;
     pages.append(pageInPages);
 
@@ -88,7 +88,7 @@ const previusPaginations = previusPages.reverse().map(function(page) {
     pagefirst.classList.add("page");
     pagefirst.classList.add("page-control");
     const pageInPagefirst = document.createElement("a");
-    pageInPagefirst.href = url + "/?page=" + 1;
+    pageInPagefirst.href = url + "?page=" + 1;
     pageInPagefirst.innerHTML = '<i class="fa-solid fa-caret-left"></i>' + '<i class="fa-solid fa-caret-left"></i>';
     pagefirst.append(pageInPagefirst);
     pagesprevius.append(pagefirst);

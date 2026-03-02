@@ -33,7 +33,7 @@
 		justify-content: space-between;
 		flex-direction: row;
 		width: 100%;">
-		<a href="/"> <img src="{{ asset('storage/img/logo1.png') }}" alt="logo"> </a>
+		<a href="/"> <img src="/media/img/logo.png" alt="logo"> </a>
 
 		<div class="Search">
 			<div class="SearchInner">

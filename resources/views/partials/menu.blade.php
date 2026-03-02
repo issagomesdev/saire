@@ -1,7 +1,7 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
 
     <div class="c-sidebar-brand d-md-down-none">
-    <img src="{{ asset('storage/img/logo1.png') }}" alt="logo" style="width: 18em; height: auto">
+    <img src="/media/img/logo.png" alt="logo" style="width: 18em; height: auto">
     </div>
 
     <ul class="c-sidebar-nav">

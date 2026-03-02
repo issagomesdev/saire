@@ -68,7 +68,7 @@
             @endforeach
 		];
 
-		var imageDefault = "{{ asset('storage/img/saire.jpeg') }}";
+		var imageDefault = "/media/img/default.png";
         
 </script>
 <script src="{{ asset('js/site/publications/script.js') }}"> </script>

@@ -19,17 +19,17 @@
 	</div>
 
 	<section class="banners">
-		<div class="banner"> <a href="https://saire.pe.gov.br/pagina/Precat%C3%B3rio_FUNDEF_2023"> <img src="{{ asset('storage/img/banners/fundef.jpeg') }}" alt=" Precatório FUNDEF 2023"> </a> </div>
-		<div class="banner"> <a href="https://saire.pe.gov.br/pagina/Eleição_Conselho_Tutelar"> <img src="{{ asset('storage/img/banners/conselho.png') }}" alt="Processo de Escolha 2023 - Conselho Tutelar"> </a> </div>
-		<div class="banner"> <a href="http://www.ebminformatica.com/tributos/index.php"> <img src="{{ asset('storage/img/banners/iptu.png') }}" alt="iptu"> </a> </div>
-		<div class="banner"> <a href="https://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=holerite2"> <img src="{{ asset('storage/img/banners/contracheque.png') }}" alt="contracheque"> </a> </div>
-		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=lic"> <img src="{{ asset('storage/img/banners/licitacao.png') }}" alt="licitação"> </a> </div>
-		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=lic">  <img src="{{ asset('storage/img/banners/aviso-de-licitacao.png') }}" alt="aviso de licitação"> </a> </div>
-		<div class="banner"> <a href="http://www.ebminformatica.com/enota25/site/login/login"> <img src="{{ asset('storage/img/banners/nfse.png') }}" alt="nfse"> </a> </div>
-		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=serv"> <img src="{{ asset('storage/img/banners/carta.png') }}" alt="carta de serviços"> </a> </div>
-		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=dpa"> <img src="{{ asset('storage/img/banners/despesas.png') }}" alt="despesa"> </a> </div>
-		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=rec"> <img src="{{ asset('storage/img/banners/receita.png') }}" alt="receita"> </a> </div>
-		<div class="banner"> <a href="https://transparencia.saire.pe.gov.br/portal/v81/covid_home/"> <img src="{{ asset('storage/img/banners/covid.png') }}" alt="covid-19"> </a> </div>
+		<div class="banner"> <a href="https://saire.pe.gov.br/pagina/Precat%C3%B3rio_FUNDEF_2023"> <img src="/media/img/banners/fundef.png" alt=" Precatório FUNDEF 2023"> </a> </div>
+		<div class="banner"> <a href="https://saire.pe.gov.br/pagina/Eleição_Conselho_Tutelar"> <img src="/media/img/banners/conselho.png" alt="Processo de Escolha 2023 - Conselho Tutelar"> </a> </div>
+		<div class="banner"> <a href="http://www.ebminformatica.com/tributos/index.php"> <img src="/media/img/banners/iptu.png" alt="iptu"> </a> </div>
+		<div class="banner"> <a href="https://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=holerite2"> <img src="/media/img/banners/contracheque.png" alt="contracheque"> </a> </div>
+		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=lic"> <img src="/media/img/banners/licitacao.png" alt="licitação"> </a> </div>
+		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=lic">  <img src="/media/img/banners/aviso-de-licitacao.png" alt="aviso de licitação"> </a> </div>
+		<div class="banner"> <a href="http://www.ebminformatica.com/enota25/site/login/login"> <img src="/media/img/banners/nfse.png" alt="nfse"> </a> </div>
+		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=serv"> <img src="/media/img/banners/carta.png" alt="carta de serviços"> </a> </div>
+		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=dpa"> <img src="/media/img/banners/despesas.png" alt="despesa"> </a> </div>
+		<div class="banner"> <a href="http://transparencia.saire.pe.gov.br/portal/v81/indexent/indexent.php?entidade=215&idoc=rec"> <img src="/media/img/banners/receita.png" alt="receita"> </a> </div>
+		<div class="banner"> <a href="https://transparencia.saire.pe.gov.br/portal/v81/covid_home/"> <img src="/media/img/banners/covid.png" alt="covid-19"> </a> </div>
 	</section>
 </main>
 
@@ -83,7 +83,7 @@
 			@endforeach
 		];
 
-		var imageDefault = "{{ asset('storage/img/saire.jpeg') }}";
+		var imageDefault = "/media/img/default.png";
 
 		const galleries = [
 			@foreach($galleries as $gallery)

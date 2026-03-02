@@ -4,7 +4,7 @@
     <div class="col-md-6">
         <div class="card mx-4">
             <div class="card-body p-4">
-            <img src="{{ asset('storage/img/logo1.png') }}" alt="logo" style="width: 100%; height: auto">
+            <img src="/media/img/logo.png" alt="logo" style="width: 100%; height: auto">
 
                 <p class="text-muted">{{ trans('global.login') }}</p>
 

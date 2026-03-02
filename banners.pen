@@ -1,0 +1,1022 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "hrv6k",
+      "x": 0,
+      "y": 0,
+      "name": "Banners Prefeitura",
+      "width": 800,
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        32,
+        25
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "tCjBe",
+          "name": "lbl",
+          "fill": "#7A8FAD",
+          "content": "BANNERS — PREFEITURA MUNICIPAL",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "letterSpacing": 2
+        },
+        {
+          "type": "frame",
+          "id": "J0oEJ",
+          "name": "01 FUNDEF",
+          "width": 750,
+          "height": 260,
+          "fill": "#E8F4FD",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "G6bBI",
+              "name": "b1l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#e4f7ffff",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wXDuF",
+                  "name": "b1tag",
+                  "fill": "#1565C0",
+                  "content": "FUNDEF · 2023",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "lu88G",
+                  "name": "b1title",
+                  "fill": "#0D2750",
+                  "content": "PRECATÓRIO FUNDEF 2023",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "qVrpl",
+                  "name": "b1bar",
+                  "fill": "#FFC107",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "DMesb",
+                  "name": "b1sub",
+                  "fill": "#1E3A5F",
+                  "content": "Informações e Transparência",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vMLC6",
+              "name": "b1r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416686193.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pg7iL",
+          "name": "02 Eleição Conselho Tutelar",
+          "width": 750,
+          "height": 260,
+          "fill": "#E3F0FA",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "0NbdL",
+              "name": "b2l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#dae7f2ff",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "8HAsa",
+                  "name": "b2tag",
+                  "fill": "#1565C0",
+                  "content": "ELEIÇÕES · 2025",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "1GgNH",
+                  "name": "b2title",
+                  "fill": "#0D2750",
+                  "content": "ELEIÇÃO CONSELHO TUTELAR",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "jHmvx",
+                  "name": "b2bar",
+                  "fill": "#FFC107",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "AZliJ",
+                  "name": "b2sub",
+                  "fill": "#1E3A5F",
+                  "content": "Resultado da Escolha 2025. Participe.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "46mCY",
+              "name": "b2r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416695731.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "h0PDs",
+          "name": "03 IPTU - Acesse seu Boleto",
+          "width": 750,
+          "height": 260,
+          "fill": "#E8F4FD",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "9OLwo",
+              "name": "b3l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#d8dfe4ff",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "5Nwp2",
+                  "name": "b3tag",
+                  "fill": "#1565C0",
+                  "content": "TRIBUTAÇÃO MUNICIPAL",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "Mweob",
+                  "name": "b3title",
+                  "fill": "#0D2750",
+                  "content": "IPTU",
+                  "fontFamily": "Inter",
+                  "fontSize": 60,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "iw0tN",
+                  "name": "b3bar",
+                  "fill": "#FFC107",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "vYxFR",
+                  "name": "b3sub",
+                  "fill": "#1E3A5F",
+                  "content": "Acesse seu Boleto Online.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vJcRY",
+              "name": "b3r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416275043.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wRLDx",
+          "name": "04 IPTU 2023 - Emita sua Guia",
+          "width": 750,
+          "height": 260,
+          "fill": "#d4dfe7ff",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "qyVpw",
+              "name": "b4l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#d6eaffff",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GoTmC",
+                  "name": "b4tag",
+                  "fill": "#1565C0",
+                  "content": "IPTU · 2023",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "mXBnQ",
+                  "name": "b4title",
+                  "fill": "#0D2750",
+                  "content": "IPTU 2023",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "IFhJ0",
+                  "name": "b4bar",
+                  "fill": "#FFC107",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "6TMtG",
+                  "name": "b4sub",
+                  "fill": "#1E3A5F",
+                  "content": "Emita sua Guia Online e Colabore com a Cidade.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1ouLI",
+              "name": "b4r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416285729.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "RzHCX",
+          "name": "05 Contracheque",
+          "width": 750,
+          "height": 260,
+          "fill": "#e6e6e6ff",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "2a2Dd",
+              "name": "b5l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#d4e6e6ff",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hrary",
+                  "name": "b5tag",
+                  "fill": "#1565C0",
+                  "content": "PORTAL DO SERVIDOR",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "oOWrj",
+                  "name": "b5title",
+                  "fill": "#0D2750",
+                  "content": "CONTRACHEQUE",
+                  "fontFamily": "Inter",
+                  "fontSize": 30,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "v9YAy",
+                  "name": "b5bar",
+                  "fill": "#00897B",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "AqnXm",
+                  "name": "b5sub",
+                  "fill": "#1E3A5F",
+                  "content": "Portal do Servidor: Acesse seu Holerite.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "2KmNR",
+              "name": "b5r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416318692.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FOTQC",
+          "name": "06 Aviso de Licitação",
+          "width": 750,
+          "height": 260,
+          "fill": "#FFF8E1",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "dQJic",
+              "name": "b6l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#FFF8E1",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uPFYQ",
+                  "name": "b6tag",
+                  "fill": "#E65100",
+                  "content": "COMPRAS PÚBLICAS",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "UF4il",
+                  "name": "b6title",
+                  "fill": "#3E2000",
+                  "content": "AVISO DE LICITAÇÃO",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "zYw0A",
+                  "name": "b6bar",
+                  "fill": "#E65100",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "5Cn0P",
+                  "name": "b6sub",
+                  "fill": "#5D4037",
+                  "content": "Editais Abertos e Futuras Licitações.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CZHhj",
+              "name": "b6r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416327112.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "P3nww",
+          "name": "07 Licitação",
+          "width": 750,
+          "height": 260,
+          "fill": "#E8F4FD",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "NKSTr",
+              "name": "b7l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#E8F4FD",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "6TzOE",
+                  "name": "b7tag",
+                  "fill": "#1565C0",
+                  "content": "COMPRAS PÚBLICAS",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "BmZBB",
+                  "name": "b7title",
+                  "fill": "#0D2750",
+                  "content": "LICITAÇÃO",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "MZMkV",
+                  "name": "b7bar",
+                  "fill": "#F57C00",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "A5Z9o",
+                  "name": "b7sub",
+                  "fill": "#1E3A5F",
+                  "content": "Acompanhe os Processos de Compras Públicas.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nUWf4",
+              "name": "b7r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416348473.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "w0hGF",
+          "name": "08 NFSe - Nota Fiscal Eletrônica",
+          "width": 750,
+          "height": 260,
+          "fill": "#E8F5E9",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "xPz5p",
+              "name": "b8l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#E8F5E9",
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                50,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HNHpg",
+                  "name": "b8tag",
+                  "fill": "#2E7D32",
+                  "content": "SERVIÇOS ELETRÔNICOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "HUQYe",
+                  "name": "b8title",
+                  "fill": "#1B3A1D",
+                  "content": "NFSe",
+                  "fontFamily": "Inter",
+                  "fontSize": 44,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "aeU4V",
+                  "name": "b8bar",
+                  "fill": "#2E7D32",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "gF18k",
+                  "name": "b8sub",
+                  "rotation": 0.09790036270123471,
+                  "fill": "#2E4B30",
+                  "textGrowth": "fixed-width-height",
+                  "width": 370,
+                  "height": 31,
+                  "content": "Nota Fiscal de Serviços Eletrônica. Emissão Online para Prestadores de Serviços.",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "veKfx",
+              "name": "b8r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416355897.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OcwLC",
+          "name": "09 Transparência: Despesas",
+          "width": 750,
+          "height": 260,
+          "fill": "#FDECEA",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "sJEtt",
+              "name": "b9l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#FDECEA",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "st12r",
+                  "name": "b9tag",
+                  "fill": "#C62828",
+                  "content": "TRANSPARÊNCIA",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "myam5",
+                  "name": "b9title",
+                  "fill": "#3B0A0A",
+                  "content": "TRANSPARÊNCIA:\nDESPESAS",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "NmJUB",
+                  "name": "b9bar",
+                  "fill": "#C62828",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "SP4Ju",
+                  "name": "b9sub",
+                  "fill": "#5C1010",
+                  "textGrowth": "fixed-width",
+                  "width": 368,
+                  "content": "Acompanhe os Gastos Públicos e como o dinheiro está sendo aplicado.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "cGxGy",
+              "name": "b9r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416384021.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wM5W4",
+          "name": "10 Transparência: Receitas",
+          "width": 750,
+          "height": 260,
+          "fill": "#E8F5E9",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "uMm1l",
+              "name": "b10l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#E8F5E9",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "V77oW",
+                  "name": "b10tag",
+                  "fill": "#2E7D32",
+                  "content": "TRANSPARÊNCIA",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "BSW5U",
+                  "name": "b10title",
+                  "fill": "#0A2E0F",
+                  "content": "TRANSPARÊNCIA:\nRECEITAS",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "PCHhg",
+                  "name": "b10bar",
+                  "fill": "#2E7D32",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "K8IZK",
+                  "name": "b10sub",
+                  "fill": "#1B3A20",
+                  "content": "Acompanhe a Arrecadação e a Gestão dos Recursos.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YJ6Xx",
+              "name": "b10r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416393463.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NIvKX",
+          "name": "11 Transparência: Despesas de Pessoal",
+          "width": 750,
+          "height": 260,
+          "fill": "#EDE7F6",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "3we5R",
+              "name": "b11l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#EDE7F6",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "5L03f",
+                  "name": "b11tag",
+                  "fill": "#6A1B9A",
+                  "content": "TRANSPARÊNCIA",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "JEb2Z",
+                  "name": "b11title",
+                  "fill": "#1A0030",
+                  "content": "TRANSPARÊNCIA:\nDESPESAS DE PESSOAL",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "9PCn2",
+                  "name": "b11bar",
+                  "fill": "#6A1B9A",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "N9zxP",
+                  "name": "b11sub",
+                  "fill": "#3A1060",
+                  "content": "Acompanhe os Gastos com Folha de Pagamento e Benefícios.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KiM59",
+              "name": "b11r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416417989.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "r4xlt",
+          "name": "12 COVID-19",
+          "width": 750,
+          "height": 260,
+          "fill": "#E3F2FD",
+          "cornerRadius": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "3mhvw",
+              "name": "b12l",
+              "width": 460,
+              "height": "fill_container",
+              "fill": "#E3F2FD",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                60,
+                44,
+                0,
+                44
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "9QUOu",
+                  "name": "b12tag",
+                  "fill": "#0D47A1",
+                  "content": "SAÚDE PÚBLICA · PE",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "xdIii",
+                  "name": "b12title",
+                  "fill": "#0D2750",
+                  "content": "COVID-19",
+                  "fontFamily": "Inter",
+                  "fontSize": 44,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "km6EO",
+                  "name": "b12bar",
+                  "fill": "#1565C0",
+                  "width": 50,
+                  "height": 4
+                },
+                {
+                  "type": "text",
+                  "id": "I3TZD",
+                  "name": "b12sub",
+                  "fill": "#1E3A5F",
+                  "content": "Boletins, Vacinação e Medidas Oficiais para Saúde, PE.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f7GPc",
+              "name": "b12r",
+              "width": 290,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1772416428177.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
