@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 03/10/2023 às 20:29
--- Versão do servidor: 8.0.31
--- Versão do PHP: 8.2.0
+-- Host: localhost:3306
+-- Generation Time: Mar 02, 2026 at 02:58 AM
+-- Server version: 8.4.3
+-- PHP Version: 8.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,18 +18,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `saire`
+-- Database: `saire`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `audit_logs`
+-- Table structure for table `audit_logs`
 --
 
-DROP TABLE IF EXISTS `audit_logs`;
-CREATE TABLE IF NOT EXISTS `audit_logs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `audit_logs` (
+  `id` bigint UNSIGNED NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject_id` bigint UNSIGNED DEFAULT NULL,
   `subject_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -37,12 +36,11 @@ CREATE TABLE IF NOT EXISTS `audit_logs` (
   `properties` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `host` varchar(46) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `audit_logs`
+-- Dumping data for table `audit_logs`
 --
 
 INSERT INTO `audit_logs` (`id`, `description`, `subject_id`, `subject_type`, `user_id`, `properties`, `host`, `created_at`, `updated_at`) VALUES
@@ -182,27 +180,26 @@ INSERT INTO `audit_logs` (`id`, `description`, `subject_id`, `subject_type`, `us
 (138, 'Exclusão', 8, 'Submenu', 1, '{\"id\":8,\"title\":\"subMenu6\",\"link_type\":\"1\",\"url\":\"https:\\/\\/www.shoppingcart.byissag.com\\/\",\"created_at\":\"2023-03-05 01:39:40\",\"updated_at\":\"2023-03-05 18:56:51\",\"deleted_at\":\"2023-03-05 18:56:51\",\"page_id\":null}', '127.0.0.1', '2023-03-05 21:56:51', '2023-03-05 21:56:51'),
 (139, 'Exclusão', 2, 'Menu', 1, '{\"id\":2,\"title\":\"Contracheque\",\"link_type\":\"2\",\"url\":\"https:\\/\\/transparencia.saire.pe.gov.br\\/portal\\/v81\\/fol2_emissao_contracheque\\/fol2_emissao_contracheque.php\",\"created_at\":\"2023-03-04 20:25:43\",\"updated_at\":\"2023-03-05 18:57:08\",\"deleted_at\":\"2023-03-05 18:57:08\",\"page_id\":null}', '127.0.0.1', '2023-03-05 21:57:08', '2023-03-05 21:57:08'),
 (140, 'Cadastro', 13, 'Menu', 1, '{\"title\":\"inicio\",\"link_type\":\"2\",\"url\":\"\\/\",\"position\":\"6\",\"updated_at\":\"2023-03-06 21:39:45\",\"created_at\":\"2023-03-06 21:39:45\",\"id\":13}', '127.0.0.1', '2023-03-07 00:39:45', '2023-03-07 00:39:45'),
-(141, 'Edição', 2, 'Page', 1, '{\"content\":\"<h2><strong>PREFEITO<\\/strong><\\/h2><p><img class=\\\"image_resized\\\" style=\\\"width:35.46%;\\\" src=\\\"https:\\/\\/saire.byissag.com\\/\\/storage\\/82\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\\\"><\\/p><p>GILDO PONTES DE ARRUDA<\\/p><h2 style=\\\"text-align:right;\\\"><strong>VICE \\u2013 PREFEITO<\\/strong><\\/h2><p style=\\\"text-align:right;\\\"><img class=\\\"image_resized\\\" style=\\\"width:35.87%;\\\" src=\\\"https:\\/\\/saire.byissag.com\\/\\/storage\\/81\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\\\"><\\/p><p style=\\\"text-align:right;\\\">FL\\u00c1VIO MARC\\u00cdLIO CRUZ BEZERRA<\\/p>\",\"updated_at\":\"2023-03-07 00:56:17\",\"id\":2,\"photos\":[],\"media\":[{\"id\":63,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"510f0690-74cc-4a9f-9c68-7dc325542540\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":4,\"created_at\":\"2023-03-05T01:04:44.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/63\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/63\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":64,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"5144b491-f1f3-453c-aec7-b58fdb66a2f0\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":5,\"created_at\":\"2023-03-05T01:09:19.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/64\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/64\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":65,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"54b72030-d058-49fc-a148-225b57a3dfd5\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":6,\"created_at\":\"2023-03-05T01:09:27.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/65\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/65\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":67,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"236db244-5053-4b57-afdb-1a8d2a886491\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":7,\"created_at\":\"2023-03-05T04:09:46.000000Z\",\"updated_at\":\"2023-03-05T04:09:46.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/67\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/67\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":68,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"acb453d2-e8b0-43f4-8a54-2b9f4991a1d9\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":8,\"created_at\":\"2023-03-05T04:09:54.000000Z\",\"updated_at\":\"2023-03-05T04:09:54.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/68\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/68\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":69,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"9b34b36d-24cf-4e2d-bf71-bcddea6afbb3\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":9,\"created_at\":\"2023-03-05T04:22:01.000000Z\",\"updated_at\":\"2023-03-05T04:22:01.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/69\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/69\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":70,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"0e0d831c-9ff1-44d4-8031-734aa9290ffc\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":10,\"created_at\":\"2023-03-05T04:22:08.000000Z\",\"updated_at\":\"2023-03-05T04:22:08.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/70\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/70\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":74,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"3104e2ec-bd8e-438a-9d39-75d370eea6ad\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":11,\"created_at\":\"2023-03-07T00:32:26.000000Z\",\"updated_at\":\"2023-03-07T00:32:26.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/74\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":75,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"6f70f124-79c9-40b5-8ec0-7e403bc16c05\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":12,\"created_at\":\"2023-03-07T00:32:40.000000Z\",\"updated_at\":\"2023-03-07T00:32:40.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/75\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":76,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"8f8e4160-6154-46d2-9886-731175a2238a\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":13,\"created_at\":\"2023-03-07T00:43:34.000000Z\",\"updated_at\":\"2023-03-07T00:43:34.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/76\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":77,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"06b61163-e7bf-4f76-99df-24471fee0e42\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":14,\"created_at\":\"2023-03-07T00:43:52.000000Z\",\"updated_at\":\"2023-03-07T00:43:52.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/77\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":78,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"75663af5-2212-4132-b040-43d6b47dbc4f\",\"collection_name\":\"ck-media\",\"name\":\"Captura de tela de 2023-03-06 21-34-25\",\"file_name\":\"Captura-de-tela-de-2023-03-06-21-34-25.png\",\"mime_type\":\"image\\/png\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":14947,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":15,\"created_at\":\"2023-03-07T00:51:30.000000Z\",\"updated_at\":\"2023-03-07T00:51:30.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/78\\/Captura-de-tela-de-2023-03-06-21-34-25.png\",\"preview_url\":\"\"},{\"id\":81,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"ca0dcbf1-22dc-4e8c-a420-e3ac72cf5b3a\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":16,\"created_at\":\"2023-03-07T00:54:35.000000Z\",\"updated_at\":\"2023-03-07T00:54:36.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/81\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/81\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":82,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"4a902e32-0646-4079-8b56-d5167374317e\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":17,\"created_at\":\"2023-03-07T00:55:47.000000Z\",\"updated_at\":\"2023-03-07T00:55:48.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/82\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/82\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"}]}', '191.6.49.229', '2023-03-07 03:56:17', '2023-03-07 03:56:17');
+(141, 'Edição', 2, 'Page', 1, '{\"content\":\"<h2><strong>PREFEITO<\\/strong><\\/h2><p><img class=\\\"image_resized\\\" style=\\\"width:35.46%;\\\" src=\\\"https:\\/\\/saire.byissag.com\\/\\/storage\\/82\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\\\"><\\/p><p>GILDO PONTES DE ARRUDA<\\/p><h2 style=\\\"text-align:right;\\\"><strong>VICE \\u2013 PREFEITO<\\/strong><\\/h2><p style=\\\"text-align:right;\\\"><img class=\\\"image_resized\\\" style=\\\"width:35.87%;\\\" src=\\\"https:\\/\\/saire.byissag.com\\/\\/storage\\/81\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\\\"><\\/p><p style=\\\"text-align:right;\\\">FL\\u00c1VIO MARC\\u00cdLIO CRUZ BEZERRA<\\/p>\",\"updated_at\":\"2023-03-07 00:56:17\",\"id\":2,\"photos\":[],\"media\":[{\"id\":63,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"510f0690-74cc-4a9f-9c68-7dc325542540\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":4,\"created_at\":\"2023-03-05T01:04:44.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/63\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/63\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":64,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"5144b491-f1f3-453c-aec7-b58fdb66a2f0\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":5,\"created_at\":\"2023-03-05T01:09:19.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/64\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/64\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":65,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"54b72030-d058-49fc-a148-225b57a3dfd5\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":6,\"created_at\":\"2023-03-05T01:09:27.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/65\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/65\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":67,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"236db244-5053-4b57-afdb-1a8d2a886491\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":7,\"created_at\":\"2023-03-05T04:09:46.000000Z\",\"updated_at\":\"2023-03-05T04:09:46.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/67\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/67\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":68,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"acb453d2-e8b0-43f4-8a54-2b9f4991a1d9\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":8,\"created_at\":\"2023-03-05T04:09:54.000000Z\",\"updated_at\":\"2023-03-05T04:09:54.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/68\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/68\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":69,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"9b34b36d-24cf-4e2d-bf71-bcddea6afbb3\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":9,\"created_at\":\"2023-03-05T04:22:01.000000Z\",\"updated_at\":\"2023-03-05T04:22:01.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/69\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/69\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":70,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"0e0d831c-9ff1-44d4-8031-734aa9290ffc\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":10,\"created_at\":\"2023-03-05T04:22:08.000000Z\",\"updated_at\":\"2023-03-05T04:22:08.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/70\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/70\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":74,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"3104e2ec-bd8e-438a-9d39-75d370eea6ad\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":11,\"created_at\":\"2023-03-07T00:32:26.000000Z\",\"updated_at\":\"2023-03-07T00:32:26.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/74\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":75,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"6f70f124-79c9-40b5-8ec0-7e403bc16c05\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":12,\"created_at\":\"2023-03-07T00:32:40.000000Z\",\"updated_at\":\"2023-03-07T00:32:40.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/75\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":76,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"8f8e4160-6154-46d2-9886-731175a2238a\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":13,\"created_at\":\"2023-03-07T00:43:34.000000Z\",\"updated_at\":\"2023-03-07T00:43:34.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/76\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":77,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"06b61163-e7bf-4f76-99df-24471fee0e42\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":14,\"created_at\":\"2023-03-07T00:43:52.000000Z\",\"updated_at\":\"2023-03-07T00:43:52.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/77\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":78,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"75663af5-2212-4132-b040-43d6b47dbc4f\",\"collection_name\":\"ck-media\",\"name\":\"Captura de tela de 2023-03-06 21-34-25\",\"file_name\":\"Captura-de-tela-de-2023-03-06-21-34-25.png\",\"mime_type\":\"image\\/png\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":14947,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":15,\"created_at\":\"2023-03-07T00:51:30.000000Z\",\"updated_at\":\"2023-03-07T00:51:30.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/78\\/Captura-de-tela-de-2023-03-06-21-34-25.png\",\"preview_url\":\"\"},{\"id\":81,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"ca0dcbf1-22dc-4e8c-a420-e3ac72cf5b3a\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":16,\"created_at\":\"2023-03-07T00:54:35.000000Z\",\"updated_at\":\"2023-03-07T00:54:36.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/81\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/81\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":82,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"4a902e32-0646-4079-8b56-d5167374317e\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":17,\"created_at\":\"2023-03-07T00:55:47.000000Z\",\"updated_at\":\"2023-03-07T00:55:48.000000Z\",\"original_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/82\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"https:\\/\\/saire.byissag.com\\/\\/storage\\/82\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"}]}', '191.6.49.229', '2023-03-07 03:56:17', '2023-03-07 03:56:17'),
+(142, 'Edição', 2, 'Page', 1, '{\"content\":\"<h2><strong>PREFEITO<\\/strong><\\/h2><p><img src=\\\"http:\\/\\/saire.test\\/storage\\/139\\/image.jpeg\\\" alt=\\\"Prefeito - Prefeitura de Sair\\u00e9 - PE\\\"><\\/p><p>GILDO PONTES DE ARRUDA<\\/p><h2 style=\\\"text-align:right;\\\"><strong>VICE \\u2013 PREFEITO<\\/strong><\\/h2><p style=\\\"text-align:right;\\\"><img src=\\\"http:\\/\\/saire.test\\/storage\\/141\\/image.jpeg\\\" alt=\\\"Governo - Prefeitura de Sair\\u00e9 - PE\\\"><\\/p><p style=\\\"text-align:right;\\\">FL\\u00c1VIO MARC\\u00cdLIO CRUZ BEZERRA<\\/p>\",\"updated_at\":\"2026-03-02 02:56:31\",\"id\":2,\"photos\":[],\"media\":[{\"id\":63,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"510f0690-74cc-4a9f-9c68-7dc325542540\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":4,\"created_at\":\"2023-03-05T01:04:44.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/63\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/63\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":64,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"5144b491-f1f3-453c-aec7-b58fdb66a2f0\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":5,\"created_at\":\"2023-03-05T01:09:19.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/64\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/64\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":65,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"54b72030-d058-49fc-a148-225b57a3dfd5\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":6,\"created_at\":\"2023-03-05T01:09:27.000000Z\",\"updated_at\":\"2023-03-05T01:15:03.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/65\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/65\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":67,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"236db244-5053-4b57-afdb-1a8d2a886491\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":7,\"created_at\":\"2023-03-05T04:09:46.000000Z\",\"updated_at\":\"2023-03-05T04:09:46.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/67\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/67\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":68,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"acb453d2-e8b0-43f4-8a54-2b9f4991a1d9\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":8,\"created_at\":\"2023-03-05T04:09:54.000000Z\",\"updated_at\":\"2023-03-05T04:09:54.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/68\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/68\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":69,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"9b34b36d-24cf-4e2d-bf71-bcddea6afbb3\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":9,\"created_at\":\"2023-03-05T04:22:01.000000Z\",\"updated_at\":\"2023-03-05T04:22:01.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/69\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/69\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":70,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"0e0d831c-9ff1-44d4-8031-734aa9290ffc\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":10,\"created_at\":\"2023-03-05T04:22:08.000000Z\",\"updated_at\":\"2023-03-05T04:22:08.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/70\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/70\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":74,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"3104e2ec-bd8e-438a-9d39-75d370eea6ad\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":11,\"created_at\":\"2023-03-07T00:32:26.000000Z\",\"updated_at\":\"2023-03-07T00:32:26.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/74\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":75,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"6f70f124-79c9-40b5-8ec0-7e403bc16c05\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":12,\"created_at\":\"2023-03-07T00:32:40.000000Z\",\"updated_at\":\"2023-03-07T00:32:40.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/75\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":76,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"8f8e4160-6154-46d2-9886-731175a2238a\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":13,\"created_at\":\"2023-03-07T00:43:34.000000Z\",\"updated_at\":\"2023-03-07T00:43:34.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/76\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":77,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"06b61163-e7bf-4f76-99df-24471fee0e42\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":14,\"created_at\":\"2023-03-07T00:43:52.000000Z\",\"updated_at\":\"2023-03-07T00:43:52.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/77\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"\"},{\"id\":78,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"75663af5-2212-4132-b040-43d6b47dbc4f\",\"collection_name\":\"ck-media\",\"name\":\"Captura de tela de 2023-03-06 21-34-25\",\"file_name\":\"Captura-de-tela-de-2023-03-06-21-34-25.png\",\"mime_type\":\"image\\/png\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":14947,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":[],\"responsive_images\":[],\"order_column\":15,\"created_at\":\"2023-03-07T00:51:30.000000Z\",\"updated_at\":\"2023-03-07T00:51:30.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/78\\/Captura-de-tela-de-2023-03-06-21-34-25.png\",\"preview_url\":\"\"},{\"id\":81,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"ca0dcbf1-22dc-4e8c-a420-e3ac72cf5b3a\",\"collection_name\":\"ck-media\",\"name\":\"25307021-c4a8-4120-ac36-ec951306878e\",\"file_name\":\"25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":91055,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":16,\"created_at\":\"2023-03-07T00:54:35.000000Z\",\"updated_at\":\"2023-03-07T00:54:36.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/81\\/25307021-c4a8-4120-ac36-ec951306878e.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/81\\/conversions\\/25307021-c4a8-4120-ac36-ec951306878e-preview.jpg\"},{\"id\":82,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"4a902e32-0646-4079-8b56-d5167374317e\",\"collection_name\":\"ck-media\",\"name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb\",\"file_name\":\"f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":82662,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":17,\"created_at\":\"2023-03-07T00:55:47.000000Z\",\"updated_at\":\"2023-03-07T00:55:48.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/82\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/82\\/conversions\\/f79d7203-18a7-4e44-bfb2-e79f74cbcddb-preview.jpg\"},{\"id\":138,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"e0f7de61-a270-444f-97c0-560f933cd032\",\"collection_name\":\"ck-media\",\"name\":\"image\",\"file_name\":\"image.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":4269,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":18,\"created_at\":\"2026-03-02T02:55:34.000000Z\",\"updated_at\":\"2026-03-02T02:55:34.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/138\\/image.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/138\\/conversions\\/image-preview.jpg\"},{\"id\":139,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"b0fe34ba-c887-4043-8096-2ceecc50772a\",\"collection_name\":\"ck-media\",\"name\":\"image\",\"file_name\":\"image.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":5289,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":19,\"created_at\":\"2026-03-02T02:55:50.000000Z\",\"updated_at\":\"2026-03-02T02:55:50.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/139\\/image.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/139\\/conversions\\/image-preview.jpg\"},{\"id\":140,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"29d31977-e41c-44e6-962c-677b21bfd2e6\",\"collection_name\":\"ck-media\",\"name\":\"image\",\"file_name\":\"image.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":4269,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":20,\"created_at\":\"2026-03-02T02:56:11.000000Z\",\"updated_at\":\"2026-03-02T02:56:12.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/140\\/image.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/140\\/conversions\\/image-preview.jpg\"},{\"id\":141,\"model_type\":\"App\\\\Models\\\\Page\",\"model_id\":2,\"uuid\":\"c4c12bb0-1377-4d3f-bf5f-a9cd37cf5862\",\"collection_name\":\"ck-media\",\"name\":\"image\",\"file_name\":\"image.jpeg\",\"mime_type\":\"image\\/jpeg\",\"disk\":\"public\",\"conversions_disk\":\"public\",\"size\":6410,\"manipulations\":[],\"custom_properties\":[],\"generated_conversions\":{\"thumb\":true,\"preview\":true},\"responsive_images\":[],\"order_column\":21,\"created_at\":\"2026-03-02T02:56:25.000000Z\",\"updated_at\":\"2026-03-02T02:56:25.000000Z\",\"original_url\":\"http:\\/\\/saire.test\\/storage\\/141\\/image.jpeg\",\"preview_url\":\"http:\\/\\/saire.test\\/storage\\/141\\/conversions\\/image-preview.jpg\"}]}', '127.0.0.1', '2026-03-02 05:56:32', '2026-03-02 05:56:32');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categories`
+-- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `title`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -240,19 +237,16 @@ INSERT INTO `categories` (`id`, `title`, `description`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `category_gallery`
+-- Table structure for table `category_gallery`
 --
 
-DROP TABLE IF EXISTS `category_gallery`;
-CREATE TABLE IF NOT EXISTS `category_gallery` (
+CREATE TABLE `category_gallery` (
   `gallery_id` bigint UNSIGNED NOT NULL,
-  `category_id` bigint UNSIGNED NOT NULL,
-  KEY `gallery_id_fk_8085392` (`gallery_id`),
-  KEY `category_id_fk_8085392` (`category_id`)
+  `category_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `category_gallery`
+-- Dumping data for table `category_gallery`
 --
 
 INSERT INTO `category_gallery` (`gallery_id`, `category_id`) VALUES
@@ -298,19 +292,16 @@ INSERT INTO `category_gallery` (`gallery_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `category_publication`
+-- Table structure for table `category_publication`
 --
 
-DROP TABLE IF EXISTS `category_publication`;
-CREATE TABLE IF NOT EXISTS `category_publication` (
+CREATE TABLE `category_publication` (
   `publication_id` bigint UNSIGNED NOT NULL,
-  `category_id` bigint UNSIGNED NOT NULL,
-  KEY `publication_id_fk_8085385` (`publication_id`),
-  KEY `category_id_fk_8085385` (`category_id`)
+  `category_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `category_publication`
+-- Dumping data for table `category_publication`
 --
 
 INSERT INTO `category_publication` (`publication_id`, `category_id`) VALUES
@@ -1104,22 +1095,20 @@ INSERT INTO `category_publication` (`publication_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `galleries`
+-- Table structure for table `galleries`
 --
 
-DROP TABLE IF EXISTS `galleries`;
-CREATE TABLE IF NOT EXISTS `galleries` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `galleries` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `galleries`
+-- Dumping data for table `galleries`
 --
 
 INSERT INTO `galleries` (`id`, `title`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1134,12 +1123,11 @@ INSERT INTO `galleries` (`id`, `title`, `description`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `media`
+-- Table structure for table `media`
 --
 
-DROP TABLE IF EXISTS `media`;
-CREATE TABLE IF NOT EXISTS `media` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `media` (
+  `id` bigint UNSIGNED NOT NULL,
   `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL,
   `uuid` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1156,72 +1144,14 @@ CREATE TABLE IF NOT EXISTS `media` (
   `responsive_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `order_column` int UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `media_uuid_unique` (`uuid`),
-  KEY `media_model_type_model_id_index` (`model_type`,`model_id`),
-  KEY `media_order_column_index` (`order_column`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `media`
+-- Dumping data for table `media`
 --
 
 INSERT INTO `media` (`id`, `model_type`, `model_id`, `uuid`, `collection_name`, `name`, `file_name`, `mime_type`, `disk`, `conversions_disk`, `size`, `manipulations`, `custom_properties`, `generated_conversions`, `responsive_images`, `order_column`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\Publication', 1, '474bc28b-1b72-4ebb-9649-70fc9fc6991e', 'photos', '63f93a5627561_download', '63f93a5627561_download.jpg', 'image/jpeg', 'public', 'public', 18315, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 01:30:34', '2023-02-25 01:30:34'),
-(2, 'App\\Models\\Publication', 1, 'd3fd4e20-6590-42f6-a0dc-b0ae6731e318', 'photos', '63f93a6021b4b_download', '63f93a6021b4b_download.jpg', 'image/jpeg', 'public', 'public', 13154, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 01:30:34', '2023-02-25 01:30:34'),
-(3, 'App\\Models\\Publication', 1, '36cde7ed-7fab-4b1d-9bd6-7be62feb2484', 'photos', '63f93a6a871ba_images', '63f93a6a871ba_images.jpg', 'image/jpeg', 'public', 'public', 10683, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 01:30:34', '2023-02-25 01:30:34'),
-(4, 'App\\Models\\Gallery', 1, '4c841716-e983-4ef1-bb80-b934b852a64f', 'photos', '63f9422aaede0_download', '63f9422aaede0_download.jpg', 'image/jpeg', 'public', 'public', 12093, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 02:05:25', '2023-02-25 02:05:26'),
-(5, 'App\\Models\\Gallery', 1, 'dcb0eae2-58f5-41c1-bed9-638502992336', 'photos', '63f94233509f3_download', '63f94233509f3_download.jpg', 'image/jpeg', 'public', 'public', 14922, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(6, 'App\\Models\\Gallery', 1, '59b505db-a560-4757-8be7-062edac22a78', 'photos', '63f9423b417ee_download', '63f9423b417ee_download.jpg', 'image/jpeg', 'public', 'public', 18315, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(7, 'App\\Models\\Gallery', 1, '7135caf2-76a7-4086-b136-f6689eeebb50', 'photos', '63f94242d9119_download', '63f94242d9119_download.jpg', 'image/jpeg', 'public', 'public', 14746, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(8, 'App\\Models\\Gallery', 1, 'bf0a65c6-7295-489a-a4f6-22b093168f09', 'photos', '63f9424d36e96_images', '63f9424d36e96_images.jpg', 'image/jpeg', 'public', 'public', 16401, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(9, 'App\\Models\\Gallery', 1, '0061541c-42eb-402b-b818-d475f221b820', 'photos', '63f94257a3dd6_images', '63f94257a3dd6_images.jpg', 'image/jpeg', 'public', 'public', 12695, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(10, 'App\\Models\\Gallery', 1, 'eba2001f-070a-4da6-8fe7-a4eddb3bc062', 'photos', '63f942607388a_images', '63f942607388a_images.jpg', 'image/jpeg', 'public', 'public', 8215, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 7, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(11, 'App\\Models\\Gallery', 1, '6ee535d3-b2fd-49e8-b7d5-44155fb125df', 'photos', '63f94277e57dc_images', '63f94277e57dc_images.jpg', 'image/jpeg', 'public', 'public', 14386, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 8, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(12, 'App\\Models\\Gallery', 1, '9073b6cc-ffc1-4a73-bc18-0affd076edd5', 'photos', '63f9427f8c917_images', '63f9427f8c917_images.jpg', 'image/jpeg', 'public', 'public', 18695, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 9, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(13, 'App\\Models\\Gallery', 1, '471fc4c5-4e06-4611-80df-44c870b77295', 'photos', '63f9428996c06_images', '63f9428996c06_images.jpg', 'image/jpeg', 'public', 'public', 16234, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 10, '2023-02-25 02:05:26', '2023-02-25 02:05:26'),
-(14, 'App\\Models\\Gallery', 2, 'e60f8d4b-ff6f-42bd-b562-28afd85580a2', 'photos', '63f94e88c8f09_download', '63f94e88c8f09_download.jpg', 'image/jpeg', 'public', 'public', 12817, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 02:57:05', '2023-02-25 02:57:05'),
-(15, 'App\\Models\\Gallery', 2, '218507af-306b-48b0-9655-3f5bae33961d', 'photos', '63f94e8f33cc4_download', '63f94e8f33cc4_download.jpg', 'image/jpeg', 'public', 'public', 14454, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 02:57:05', '2023-02-25 02:57:05'),
-(16, 'App\\Models\\Gallery', 2, '5e5b18a0-a5e4-4aed-84c5-660c705a1a35', 'photos', '63f94e95a5c05_download', '63f94e95a5c05_download.jpg', 'image/jpeg', 'public', 'public', 16425, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 02:57:05', '2023-02-25 02:57:05'),
-(17, 'App\\Models\\Gallery', 2, 'eb012130-21ff-4003-862e-cdcc613aa17d', 'photos', '63f94e9c8e1a0_download', '63f94e9c8e1a0_download.jpg', 'image/jpeg', 'public', 'public', 8943, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-02-25 02:57:05', '2023-02-25 02:57:05'),
-(18, 'App\\Models\\Gallery', 2, '0ec0a7d3-89a2-46d0-a729-a8b7e71103bc', 'photos', '63f94ea6252d7_download', '63f94ea6252d7_download.png', 'image/png', 'public', 'public', 15301, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2023-02-25 02:57:05', '2023-02-25 02:57:05'),
-(19, 'App\\Models\\Gallery', 3, 'b597e663-a803-4cf6-9e78-2af018e9bac2', 'photos', '63f94f6ac5a9d_download', '63f94f6ac5a9d_download.jpg', 'image/jpeg', 'public', 'public', 12023, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 03:00:46', '2023-02-25 03:00:46'),
-(20, 'App\\Models\\Gallery', 3, 'ef608820-0ae4-49c2-83be-64d1ea7a4fee', 'photos', '63f94f70a5a82_download', '63f94f70a5a82_download.jpg', 'image/jpeg', 'public', 'public', 10512, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 03:00:46', '2023-02-25 03:00:46'),
-(21, 'App\\Models\\Gallery', 3, '59ab627c-d038-4147-81f1-5af3c58aaaab', 'photos', '63f94f76cb730_download', '63f94f76cb730_download.jpg', 'image/jpeg', 'public', 'public', 10954, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 03:00:46', '2023-02-25 03:00:47'),
-(22, 'App\\Models\\Gallery', 3, 'b0b5701d-bace-4f47-ba0a-22224c29a15c', 'photos', '63f94f7ecd8ca_download', '63f94f7ecd8ca_download.jpg', 'image/jpeg', 'public', 'public', 12096, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-02-25 03:00:47', '2023-02-25 03:00:47'),
-(23, 'App\\Models\\Gallery', 3, 'd3c7c6f3-a95a-4512-89a6-b3891fd666bc', 'photos', '63f94f8a02cf0_download', '63f94f8a02cf0_download.jpg', 'image/jpeg', 'public', 'public', 10354, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2023-02-25 03:00:47', '2023-02-25 03:00:47'),
-(24, 'App\\Models\\Gallery', 3, 'b9fbec99-96d1-46a6-84d1-a82866567ec6', 'photos', '63f94f9147cc1_download', '63f94f9147cc1_download.jpg', 'image/jpeg', 'public', 'public', 12385, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2023-02-25 03:00:47', '2023-02-25 03:00:47'),
-(25, 'App\\Models\\Gallery', 4, 'c074d442-91af-4464-b95f-9e998406e050', 'photos', '63f94fdc25b08_download', '63f94fdc25b08_download.jpg', 'image/jpeg', 'public', 'public', 13703, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 03:02:19', '2023-02-25 03:02:19'),
-(26, 'App\\Models\\Gallery', 4, '28d96b11-ea46-4f89-b5f2-676f053fca38', 'photos', '63f94fe3172ea_download', '63f94fe3172ea_download.jpg', 'image/jpeg', 'public', 'public', 16653, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 03:02:19', '2023-02-25 03:02:19'),
-(27, 'App\\Models\\Gallery', 4, 'ce335b17-605f-4a59-b0b9-a12bff5a8cde', 'photos', '63f94feb0828e_download', '63f94feb0828e_download.jpg', 'image/jpeg', 'public', 'public', 9401, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 03:02:19', '2023-02-25 03:02:19'),
-(28, 'App\\Models\\Gallery', 4, '12dbfde6-466f-4e7f-be80-609b96b3bd25', 'photos', '63f94ff037c98_download', '63f94ff037c98_download.jpg', 'image/jpeg', 'public', 'public', 8289, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-02-25 03:02:19', '2023-02-25 03:02:19'),
-(29, 'App\\Models\\Gallery', 4, 'c25dd744-7560-4774-90de-2b1a2e5642c9', 'photos', '63f94ff97327f_download', '63f94ff97327f_download.jpg', 'image/jpeg', 'public', 'public', 14486, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2023-02-25 03:02:19', '2023-02-25 03:02:19'),
-(30, 'App\\Models\\Gallery', 5, '23798405-0423-422d-beff-f910ea6bd41a', 'photos', '63f950268bfe2_download', '63f950268bfe2_download.jpg', 'image/jpeg', 'public', 'public', 13032, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 03:03:49', '2023-02-25 03:03:50'),
-(31, 'App\\Models\\Gallery', 5, 'cad2567e-8bdf-4a4a-b550-f313070ac779', 'photos', '63f95030b1d59_download', '63f95030b1d59_download.jpg', 'image/jpeg', 'public', 'public', 12051, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 03:03:50', '2023-02-25 03:03:50'),
-(32, 'App\\Models\\Gallery', 5, '5c5a3908-fea0-4313-9211-f5412f1a0908', 'photos', '63f9503879fb8_download', '63f9503879fb8_download.jpg', 'image/jpeg', 'public', 'public', 13032, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 03:03:50', '2023-02-25 03:03:50'),
-(33, 'App\\Models\\Gallery', 5, '5ee00914-085e-4eb0-9448-4a3a4900a8f2', 'photos', '63f9503f6e6df_images', '63f9503f6e6df_images.jpg', 'image/jpeg', 'public', 'public', 14789, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-02-25 03:03:50', '2023-02-25 03:03:50'),
-(34, 'App\\Models\\Gallery', 5, '25c38ee2-816d-4ede-b380-d080ed7592b9', 'photos', '63f9504884db6_images', '63f9504884db6_images.jpg', 'image/jpeg', 'public', 'public', 7040, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2023-02-25 03:03:50', '2023-02-25 03:03:50'),
-(35, 'App\\Models\\Gallery', 6, '663959f7-a414-4231-928f-d8fd3eb190e3', 'photos', '63f9507a18faa_download', '63f9507a18faa_download.jpg', 'image/jpeg', 'public', 'public', 7701, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-25 03:06:10', '2023-02-25 03:06:10'),
-(36, 'App\\Models\\Gallery', 6, '21000ad1-55cf-4a37-be2b-12286b67d37e', 'photos', '63f950821af05_images', '63f950821af05_images.jpg', 'image/jpeg', 'public', 'public', 6694, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-25 03:06:10', '2023-02-25 03:06:10'),
-(37, 'App\\Models\\Gallery', 6, '0bcd3f2b-632e-43d7-afed-6698ea3bc333', 'photos', '63f95088bf484_images', '63f95088bf484_images.jpg', 'image/jpeg', 'public', 'public', 10357, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2023-02-25 03:06:10', '2023-02-25 03:06:10'),
-(38, 'App\\Models\\Gallery', 6, '62b1945d-3c85-4d6d-9571-662e4e603ed9', 'photos', '63f9508f7c0cd_images', '63f9508f7c0cd_images.jpg', 'image/jpeg', 'public', 'public', 8306, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-02-25 03:06:10', '2023-02-25 03:06:10'),
-(39, 'App\\Models\\Publication', 2, 'b017fd08-f36e-4e06-8ab8-a38be5be2222', 'photos', '63fab441a1d9c_download', '63fab441a1d9c_download.jpg', 'image/jpeg', 'public', 'public', 7534, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-26 04:22:16', '2023-02-26 04:22:16'),
-(40, 'App\\Models\\Publication', 2, '4f5325e0-662f-4545-84b6-35299a5e25ec', 'photos', '63fab447799b3_download', '63fab447799b3_download.jpg', 'image/jpeg', 'public', 'public', 10089, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-26 04:22:16', '2023-02-26 04:22:16'),
-(41, 'App\\Models\\Publication', 9, '78252d49-f31a-4475-8131-1d7e824fca1b', 'photos', '63fbc4c015e21_download', '63fbc4c015e21_download.jpg', 'image/jpeg', 'public', 'public', 5194, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-26 23:44:49', '2023-02-26 23:44:49'),
-(43, 'App\\Models\\Publication', 48, '09961dc5-4440-41eb-a920-9f85b19631ed', 'photos', '63fd5994cfafb_lixos-impactos-ambientais', '63fd5994cfafb_lixos-impactos-ambientais.jpg', 'image/jpeg', 'public', 'public', 114969, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-28 04:32:10', '2023-02-28 04:32:10'),
-(44, 'App\\Models\\Publication', 90, '4e955475-f8e8-4397-8499-a50c0310844c', 'photos', '63fd5b474b703_photo-1609337231725-b3f2333681de', '63fd5b474b703_photo-1609337231725-b3f2333681de.jpg', 'image/jpeg', 'public', 'public', 300362, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-28 04:39:50', '2023-02-28 04:39:50'),
-(45, 'App\\Models\\Publication', 90, 'bf0f35a0-f9ff-4a63-ae57-a7fae6a88227', 'photos', '63fd5b6270280_download', '63fd5b6270280_download.jpg', 'image/jpeg', 'public', 'public', 10654, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-02-28 04:39:50', '2023-02-28 04:39:50'),
-(46, 'App\\Models\\Publication', 8, '1e551cf5-a785-4692-94ec-597bd2e6d67c', 'photos', '63fd6ab46504c_santos-sp-20022016-prdios-inclinados-de-santos-alguns-prdios-no-litoral-paulista-na-cidade-de-santos-so-inclinados-que-ficam-na-avenida-da-praia-foto-roberto-strauss-fotoarena-P3T7KT', '63fd6ab46504c_santos-sp-20022016-prdios-inclinados-de-santos-alguns-prdios-no-litoral-paulista-na-cidade-de-santos-so-inclinados-que-ficam-na-avenida-da-praia-foto-roberto-strauss-fotoarena-P3T7KT.jpg', 'image/jpeg', 'public', 'public', 200516, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-02-28 05:45:10', '2023-02-28 05:45:10'),
-(47, 'App\\Models\\Publication', 1, 'd5cf34a0-5e88-440a-906f-81c4c6d38a4b', 'photos', '6400c0f7b2467_download', '6400c0f7b2467_download.jpg', 'image/jpeg', 'public', 'public', 14419, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(48, 'App\\Models\\Publication', 1, '7ebf7749-d306-4055-888a-db0b47da2ea3', 'photos', '6400c1012198c_images', '6400c1012198c_images.jpg', 'image/jpeg', 'public', 'public', 17021, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(49, 'App\\Models\\Publication', 1, '6ae152bf-3fe4-4097-a720-b0f7693a03c2', 'photos', '6400c10846918_images', '6400c10846918_images.jpg', 'image/jpeg', 'public', 'public', 12658, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(50, 'App\\Models\\Publication', 1, 'fabfbe5c-5102-4367-b5ac-a68e94f109fc', 'photos', '6400c11443611_images', '6400c11443611_images.jpg', 'image/jpeg', 'public', 'public', 16704, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 7, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(51, 'App\\Models\\Publication', 1, '25784a09-6f25-43c5-bc98-044131ecca2b', 'photos', '6400c11e2a30f_images', '6400c11e2a30f_images.jpg', 'image/jpeg', 'public', 'public', 20789, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 8, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(52, 'App\\Models\\Publication', 1, 'f3bc2e18-0f6f-4c67-b366-e310f912d232', 'photos', '6400c1232d24a_images', '6400c1232d24a_images.jpg', 'image/jpeg', 'public', 'public', 24893, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 9, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(53, 'App\\Models\\Publication', 1, '1b05cc5e-ac0d-4c30-983e-9f608a3a4281', 'photos', '6400c128e15d8_images', '6400c128e15d8_images.jpg', 'image/jpeg', 'public', 'public', 14781, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 10, '2023-03-02 18:30:59', '2023-03-02 18:30:59'),
-(55, 'App\\Models\\Gallery', 7, 'c41a3eaf-986a-4cff-bc60-bd683a457484', 'photos', '64011a7e94da3_saire', '64011a7e94da3_saire.jpeg', 'image/jpeg', 'public', 'public', 139222, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-03-03 00:52:00', '2023-03-03 00:52:00'),
-(56, 'App\\Models\\Gallery', 7, '34910e17-7bfc-4e24-99eb-8b381a433f7e', 'photos', '64011ad3a64b4_tumblr_605e1dcba94522c4754029f0a5eab331_b4bdbb3d_2048', '64011ad3a64b4_tumblr_605e1dcba94522c4754029f0a5eab331_b4bdbb3d_2048.jpg', 'image/jpeg', 'public', 'public', 2648341, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-03-03 00:53:25', '2023-03-03 00:53:26'),
 (57, 'App\\Models\\Page', 1, '62568aed-d732-438c-967c-2f26799665d2', 'ck-media', 'saire', 'saire.jpeg', 'image/jpeg', 'public', 'public', 139222, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-03-04 21:33:09', '2023-03-04 21:34:05'),
 (58, 'App\\Models\\Page', 1, '499e11a5-9ab5-4b3f-a6e6-8e206a5bc005', 'ck-media', 'Captura de tela de 2023-03-02 11-41-30', 'Captura-de-tela-de-2023-03-02-11-41-30.png', 'image/png', 'public', 'public', 468652, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2023-03-05 00:17:05', '2023-03-05 00:17:05'),
 (59, 'App\\Models\\Page', 0, 'bd2a4259-5db4-488f-a359-1bdc805b50cd', 'ck-media', 'ads-uninassau', 'ads-uninassau.png', 'image/png', 'public', 'public', 17257, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2023-03-05 00:54:12', '2023-03-05 00:54:13'),
@@ -1247,17 +1177,72 @@ INSERT INTO `media` (`id`, `model_type`, `model_id`, `uuid`, `collection_name`, 
 (79, 'App\\Models\\Page', 3, '0d99c75f-8e54-446c-9cf6-8dedb9dfb2b1', 'ck-media', 'Captura de tela de 2023-03-06 21-34-25', 'Captura-de-tela-de-2023-03-06-21-34-25.png', 'image/png', 'public', 'public', 14947, '[]', '[]', '[]', '[]', 3, '2023-03-07 03:52:34', '2023-03-07 03:52:34'),
 (80, 'App\\Models\\Page', 3, 'f1091b4d-349e-4c1f-be75-7dd54bfd5f41', 'ck-media', 'Captura de tela de 2023-03-06 17-55-33', 'Captura-de-tela-de-2023-03-06-17-55-33.png', 'image/png', 'public', 'public', 127429, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2023-03-07 03:54:10', '2023-03-07 03:54:10'),
 (81, 'App\\Models\\Page', 2, 'ca0dcbf1-22dc-4e8c-a420-e3ac72cf5b3a', 'ck-media', '25307021-c4a8-4120-ac36-ec951306878e', '25307021-c4a8-4120-ac36-ec951306878e.jpeg', 'image/jpeg', 'public', 'public', 91055, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 16, '2023-03-07 03:54:35', '2023-03-07 03:54:36'),
-(82, 'App\\Models\\Page', 2, '4a902e32-0646-4079-8b56-d5167374317e', 'ck-media', 'f79d7203-18a7-4e44-bfb2-e79f74cbcddb', 'f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg', 'image/jpeg', 'public', 'public', 82662, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 17, '2023-03-07 03:55:47', '2023-03-07 03:55:48');
+(82, 'App\\Models\\Page', 2, '4a902e32-0646-4079-8b56-d5167374317e', 'ck-media', 'f79d7203-18a7-4e44-bfb2-e79f74cbcddb', 'f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg', 'image/jpeg', 'public', 'public', 82662, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 17, '2023-03-07 03:55:47', '2023-03-07 03:55:48'),
+(86, 'App\\Models\\Publication', 48, '8cd7aea4-ddb8-4ec1-83df-841c706e7fff', 'photos', '69a4f49cacede_landfill-site-6988228_1280-820x532', '69a4f49cacede_landfill-site-6988228_1280-820x532.jpg', 'image/jpeg', 'public', 'public', 112068, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:23:35', '2026-03-02 05:23:36'),
+(87, 'App\\Models\\Publication', 1, '9a6fe583-19a6-4473-8670-409c3b15efcb', 'photos', '69a4f4d7b899a_images', '69a4f4d7b899a_images.jpg', 'image/jpeg', 'public', 'public', 10351, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:24:25', '2026-03-02 05:24:26'),
+(88, 'App\\Models\\Publication', 1, '9e1e4615-dc39-433e-90c6-801e8b52c866', 'photos', '69a4f57c42807_images', '69a4f57c42807_images.jpg', 'image/jpeg', 'public', 'public', 27444, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:28:01', '2026-03-02 05:28:01'),
+(89, 'App\\Models\\Publication', 1, '896a107f-b60f-4bcd-bf36-7840cdf354f8', 'photos', '69a4f57f76260_images', '69a4f57f76260_images.jpg', 'image/jpeg', 'public', 'public', 16844, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:28:01', '2026-03-02 05:28:02'),
+(90, 'App\\Models\\Publication', 1, '0048bb1c-5dfd-4167-b12b-ffb62f85d8ce', 'photos', '69a4f5941b2d6_images', '69a4f5941b2d6_images.jpg', 'image/jpeg', 'public', 'public', 16921, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:28:02', '2026-03-02 05:28:03'),
+(91, 'App\\Models\\Publication', 1, '5caa69cd-c452-4bcc-a1e4-e8ff3943352e', 'photos', '69a4f59b0cb06_images', '69a4f59b0cb06_images.jpg', 'image/jpeg', 'public', 'public', 6259, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2026-03-02 05:28:03', '2026-03-02 05:28:03'),
+(92, 'App\\Models\\Publication', 1, '13492ec8-8c5f-4faa-aa58-a0c5ef1a0208', 'photos', '69a4f5a679be4_download', '69a4f5a679be4_download.jpg', 'image/jpeg', 'public', 'public', 19208, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2026-03-02 05:28:03', '2026-03-02 05:28:04'),
+(93, 'App\\Models\\Publication', 1, 'ea3d6e14-7f84-404a-a2a9-8c94f921b562', 'photos', '69a4f5ae60bd5_download', '69a4f5ae60bd5_download.jpg', 'image/jpeg', 'public', 'public', 23881, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 7, '2026-03-02 05:28:04', '2026-03-02 05:28:05'),
+(94, 'App\\Models\\Publication', 8, '8c140665-0a9c-4ada-b0c2-da99fa6e3156', 'photos', '69a4f60309964_download', '69a4f60309964_download.jpg', 'image/jpeg', 'public', 'public', 15047, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:29:24', '2026-03-02 05:29:25'),
+(95, 'App\\Models\\Publication', 90, '1ffe0708-9c81-4700-aee2-d61e4c33053b', 'photos', '69a4f652411f3_images', '69a4f652411f3_images.jpg', 'image/jpeg', 'public', 'public', 11735, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:30:44', '2026-03-02 05:30:44'),
+(96, 'App\\Models\\Publication', 2, '0ee234a8-7fff-4c2a-87eb-17e6ae155535', 'photos', '69a4f9a5c5974_images', '69a4f9a5c5974_images.jpg', 'image/jpeg', 'public', 'public', 9584, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:44:59', '2026-03-02 05:44:59'),
+(97, 'App\\Models\\Publication', 9, '18934df0-1f33-4331-b6a0-0a5a5cddf3ab', 'photos', '69a4f9d21b456_images', '69a4f9d21b456_images.jpg', 'image/jpeg', 'public', 'public', 10419, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:45:39', '2026-03-02 05:45:40'),
+(98, 'App\\Models\\Gallery', 1, 'bef90081-5618-44a5-8003-8267f04d9f90', 'photos', '69a4fa4d68b6c_download', '69a4fa4d68b6c_download.jpg', 'image/jpeg', 'public', 'public', 15094, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:48:20', '2026-03-02 05:48:28'),
+(99, 'App\\Models\\Gallery', 1, '2875e078-3ccc-4778-8156-8aa7d288cf0d', 'photos', '69a4fa541b7f2_download', '69a4fa541b7f2_download.jpg', 'image/jpeg', 'public', 'public', 15094, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:48:28', '2026-03-02 05:48:29'),
+(100, 'App\\Models\\Gallery', 1, '0ba943da-efa4-42da-9d66-3369c732d9ac', 'photos', '69a4fa5728f2c_download', '69a4fa5728f2c_download.jpg', 'image/jpeg', 'public', 'public', 12453, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:48:29', '2026-03-02 05:48:30'),
+(101, 'App\\Models\\Gallery', 1, '6af11065-549d-42f3-8d15-7f592f8abb49', 'photos', '69a4fa59bb836_download', '69a4fa59bb836_download.jpg', 'image/jpeg', 'public', 'public', 15350, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:48:30', '2026-03-02 05:48:30'),
+(102, 'App\\Models\\Gallery', 1, 'ebe6e3e1-6f3e-425d-8a09-76ad6f2bc132', 'photos', '69a4fa5d0fc50_download', '69a4fa5d0fc50_download.jpg', 'image/jpeg', 'public', 'public', 11889, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2026-03-02 05:48:30', '2026-03-02 05:48:31'),
+(103, 'App\\Models\\Gallery', 1, 'f8c46fbf-42f7-43df-a018-8256f06715b5', 'photos', '69a4fa60a8f1a_download', '69a4fa60a8f1a_download.jpg', 'image/jpeg', 'public', 'public', 16882, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2026-03-02 05:48:31', '2026-03-02 05:48:32'),
+(104, 'App\\Models\\Gallery', 1, '2bcbc725-a0ef-427e-8dab-db4eaefeb373', 'photos', '69a4fa60a8f1a_download', '69a4fa60a8f1a_download.jpg', 'image/jpeg', 'public', 'public', 16882, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 7, '2026-03-02 05:48:31', '2026-03-02 05:48:32'),
+(105, 'App\\Models\\Gallery', 1, '3a0d1b08-b497-4596-94fa-d8a7d2432ed3', 'photos', '69a4fa640f2a9_download', '69a4fa640f2a9_download.jpg', 'image/jpeg', 'public', 'public', 11405, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 8, '2026-03-02 05:48:32', '2026-03-02 05:48:32'),
+(106, 'App\\Models\\Gallery', 1, 'aa361548-339c-4f7e-9e57-d106739dddcd', 'photos', '69a4fa67a422a_download', '69a4fa67a422a_download.jpg', 'image/jpeg', 'public', 'public', 11826, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 9, '2026-03-02 05:48:32', '2026-03-02 05:48:33'),
+(107, 'App\\Models\\Gallery', 1, 'a1716097-9354-461e-a815-9a72aa922e78', 'photos', '69a4fa6ac7a6d_images', '69a4fa6ac7a6d_images.jpg', 'image/jpeg', 'public', 'public', 12447, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 10, '2026-03-02 05:48:33', '2026-03-02 05:48:34'),
+(108, 'App\\Models\\Gallery', 1, '0497d676-9076-4cb6-b6b1-ac29497776a9', 'photos', '69a4fa6e2bde9_images', '69a4fa6e2bde9_images.jpg', 'image/jpeg', 'public', 'public', 21524, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 11, '2026-03-02 05:48:34', '2026-03-02 05:48:35'),
+(109, 'App\\Models\\Gallery', 2, 'b9920be9-3e9f-473b-a09a-8df0eed63cd3', 'photos', '69a4faae9dc17_download', '69a4faae9dc17_download.jpg', 'image/jpeg', 'public', 'public', 13188, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:49:59', '2026-03-02 05:49:59'),
+(110, 'App\\Models\\Gallery', 2, '1c327254-2948-45c7-8b30-3f70bd88b81f', 'photos', '69a4fab1dee34_download', '69a4fab1dee34_download.jpg', 'image/jpeg', 'public', 'public', 8386, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:49:59', '2026-03-02 05:50:00'),
+(111, 'App\\Models\\Gallery', 2, '75fd2c93-3d15-4ecc-9a92-b42639c6c81b', 'photos', '69a4fab5d52df_download', '69a4fab5d52df_download.jpg', 'image/jpeg', 'public', 'public', 8028, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:50:00', '2026-03-02 05:50:01'),
+(112, 'App\\Models\\Gallery', 2, '4365d7ad-a30d-4e42-a7ad-6612b3499ba1', 'photos', '69a4fabb8693e_download', '69a4fabb8693e_download.jpg', 'image/jpeg', 'public', 'public', 18327, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:50:01', '2026-03-02 05:50:01'),
+(113, 'App\\Models\\Gallery', 2, 'e862255d-2976-493a-aa15-7b76748ac220', 'photos', '69a4fac69559f_download', '69a4fac69559f_download.jpg', 'image/jpeg', 'public', 'public', 8386, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2026-03-02 05:50:02', '2026-03-02 05:50:02'),
+(114, 'App\\Models\\Gallery', 2, '8a3c5c81-a54f-4b2f-84b8-392b548b421d', 'photos', '69a4facb59856_download', '69a4facb59856_download.jpg', 'image/jpeg', 'public', 'public', 9854, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2026-03-02 05:50:02', '2026-03-02 05:50:03'),
+(115, 'App\\Models\\Gallery', 2, '2db20e0e-e460-4972-b5d0-7069eccbdb66', 'photos', '69a4fad0b6645_download', '69a4fad0b6645_download.jpg', 'image/jpeg', 'public', 'public', 15948, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 7, '2026-03-02 05:50:03', '2026-03-02 05:50:04'),
+(116, 'App\\Models\\Gallery', 2, '76ddb17b-6df4-4eae-8021-78277154f9aa', 'photos', '69a4fad5218f0_download', '69a4fad5218f0_download.jpg', 'image/jpeg', 'public', 'public', 8965, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 8, '2026-03-02 05:50:04', '2026-03-02 05:50:04'),
+(117, 'App\\Models\\Gallery', 3, '42954861-763e-40b4-80a0-ddf375a7f03a', 'photos', '69a4fb0408198_download', '69a4fb0408198_download.jpg', 'image/jpeg', 'public', 'public', 12654, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:51:11', '2026-03-02 05:51:11'),
+(118, 'App\\Models\\Gallery', 3, '0cf91579-1087-46dd-86cb-60a8f66e4833', 'photos', '69a4fb077d9c2_download', '69a4fb077d9c2_download.jpg', 'image/jpeg', 'public', 'public', 8850, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:51:11', '2026-03-02 05:51:12'),
+(119, 'App\\Models\\Gallery', 3, 'a9571826-f4db-4f1b-a0e0-cc848b067205', 'photos', '69a4fb0b5f627_download', '69a4fb0b5f627_download.jpg', 'image/jpeg', 'public', 'public', 9945, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:51:12', '2026-03-02 05:51:13'),
+(120, 'App\\Models\\Gallery', 3, 'e37fc8ab-3cdd-4ec7-bbdb-7a4b18abb820', 'photos', '69a4fb1113bc4_download', '69a4fb1113bc4_download.jpg', 'image/jpeg', 'public', 'public', 9271, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:51:13', '2026-03-02 05:51:14'),
+(121, 'App\\Models\\Gallery', 3, '7a2b2e24-9dca-4902-82a6-e8beaa1df02e', 'photos', '69a4fb17509ee_download', '69a4fb17509ee_download.jpg', 'image/jpeg', 'public', 'public', 12385, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 5, '2026-03-02 05:51:14', '2026-03-02 05:51:14'),
+(122, 'App\\Models\\Gallery', 3, '9879fcf2-b7fc-4a45-908e-7342c4be110d', 'photos', '69a4fb1a4e2e8_download', '69a4fb1a4e2e8_download.jpg', 'image/jpeg', 'public', 'public', 12275, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 6, '2026-03-02 05:51:15', '2026-03-02 05:51:15'),
+(123, 'App\\Models\\Gallery', 3, '74864606-6d6e-48ea-93d3-75142c03a9f5', 'photos', '69a4fb1d53a44_download', '69a4fb1d53a44_download.jpg', 'image/jpeg', 'public', 'public', 15971, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 7, '2026-03-02 05:51:15', '2026-03-02 05:51:16'),
+(124, 'App\\Models\\Gallery', 4, 'bfa2a7f9-4dcd-4257-8f65-1250ef8c63ee', 'photos', '69a4fb3d8e52b_download', '69a4fb3d8e52b_download.jpg', 'image/jpeg', 'public', 'public', 11670, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:52:11', '2026-03-02 05:52:12'),
+(125, 'App\\Models\\Gallery', 4, 'dcb3ad4f-5c27-4b8c-8405-de0104395680', 'photos', '69a4fb4698999_download', '69a4fb4698999_download.jpg', 'image/jpeg', 'public', 'public', 15315, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:52:12', '2026-03-02 05:52:12'),
+(126, 'App\\Models\\Gallery', 4, '8df3c641-d525-47c4-adfb-6a8d769fd511', 'photos', '69a4fb4abbf36_download', '69a4fb4abbf36_download.jpg', 'image/jpeg', 'public', 'public', 7845, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:52:12', '2026-03-02 05:52:13'),
+(127, 'App\\Models\\Gallery', 4, '9cb25ed1-006d-40ca-834d-5dc00d225a6b', 'photos', '69a4fb501c16d_download', '69a4fb501c16d_download.jpg', 'image/jpeg', 'public', 'public', 5372, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:52:13', '2026-03-02 05:52:14'),
+(128, 'App\\Models\\Gallery', 5, '41399403-8280-4eb6-a20e-100beb7becfe', 'photos', '69a4fb749f504_download', '69a4fb749f504_download.jpg', 'image/jpeg', 'public', 'public', 17446, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:53:10', '2026-03-02 05:53:14'),
+(129, 'App\\Models\\Gallery', 5, '6704dec8-cd6b-4c48-90f3-6c3019c2b6b2', 'photos', '69a4fb7d12d21_download', '69a4fb7d12d21_download.jpg', 'image/jpeg', 'public', 'public', 15179, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:53:14', '2026-03-02 05:53:18'),
+(130, 'App\\Models\\Gallery', 5, '6e019e53-cc78-47c8-948d-ae071a5a6b22', 'photos', '69a4fb8d60477_images', '69a4fb8d60477_images.jpg', 'image/jpeg', 'public', 'public', 9279, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:53:18', '2026-03-02 05:53:19'),
+(131, 'App\\Models\\Gallery', 5, '7a7ade7b-e1ba-444d-9ba5-df204265a6c1', 'photos', '69a4fb92c0319_images', '69a4fb92c0319_images.jpg', 'image/jpeg', 'public', 'public', 6859, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:53:19', '2026-03-02 05:53:20'),
+(132, 'App\\Models\\Gallery', 6, 'c8c7c864-2eed-4900-8a09-d23f4a70c35a', 'photos', '69a4fbb5bd586_download', '69a4fbb5bd586_download.jpg', 'image/jpeg', 'public', 'public', 7389, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:53:58', '2026-03-02 05:53:59'),
+(133, 'App\\Models\\Gallery', 6, '15e123f3-fea2-46a6-86c1-9ca10bd3418a', 'photos', '69a4fbb933d3b_download', '69a4fbb933d3b_download.jpg', 'image/jpeg', 'public', 'public', 7656, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:53:59', '2026-03-02 05:53:59'),
+(134, 'App\\Models\\Gallery', 6, 'b343b85a-3ce0-4774-aa4d-0312f77f241a', 'photos', '69a4fbbf3c25b_download', '69a4fbbf3c25b_download.jpg', 'image/jpeg', 'public', 'public', 6281, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 3, '2026-03-02 05:53:59', '2026-03-02 05:54:00'),
+(135, 'App\\Models\\Gallery', 6, 'ae3e8226-53e8-4489-ba3b-426e5af15fac', 'photos', '69a4fbc505df2_download', '69a4fbc505df2_download.jpg', 'image/jpeg', 'public', 'public', 12909, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 4, '2026-03-02 05:54:00', '2026-03-02 05:54:01'),
+(136, 'App\\Models\\Gallery', 7, '079c0ab1-bf4d-40f5-8f73-928fe1200d7d', 'photos', '69a4fbe2d0e11_download', '69a4fbe2d0e11_download.jpg', 'image/jpeg', 'public', 'public', 13111, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 1, '2026-03-02 05:54:39', '2026-03-02 05:54:40'),
+(137, 'App\\Models\\Gallery', 7, '334249ed-da38-437f-b13c-28dd270902d5', 'photos', '69a4fbee22ee5_images', '69a4fbee22ee5_images.jpg', 'image/jpeg', 'public', 'public', 11648, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 2, '2026-03-02 05:54:40', '2026-03-02 05:54:41'),
+(138, 'App\\Models\\Page', 2, 'e0f7de61-a270-444f-97c0-560f933cd032', 'ck-media', 'image', 'image.jpeg', 'image/jpeg', 'public', 'public', 4269, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 18, '2026-03-02 05:55:34', '2026-03-02 05:55:34'),
+(139, 'App\\Models\\Page', 2, 'b0fe34ba-c887-4043-8096-2ceecc50772a', 'ck-media', 'image', 'image.jpeg', 'image/jpeg', 'public', 'public', 5289, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 19, '2026-03-02 05:55:50', '2026-03-02 05:55:50'),
+(140, 'App\\Models\\Page', 2, '29d31977-e41c-44e6-962c-677b21bfd2e6', 'ck-media', 'image', 'image.jpeg', 'image/jpeg', 'public', 'public', 4269, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 20, '2026-03-02 05:56:11', '2026-03-02 05:56:12'),
+(141, 'App\\Models\\Page', 2, 'c4c12bb0-1377-4d3f-bf5f-a9cd37cf5862', 'ck-media', 'image', 'image.jpeg', 'image/jpeg', 'public', 'public', 6410, '[]', '[]', '{\"thumb\":true,\"preview\":true}', '[]', 21, '2026-03-02 05:56:25', '2026-03-02 05:56:25');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `menus`
+-- Table structure for table `menus`
 --
 
-DROP TABLE IF EXISTS `menus`;
-CREATE TABLE IF NOT EXISTS `menus` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menus` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `position` int NOT NULL,
   `link_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1265,14 +1250,11 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `page_id` bigint UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `menus_title_unique` (`title`),
-  KEY `page_fk_8130870` (`page_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `page_id` bigint UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `title`, `position`, `link_type`, `url`, `created_at`, `updated_at`, `deleted_at`, `page_id`) VALUES
@@ -1287,33 +1269,28 @@ INSERT INTO `menus` (`id`, `title`, `position`, `link_type`, `url`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `menu_submenu`
+-- Table structure for table `menu_submenu`
 --
 
-DROP TABLE IF EXISTS `menu_submenu`;
-CREATE TABLE IF NOT EXISTS `menu_submenu` (
+CREATE TABLE `menu_submenu` (
   `menu_id` bigint UNSIGNED NOT NULL,
-  `submenu_id` bigint UNSIGNED NOT NULL,
-  KEY `menu_id_fk_8130869` (`menu_id`),
-  KEY `submenu_id_fk_8130869` (`submenu_id`)
+  `submenu_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `migrations`
+-- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `migrations` (
+  `id` int UNSIGNED NOT NULL,
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -1335,62 +1312,56 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `pages`
+-- Table structure for table `pages`
 --
 
-DROP TABLE IF EXISTS `pages`;
-CREATE TABLE IF NOT EXISTS `pages` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pages` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `pages`
+-- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`id`, `title`, `content`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Município', '<h2 style=\"text-align:center;\"><span class=\"text-huge\" style=\"font-family:Georgia, serif;\"><strong>Sairé - PE</strong></span></h2><p>&nbsp;Sairé é uma simpática <span style=\"font-family:Arial, Helvetica, sans-serif;\">cidade</span>, <span style=\"font-family:Arial, Helvetica, sans-serif;\">localizada</span> na região do agreste central de Pernambuco, a cerca de 115 km do Recife. O acesso é simples e r ápido pela BR232 até a cidade de Bezerros, e de lá, seguindo pela PE 103, até o trevo onde está o portal de entrada, no quilômetro 10. Numa viagem tranquila e apreciável, o viajante leva menos de uma hora e meia para chegar até o centro da pacata e hospitaleira urbe com pouco mais de dez mil habitantes e descobrir os segredos e surpresas da vida interiorana.</p><p style=\"text-align:justify;\">O cartão de visita oferecido pela cidade é o clima aconchegante com temperaturas variáveis de acordo com a época do ano. Os 663 metros acima do nível do mar, os brejos de altitude e pluviosidade acima da média proporcionam não apenas sensações prazerosas, nas quatro estações do ano, mas também muitas oportunidades econômicas.</p><p style=\"text-align:justify;\">A propósito, no verão, ventos húmidos e refrescantes propiciam agradáveis dias para as mais diferentes atividades e aventuras, sendo as noites atravessadas por brisas amenas e suaves. Já no inverno, frios leves e suportáveis tornam o clima gostoso para reuniões familiares, boas conversas e noites de sono sossegadas.</p><p style=\"text-align:justify;\">Igrejas tocando sinos, ruas antigas, casarões do início do século XX, praças repletas de pessoas jogando conversa fora, encenam cenário bucólicos e temporalidades distintas. O turista é convidado a caminhar no parque, visitar o museu, assistir a uma partida de futebol no estádio municipal ou tomar um lanche se deliciando com as guloseimas caseiras. À noite, pode assistir à missa, frequentar o culto evangélico ou simplesmente esquecer o tempo num restaurante com os amigos, saboreando a culinária local.</p><p style=\"text-align:justify;\">Fundado em 23 de dezembro de 1963 com uma área de 195,457 km², o município congrega, em seu território, sítios, chácaras, ranchos, fazendas, hotéis-fazendas e diversos empreendimentos rurais ligados a atividades agros pastoris que podem ser encontrados canto a canto. A esse respeito, chama atenção a área que atravessa a BR232 até o distrito de Insurreição, na divisa com Gravatá, na qual se instalam indústrias, casas comerciais e condomínios residenciais de alto padrão.</p><p style=\"text-align:justify;\">As áreas rurais são bastante exploradas e fomentam o eco turismo. Os visitantes se deleitam com o clima da serra, o verde farto em várias tonalidades das paisagens e os pomares cheios de frutas cítricas da região. Passeios, caminhadas, cavalgadas, trilhas, banho de açude, banho de bica e até esportes radicais são atrativos que seduzem todos aqueles que conhecem a “terra da laranja” como é popularmente chamada a cidade por seus moradores orgulhosos e felizes por ali residirem.</p><p style=\"text-align:justify;\">A tradição fala mais alto quando se observam as manifestações culturais dos saireenses.</p><p style=\"text-align:justify;\">A festa, em honra ao padroeiro São Miguel Arcanjo, é sem dúvida o ritual religioso mais antigo, porém desde meados dos anos 80, a Festa da Laranja se destacou como a maior festa de rua entre as cidades do agreste. O mês Mariano, por sua vez, é outra tradição carregada de simbolismo e devoção, no qual os católicos realizam celebrações, quermesses, leilões e queimas de fogos de artifício, durante praticamente os trinta e um dias do mês de maio, tanto na cidade como na zona rural. Os noiteiros religiosos prestigiam às famílias, instituições e profissões. A noite dos motoristas, no dia 31, é o ponto culminante das celebrações.</p><p style=\"text-align:justify;\">Os festejos de junho, em homenagem aos santos católicos, constituem outro momento singular da cultura da cidade e envolve o sagrado e o profano em rituais diversificados, sendo o festival do Buscapé aquele que atrai centenas de curiosos para verem o artefato pirotécnico com as faixas de fogo luminosos rasgando os ares pra lá e pra cá, num movimento que mistura beleza e adrenalina. As noites juninas são animadas, também, com muito forró, quadrilhas, comidas típicas e apresentações culturais de toda natureza.</p><p style=\"text-align:justify;\">Por fim, durante o ano inteiro o calendário cívico-cultural da cidade destaca eventos como o espetáculo da Paixão de Cristo, o desfile de Sete de Setembro, a Caminhada do Forró e muitas outras manifestações que movimentam a cena cultural saireense. Além disso, artesãos, poetas, cordelista, repentistas, violeiros, declamadores, cantores populares e artistas em geral dão vida e alegria ao cotidiano local expressando seu talento e suas inspirações.</p>', '2023-03-04 21:34:05', '2023-03-05 07:32:58', NULL),
-(2, 'Governo Municipal', '<h2><strong>PREFEITO</strong></h2><p><img class=\"image_resized\" style=\"width:35.46%;\" src=\"/storage/63/f79d7203-18a7-4e44-bfb2-e79f74cbcddb.jpeg\"></p><p>GILDO PONTES DE ARRUDA</p><h2 style=\"text-align:right;\"><strong>VICE – PREFEITO</strong></h2><p style=\"text-align:right;\"><img class=\"image_resized\" style=\"width:35.87%;\" src=\"/storage/70/25307021-c4a8-4120-ac36-ec951306878e.jpeg\"></p><p style=\"text-align:right;\">FLÁVIO MARCÍLIO CRUZ BEZERRA</p>', '2023-03-05 04:15:03', '2023-03-07 03:56:17', NULL),
+(2, 'Governo Municipal', '<h2><strong>PREFEITO</strong></h2><p><img src=\"http://saire.test/storage/139/image.jpeg\" alt=\"Prefeito - Prefeitura de Sairé - PE\"></p><p>GILDO PONTES DE ARRUDA</p><h2 style=\"text-align:right;\"><strong>VICE – PREFEITO</strong></h2><p style=\"text-align:right;\"><img src=\"http://saire.test/storage/141/image.jpeg\" alt=\"Governo - Prefeitura de Sairé - PE\"></p><p style=\"text-align:right;\">FLÁVIO MARCÍLIO CRUZ BEZERRA</p>', '2023-03-05 04:15:03', '2026-03-02 05:56:31', NULL),
 (3, 'Secretarias', '<h2><span class=\"text-huge\">SECRETARIAS</span></h2><p><strong>Administração e planejamento</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>À Secretaria de Administração e planejamento é subordinada diretamente ao Chefe do Executivo do Governo Municipal, compete o planejamento, desenvolvimento e coordenação dos sistemas administrativos de gestão de pessoal, patrimônio, materiais comunicações internas, no âmbito da administração pública municipal, bem como, promover, supervisionar e avaliar a execução de planos e projetos de tecnologia da informação e promover a modernização administrativa do município e o desenvolvimento organizacional aplicados à administração pública municipal, servindo como órgão disciplinador dos sistemas de compras, licitações e contratos e de suporte para outras Secretarias.</p><p><strong>Governo</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>À Secretaria de Governo, subordinada diretamente ao Chefe do Executivo do Governo Municipal, compete a promoção e articulação direta do Executivo com os demais poderes, coordenando suas atividades políticas, cívicas e de representação entre os órgãos e entidades, articulação social, assim como realizar a coordenação da política de comunicação, inclusive digital, sendo responsável pela publicação dos atos e expedientes na imprensa oficial, além de definir medidas que assegurem o cumprimento da Constituição, leis e decretos.</p><p><strong>Desenvolvimento Econômico e Turismo</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>À Secretaria de Desenvolvimento Econômico e Turismo, é responsável por planejar e promover o desenvolvimento econômico sustentável, em articulação com o Estado, União e Sociedade Civil. Promover e apoiar ações e atividades de incentivo à ciência, tecnologia e inovação, desenvolver a política municipal de turismo, fortalecer o trade turístico municipal, promovendo e apoiando ações correlatas, garantir a eficácia dos investimentos públicos e privados, em especial aqueles considerados estratégicos para a geração de emprego e renda, planejar, desenvolver ações e programas de implantação de empreendimentos estruturadores da economia local e regional, promover políticas de microcrédito e fomento ao empreendedorismo local, pesquisar, identificar, prospectar e apoiar investimentos voltados à expansão das atividades produtivas do Município. Planejar e incentivar parcerias com a iniciativa privada, ações e programas de implantação de empreendimentos estruturadores e fomentadores da economia municipal.</p><p><strong>Agricultura e Meio Ambiente</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>Compete a Secretaria de Agricultura e Meio Ambiente, coordenar, formular, executar, avaliar e atualizar a política agrícola municipal, especialmente voltada à agricultura familiar, de acordo com as características e peculiaridades de cada região, conservação e recuperação das estradas rurais, coordenar e implementar ações relacionadas ao abastecimento, armazenamento e comercialização de insumos, gêneros alimentícios e produtos agropecuários, executando ações de abastecimento de água, assistência técnica e extensão rural, implementar programas de irrigação e executar obras, produtos e serviços tocantes a recursos hídricos relacionados com a infraestrutura rural, em articulação com órgãos e entidades estaduais e federais.</p><p><strong>Educação e Esportes</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>São atribuições da Secretaria de Educação e Esportes, garantir o acesso da população à educação básica e manter a rede pública municipal de ensino, além de promover ações articuladas com os entes estaduais e federais de educação e supervisionar instituições públicas da rede municipal de educação, de elaborar, implantar e acompanhar políticas educacionais voltadas para a melhoria da qualidade do ensino, modernização pedagógica e da capacitação do quadro técnico da educação municipal, desenvolver políticas de ampliação do acesso à educação integral e formular, implementar, acompanhar e avaliar as políticas municipais de educação, bem como, desenvolver política e executar ações de promoção de esporte e lazer no município.</p><p><strong>Infraestrutura e Serviços Urbanos</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>Compete a Secretaria de Infraestrutura e serviços Urbanos, formular, aprovar, gerir, normatizar e fiscalizar a execução de programas, projetos e sistemas relativos à execução de obras e serviços de engenharia de infraestrutura urbana, orientar e gerir a execução de programas e projetos para a construção, manutenção e reforma de edifícios e equipamentos da Administração Pública Municipal, fiscalização destes projetos e de programas e obras realizados em parceria com o governo federal e estadual ou com instituições privadas ou do terceiro setor, prestar assistência direta ao prefeito, no desempenho de suas atribuições, planejar, projetar, orçar, coordenar, executar e fiscalizar as obras públicas do Governo Municipal, executar obras de saneamento básico, promover os serviços de reposição, construção, conservação e pavimentação das vias públicas, executar as obras e/ou reparos solicitados pelas demais Secretarias, em articulação com seus setores específicos de prédios e equipamentos, promover a execução de desenhos das obras projetadas, mapas e gráficos necessários aos serviços, elaborar as especificações dos materiais a serem aplicados na execução das obras projetadas, tendo em vista o tipo de acabamento da obra.</p><p><strong>Saúde</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>Compete a Secretaria de Saúde, planejar, desenvolver e executar a política de atendimento integral das necessidades de saúde da população. Desenvolver políticas de fortalecimento ao sistema de atendimento especializado e complementação da rede hospitalar e ambulatorial do município, bem como exercer as atividades de fortalecimento da rede de atenção básica e psicossocial, coordenar e acompanhar o processo de municipalização do Sistema Único de Saúde (SUS) e planejar, desenvolver e executar a política sanitária municipal implementando ações e programas de vigilância ambiental, epidemiológica, sanitária e de vacinação.&nbsp;</p><p><strong>Ação Social e Cidadania</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>Compete a Secretaria de Ação Social e Cidadania, articular, planejar, coordenar, controlar, propor e executar as atividades das políticas públicas para as áreas de direitos humanos, cidadania e qualidade de vida, inclusive a gestão de equipamentos públicos com tais finalidades, visando o desenvolvimento social do município e garantia dos direitos fundamentais da pessoa, planejar e executar ações de promoção da redução da vulnerabilidade social, em especial das crianças e adolescentes, dos jovens, idosos, das pessoas com deficiência, da comunidade LGBT e das comunidades tradicionais, no combate à desigualdade étnico-racial, social e humana, a gestão de programas habitacionais para atendimentos de pessoas em estado de vulnerabilidade, inclusive em articulação com outras esferas de governo, promover atividades correlatas para redução da desigualdade social no Município.</p><p><strong>Finanças e Orçamento</strong></p><p><strong>ATRIBUIÇÕES</strong></p><p>À Secretaria de Finanças e Orçamento, compete o planejamento, desenvolvimento e acompanhamento de ações que visem o desenvolvimento territorial, econômico, social e de inovação do município, bem como coordenar o processo de planejamento municipal e a descentralização das ações por meio da gestão estratégica, territorial e participativa no planejamento, aprimorando o modelo de gestão municipal e a captação de recursos para projetos estratégicos, promover e apoiar o desenvolvimento científico-técnico em gestão pública dos servidores municipais.</p>', '2023-03-05 04:28:31', '2023-03-05 07:32:19', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `password_resets`
+-- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
-CREATE TABLE IF NOT EXISTS `password_resets` (
+CREATE TABLE `password_resets` (
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `permissions`
+-- Table structure for table `permissions`
 --
 
-DROP TABLE IF EXISTS `permissions`;
-CREATE TABLE IF NOT EXISTS `permissions` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `permissions` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lab` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `title`, `lab`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1449,19 +1420,16 @@ INSERT INTO `permissions` (`id`, `title`, `lab`, `created_at`, `updated_at`, `de
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `permission_role`
+-- Table structure for table `permission_role`
 --
 
-DROP TABLE IF EXISTS `permission_role`;
-CREATE TABLE IF NOT EXISTS `permission_role` (
+CREATE TABLE `permission_role` (
   `role_id` bigint UNSIGNED NOT NULL,
-  `permission_id` bigint UNSIGNED NOT NULL,
-  KEY `role_id_fk_8085261` (`role_id`),
-  KEY `permission_id_fk_8085261` (`permission_id`)
+  `permission_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `permission_role`
+-- Dumping data for table `permission_role`
 --
 
 INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
@@ -1641,12 +1609,11 @@ INSERT INTO `permission_role` (`role_id`, `permission_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
-DROP TABLE IF EXISTS `personal_access_tokens`;
-CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint UNSIGNED NOT NULL,
   `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1655,32 +1622,27 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `publications`
+-- Table structure for table `publications`
 --
 
-DROP TABLE IF EXISTS `publications`;
-CREATE TABLE IF NOT EXISTS `publications` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `publications` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `publications`
+-- Dumping data for table `publications`
 --
 
 INSERT INTO `publications` (`id`, `title`, `text`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1790,21 +1752,19 @@ INSERT INTO `publications` (`id`, `title`, `text`, `status`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `roles`
+-- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `roles` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `title`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1814,19 +1774,16 @@ INSERT INTO `roles` (`id`, `title`, `created_at`, `updated_at`, `deleted_at`) VA
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `role_user`
+-- Table structure for table `role_user`
 --
 
-DROP TABLE IF EXISTS `role_user`;
-CREATE TABLE IF NOT EXISTS `role_user` (
+CREATE TABLE `role_user` (
   `user_id` bigint UNSIGNED NOT NULL,
-  `role_id` bigint UNSIGNED NOT NULL,
-  KEY `user_id_fk_8085270` (`user_id`),
-  KEY `role_id_fk_8085270` (`role_id`)
+  `role_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `role_user`
+-- Dumping data for table `role_user`
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
@@ -1838,12 +1795,11 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `submenus`
+-- Table structure for table `submenus`
 --
 
-DROP TABLE IF EXISTS `submenus`;
-CREATE TABLE IF NOT EXISTS `submenus` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `submenus` (
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `position` int NOT NULL,
   `link_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1851,13 +1807,11 @@ CREATE TABLE IF NOT EXISTS `submenus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `page_id` bigint UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `page_fk_8130801` (`page_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `page_id` bigint UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `submenus`
+-- Dumping data for table `submenus`
 --
 
 INSERT INTO `submenus` (`id`, `title`, `position`, `link_type`, `url`, `created_at`, `updated_at`, `deleted_at`, `page_id`) VALUES
@@ -1873,12 +1827,11 @@ INSERT INTO `submenus` (`id`, `title`, `position`, `link_type`, `url`, `created_
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` datetime DEFAULT NULL,
@@ -1886,13 +1839,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1900,52 +1851,266 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (2, 'Hayssa Gomes', 'issagomes2002@gmail.com', NULL, '$2y$10$yvO91UaYjbOIZOpwfqv9HOiOK5k7J3XzDxHkxowCcK/XzsWOtmCfG', NULL, '2023-02-24 21:18:33', '2023-02-24 23:18:38', '2023-02-24 23:18:38');
 
 --
--- Restrições para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Restrições para tabelas `category_gallery`
+-- Indexes for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_gallery`
+--
+ALTER TABLE `category_gallery`
+  ADD KEY `gallery_id_fk_8085392` (`gallery_id`),
+  ADD KEY `category_id_fk_8085392` (`category_id`);
+
+--
+-- Indexes for table `category_publication`
+--
+ALTER TABLE `category_publication`
+  ADD KEY `publication_id_fk_8085385` (`publication_id`),
+  ADD KEY `category_id_fk_8085385` (`category_id`);
+
+--
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `media_uuid_unique` (`uuid`),
+  ADD KEY `media_model_type_model_id_index` (`model_type`,`model_id`),
+  ADD KEY `media_order_column_index` (`order_column`);
+
+--
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `menus_title_unique` (`title`),
+  ADD KEY `page_fk_8130870` (`page_id`);
+
+--
+-- Indexes for table `menu_submenu`
+--
+ALTER TABLE `menu_submenu`
+  ADD KEY `menu_id_fk_8130869` (`menu_id`),
+  ADD KEY `submenu_id_fk_8130869` (`submenu_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD KEY `role_id_fk_8085261` (`role_id`),
+  ADD KEY `permission_id_fk_8085261` (`permission_id`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `publications`
+--
+ALTER TABLE `publications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD KEY `user_id_fk_8085270` (`user_id`),
+  ADD KEY `role_id_fk_8085270` (`role_id`);
+
+--
+-- Indexes for table `submenus`
+--
+ALTER TABLE `submenus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `page_fk_8130801` (`page_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `galleries`
+--
+ALTER TABLE `galleries`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+
+--
+-- AUTO_INCREMENT for table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `publications`
+--
+ALTER TABLE `publications`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `submenus`
+--
+ALTER TABLE `submenus`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `category_gallery`
 --
 ALTER TABLE `category_gallery`
   ADD CONSTRAINT `category_id_fk_8085392` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `gallery_id_fk_8085392` FOREIGN KEY (`gallery_id`) REFERENCES `galleries` (`id`) ON DELETE CASCADE;
 
 --
--- Restrições para tabelas `category_publication`
+-- Constraints for table `category_publication`
 --
 ALTER TABLE `category_publication`
   ADD CONSTRAINT `category_id_fk_8085385` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `publication_id_fk_8085385` FOREIGN KEY (`publication_id`) REFERENCES `publications` (`id`) ON DELETE CASCADE;
 
 --
--- Restrições para tabelas `menus`
+-- Constraints for table `menus`
 --
 ALTER TABLE `menus`
   ADD CONSTRAINT `page_fk_8130870` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`);
 
 --
--- Restrições para tabelas `menu_submenu`
+-- Constraints for table `menu_submenu`
 --
 ALTER TABLE `menu_submenu`
   ADD CONSTRAINT `menu_id_fk_8130869` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `submenu_id_fk_8130869` FOREIGN KEY (`submenu_id`) REFERENCES `submenus` (`id`) ON DELETE CASCADE;
 
 --
--- Restrições para tabelas `permission_role`
+-- Constraints for table `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_id_fk_8085261` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_id_fk_8085261` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Restrições para tabelas `role_user`
+-- Constraints for table `role_user`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_id_fk_8085270` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_id_fk_8085270` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Restrições para tabelas `submenus`
+-- Constraints for table `submenus`
 --
 ALTER TABLE `submenus`
   ADD CONSTRAINT `page_fk_8130801` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`);
