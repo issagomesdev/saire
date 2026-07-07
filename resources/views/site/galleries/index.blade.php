@@ -82,28 +82,19 @@ for(let i = ({{ $galleries->currentPage() }} + 1); i <= ({{ $galleries->currentP
 <script src="{{ asset('js/site/page.js') }}"> </script>
 <script>
 
-const galleries = [
-			@foreach($galleries as $gallery)
-		{
-			"id": "{{$gallery->id}}",  
-			"title": "{{$gallery->title}}",
-			"description": "{{$gallery->description}}",
-      "date": "{{ $gallery->created_at }}",
-      "categories": [
-            @foreach($gallery->categories as $key => $category)
-			"{{ $category->title }}",
-			@endforeach
-            ],
-			"photos": [
-			@foreach($gallery->photos as $key => $media)
-			"{{ $media->getUrl() }}",
-			@endforeach
-			],
-			
-		},
-
-            @endforeach
-		];
+@php
+	// @json() evita que quebras de linha/aspas dentro de $gallery->description
+	// quebrem a sintaxe do <script> (mesmo bug corrigido em site/index.blade.php).
+	$galleriesJs = $galleries->map(fn ($gallery) => [
+		'id' => $gallery->id,
+		'title' => $gallery->title,
+		'description' => $gallery->description,
+		'date' => (string) $gallery->created_at,
+		'categories' => $gallery->categories->pluck('title')->values(),
+		'photos' => $gallery->photos->map(fn ($media) => $media->getUrl())->values(),
+	])->values();
+@endphp
+const galleries = @json($galleriesJs);
 
 </script>
 <script src="{{ asset('js/site/galleries/script.js') }}"> </script>

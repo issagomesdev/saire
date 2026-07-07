@@ -1,0 +1,100 @@
+## docker-compose.prod.yml — ambiente de PRODUCAO (VPS)
+##
+## Uso:
+##   cp .env.example .env   # depois ajuste para valores de producao
+##   docker compose -f docker-compose.prod.yml up -d --build
+##
+## Sem bind mount do codigo: app e webserver rodam sobre o conteudo
+## fixado na imagem (vendor/ e public/build ja vêm prontos do build).
+## O app e o Nginx rodam em containers separados, entao os dois
+## precisam enxergar os mesmos arquivos estaticos e uploads: isso e
+## resolvido com os volumes nomeados "public_assets" e "storage_public"
+## abaixo (ver comentarios em docker/php/entrypoint.prod.sh).
+
+## Nome de projeto fixo e distinto do dev (docker-compose.yml), que por
+## padrao usa o nome do diretorio ("saire"). Sem isso, rodar os dois
+## arquivos a partir da mesma pasta faria producao reaproveitar os
+## volumes nomeados do dev (mysql_data, etc.) por acidente.
+name: saire-prod
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+            target: production
+        container_name: saire_app
+        restart: unless-stopped
+        env_file:
+            - .env
+        environment:
+            RUN_MIGRATIONS: ${RUN_MIGRATIONS:-false}
+        volumes:
+            - storage_public:/var/www/html/storage/app/public
+            - app_logs:/var/www/html/storage/logs
+            - public_assets:/shared/public
+        depends_on:
+            mysql:
+                condition: service_healthy
+        networks:
+            - saire
+
+    webserver:
+        build:
+            context: ./docker/nginx
+            dockerfile: Dockerfile
+        container_name: saire_nginx
+        restart: unless-stopped
+        ports:
+            - "${APP_PORT:-8000}:80"
+        volumes:
+            - public_assets:/var/www/html/public:ro
+            - storage_public:/var/www/html/storage/app/public:ro
+        depends_on:
+            - app
+        networks:
+            - saire
+
+    mysql:
+        build:
+            context: ./docker/mysql
+            dockerfile: Dockerfile
+        container_name: saire_mysql
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - mysql_data:/var/lib/mysql
+        # Sem porta publicada: o MySQL so precisa ser acessivel pela rede
+        # interna "saire". Para acesso externo pontual, use um tunel SSH
+        # (`ssh -L 3306:localhost:3306 usuario@vps`) em vez de expor a porta.
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+        networks:
+            - saire
+
+    redis:
+        image: redis:7-alpine
+        container_name: saire_redis
+        restart: unless-stopped
+        volumes:
+            - redis_data:/data
+        networks:
+            - saire
+
+networks:
+    saire:
+        driver: bridge
+
+volumes:
+    mysql_data:
+    redis_data:
+    storage_public:
+    app_logs:
+    public_assets:

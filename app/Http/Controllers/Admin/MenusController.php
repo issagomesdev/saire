@@ -69,6 +69,8 @@ class MenusController extends Controller
 
     public function reorder(Request $request)
     {
+            abort_if(Gate::denies('menu_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
             Menu::find($request->id)->update([
                 'position' => $request->position
             ]);

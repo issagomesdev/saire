@@ -47,59 +47,42 @@
 		@include('site.layouts.footer')
 
 	<script>
+		@php
+			// @json() escapa aspas, barras invertidas e quebras de linha
+			// corretamente para contexto JS/HTML. O foreach manual antigo
+			// interpolava $publication->text (que pode ter quebras de linha
+			// reais dentro de um literal de string de uma linha só) direto
+			// no JS, o que gerava um erro de sintaxe e quebrava o script
+			// inteiro — por isso nada era renderizado na home.
+			$publicationsJs = $publications->map(fn ($item) => [
+				'id' => $item->id,
+				'title' => $item->title,
+				'text' => $item->text,
+				'status' => $item->status,
+				'photos' => $item->photos->map(fn ($media) => $media->getUrl())->values(),
+			])->values();
 
-		const publications = [
-			@foreach($publications as $publication)
-		{
-			"id": "{{$publication->id}}",  
-			"title": "{{$publication->title}}",
-			"text": "{{$publication->text}}",
-			"status": "{{$publication->status}}",         
-			"photos": [
-			@foreach($publication->photos as $key => $media)
-			"{{ $media->getUrl() }}",
-			@endforeach
-			],
-			
-		},
+			$featuredPublicationsJs = $features->map(fn ($item) => [
+				'id' => $item->id,
+				'title' => $item->title,
+				'text' => $item->text,
+				'status' => $item->status,
+				'photos' => $item->photos->map(fn ($media) => $media->getUrl())->values(),
+			])->values();
 
-            @endforeach
-		];
+			$galleriesJs = $galleries->map(fn ($item) => [
+				'id' => $item->id,
+				'title' => $item->title,
+				'photos' => $item->photos->map(fn ($media) => $media->getUrl())->values(),
+			])->values();
+		@endphp
 
-		const featuredPublications = [
-			@foreach($features as $feature)
-		{ 
-			"id": "{{$feature->id}}", 
-			"title": "{{$feature->title}}",
-			"text": "{{$feature->text}}",
-			"status": "{{$feature->status}}",          
-			"photos": [
-			@foreach($feature->photos as $key => $media)
-			"{{ $media->getUrl() }}",
-			@endforeach
-			],
-			
-		},
-			@endforeach
-		];
+		const publications = @json($publicationsJs);
+		const featuredPublications = @json($featuredPublicationsJs);
 
 		var imageDefault = "/media/img/default.png";
 
-		const galleries = [
-			@foreach($galleries as $gallery)
-		{ 
-			"id": "{{$gallery->id}}", 
-			"title": "{{$gallery->title}}",          
-			"photos": [
-			@foreach($gallery->photos as $key => $media)
-			"{{ $media->getUrl() }}",
-			@endforeach
-			],
-			
-		},
-			@endforeach
-		];
-		
+		const galleries = @json($galleriesJs);
 	</script>
 <script src="{{ asset('js/he-master/he.js') }}"> </script>
 <script src="{{ asset('js/site/script.js') }}"> </script>

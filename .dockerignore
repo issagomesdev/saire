@@ -1,0 +1,43 @@
+.git
+.gitattributes
+.gitignore
+.editorconfig
+.history
+.idea
+.vscode
+.fleet
+
+# Segredos: nunca devem ser copiados para dentro de uma imagem
+.env
+.env.backup
+.env.production
+.env.docker
+!.env.example
+
+# Reconstruidos dentro da imagem (composer install / npm run build)
+vendor
+node_modules
+public/build
+public/hot
+
+# Gerado por "artisan storage:link" ao rodar o container de dev com o
+# codigo em bind mount: vira um symlink real no host apontando para um
+# caminho absoluto que so existe dentro do container, e quebra o
+# contexto de build da imagem de producao ("invalid file request").
+public/storage
+
+# Nao usados em runtime
+tests
+.phpunit.cache
+phpunit.xml
+README.md
+images
+banners.pen
+estrutura.txt
+
+# Acervo de fotos dos seeders (~280MB) — usado so em desenvolvimento (onde
+# chega via bind mount, nao pelo build context) e nunca em producao.
+database/fake_media
+
+docker-compose.yml
+docker-compose.prod.yml

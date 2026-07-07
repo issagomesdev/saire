@@ -58,7 +58,7 @@ class SitesController extends Controller
     {
         $publication = Publication::with(['categories'])
         ->where("title", str_replace("_", " ", $title))
-        ->first();
+        ->firstOrFail();
         $next = Publication::where('created_at', '>', $publication->created_at)->orderBy('created_at')->first();
         $previus = Publication::where('created_at', '<', $publication->created_at)->orderBy('created_at', 'desc')->first();
         $menus = Menu::with(['submenuses', 'page'])->orderBy('position')->get();
@@ -67,7 +67,7 @@ class SitesController extends Controller
 
     public function page($title, Request $request)
     {
-        $page = Page::where("title", str_replace("_", " ", $title))->first();
+        $page = Page::where("title", str_replace("_", " ", $title))->firstOrFail();
         $menus = Menu::with(['submenuses', 'page'])->orderBy('position')->get();
         
         return view('site.page', compact('page', 'menus'));

@@ -1,4 +1,5 @@
 {
+    "name": "saire",
     "private": true,
     "scripts": {
         "dev": "vite",

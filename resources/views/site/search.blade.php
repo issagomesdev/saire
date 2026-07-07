@@ -116,7 +116,7 @@
 	// showSpinner('publications')
 	// showSpinner('page')
 	// showSpinner('galleries')
-loadPublications(1, "{{ $search }}",  "{{ asset('storage/img/saire.jpeg') }}");
-loadPages(1, "{{ $search }}",  "{{ asset('storage/img/saire.jpeg') }}");
+loadPublications(1, "{{ $search }}",  "{{ asset('media/img/default.png') }}");
+loadPages(1, "{{ $search }}",  "{{ asset('media/img/default.png') }}");
 loadGalleries(1, "{{ $search }}");
 </script>

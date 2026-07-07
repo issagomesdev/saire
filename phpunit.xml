@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
          colors="true"
 >
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./tests/Feature/Admin</directory>
+        </testsuite>
+        <testsuite name="System">
+            <directory suffix="Test.php">./tests/Feature/System</directory>
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
@@ -17,15 +23,13 @@
             <directory suffix=".php">./app</directory>
         </include>
     </coverage>
-    <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
-        <env name="MAIL_MAILER" value="array"/>
-        <env name="QUEUE_CONNECTION" value="sync"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="TELESCOPE_ENABLED" value="false"/>
-    </php>
+    <!--
+        As variáveis de ambiente de teste (APP_ENV=testing, DB_CONNECTION=
+        sqlite, etc.) são definidas em tests/bootstrap.php, não aqui: o
+        container já recebe valores reais via docker-compose (env_file:
+        .env), e o Repository do phpdotenv que o Laravel usa para resolver
+        env() lê de $_ENV/$_SERVER — as tags <env> deste arquivo (mesmo com
+        force="true", que só afeta putenv()) não conseguem sobrescrever
+        isso. Ver o comentário em tests/bootstrap.php para o detalhe.
+    -->
 </phpunit>

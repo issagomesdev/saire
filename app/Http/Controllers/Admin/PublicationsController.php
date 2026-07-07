@@ -78,6 +78,7 @@ class PublicationsController extends Controller
     }
 
     public function favPublications(Request $request){
+        abort_if(Gate::denies('publication_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $publication = Publication::where('id', $request->id)->update(['status' => $request->status]);
 
@@ -97,8 +98,7 @@ class PublicationsController extends Controller
     {
         $publication = Publication::create($request->all());
         $publication->categories()->sync($request->input('categories', []));
-        foreach ($request->input('
-        photos', []) as $file) {
+        foreach ($request->input('photos', []) as $file) {
             $publication->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('photos');
         }
 

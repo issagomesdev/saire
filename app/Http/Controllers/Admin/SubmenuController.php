@@ -70,6 +70,8 @@ class SubmenuController extends Controller
 
     public function reorder(Request $request)
     {
+            abort_if(Gate::denies('submenu_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
             Submenu::find($request->id)->update([
                 'position' => $request->position
             ]);

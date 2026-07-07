@@ -53,14 +53,16 @@
                                 {{ $auditLog->description ?? '' }}
                             </td>
                             <td>
-                                @if(strcmp(substr($auditLog->subject_type, -1), "y") == 0)
-                                <a href="{{ route('admin.' . strtolower( rtrim($auditLog->subject_type, "y") ) . 'ies.show', $auditLog->subject_id ) }}">
-                                #{{$auditLog->subject_id}}
-                                </a>
-                                @else
-                                <a href="{{ route('admin.' . strtolower($auditLog->subject_type) . 's.show', $auditLog->subject_id ) }}">
-                                #{{$auditLog->subject_id}}
-                                </a> 
+                                @if($auditLog->subject_id)
+                                    @if(strcmp(substr($auditLog->subject_type, -1), "y") == 0)
+                                    <a href="{{ route('admin.' . strtolower( rtrim($auditLog->subject_type, "y") ) . 'ies.show', $auditLog->subject_id ) }}">
+                                    #{{$auditLog->subject_id}}
+                                    </a>
+                                    @else
+                                    <a href="{{ route('admin.' . strtolower($auditLog->subject_type) . 's.show', $auditLog->subject_id ) }}">
+                                    #{{$auditLog->subject_id}}
+                                    </a>
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -68,9 +70,11 @@
                                 
                             </td>
                             <td>
+                            @if($auditLog->user_id)
                             <a href="{{ route('admin.users.show', $auditLog->user_id ) }}">
                                 {{ $auditLog->user->name ?? '' }}
                                 </a>
+                            @endif
                             </td>
                             <td>
                                 {{ $auditLog->host ?? '' }}

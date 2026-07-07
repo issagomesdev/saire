@@ -44,29 +44,20 @@
 
 <script>
 
-    		const publications = [
-			@foreach($publications as $publication)
-		{
-			"id": "{{$publication->id}}",  
-			"title": "{{$publication->title}}",
-			"text": "{{$publication->text}}",
-			"status": "{{$publication->status}}",
-            "date": "{{ $publication->created_at }}",
-            "categories": [
-            @foreach($publication->categories as $key => $category)
-			"{{ $category->title }}",
-			@endforeach
-            ],
-			"photos": [
-			@foreach($publication->photos as $key => $media)
-			"{{ $media->getUrl() }}",
-			@endforeach
-			],
-			
-		},
-
-            @endforeach
-		];
+    		@php
+			// @json() evita que quebras de linha/aspas dentro de $publication->text
+			// quebrem a sintaxe do <script> (mesmo bug corrigido em site/index.blade.php).
+			$publicationsJs = $publications->map(fn ($publication) => [
+				'id' => $publication->id,
+				'title' => $publication->title,
+				'text' => $publication->text,
+				'status' => $publication->status,
+				'date' => (string) $publication->created_at,
+				'categories' => $publication->categories->pluck('title')->values(),
+				'photos' => $publication->photos->map(fn ($media) => $media->getUrl())->values(),
+			])->values();
+		@endphp
+    		const publications = @json($publicationsJs);
 
 		var imageDefault = "/media/img/default.png";
         
