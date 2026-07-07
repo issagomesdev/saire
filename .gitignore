@@ -6,6 +6,7 @@
 /.history
 /public/storage
 /storage/*.key
+/storage/app/public/*/conversions
 /vendor
 .env
 .env.backup
