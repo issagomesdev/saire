@@ -161,7 +161,6 @@ php artisan serve
 # Email: admin@admin.com
 # Password: password
 ```
-
 ---
 
 ### Option B: Docker (development)
@@ -339,7 +338,7 @@ docker compose logs -f app
 docker compose logs -f webserver
 ```
 
-### Deploying to an Ubuntu VPS
+### Deploying 
 
 1. **Install Docker** (if not already present):
     ```bash
@@ -453,33 +452,6 @@ docker-compose.yml         Development stack
 docker-compose.prod.yml    Production stack
 .env.example                Single environment template (Docker-ready, see "Environment variables")
 ```
-
-<h2 id="troubleshooting">🩺 Troubleshooting</h2>
-
-**Port already in use / conflicts with another project on the VPS**
-Change `APP_PORT` (and, in development, `FORWARD_DB_PORT` / `FORWARD_REDIS_PORT` / `VITE_PORT`) in `.env`, then `docker compose up -d` again. No Docker file needs to change.
-
-**"SQLSTATE[HY000] [2002] Connection refused" on first boot**
-MySQL can take a few seconds to initialize on the very first run. The `app` service already waits for MySQL's healthcheck before starting; if it still happens, run `docker compose logs mysql` to confirm it finished initializing, then `docker compose restart app`.
-
-**Changes to `.php`/`.blade.php` files don't show up**
-Only relevant in development. Confirm the `app`/`webserver` containers are using the bind mount (`docker compose config` should show `.:/var/www/html`) and that you're editing files inside the project directory, not inside the container.
-
-**Vite / hot reload not updating in the browser**
-Confirm the `node` container is running (`docker compose ps`) and that `VITE_PORT` (default `5173`) is reachable at `http://localhost:5173`. If you changed `VITE_PORT`, `vite.config.js`'s `server.port` must match it.
-
-**Permission denied writing to `storage/` or `bootstrap/cache` (development)**
-The `app` container's PHP-FPM pool runs as root in development on purpose (`docker/php/www.dev.conf`), specifically because bind-mounted code makes a non-root user unreliable across hosts (Docker Desktop on Windows/macOS doesn't apply `chown` to bind-mounted files). If you still hit this, run `docker compose exec app chmod -R a+w storage bootstrap/cache` as a one-off fix. Production does not have this problem: `docker/php/www.conf` runs as a real non-root user because the code there comes from the image, not a bind mount.
-
-**File upload fails / "413 Request Entity Too Large"**
-Upload limits are set in `docker/php/php.ini` (`php.prod.ini` in production) and mirrored in `docker/nginx/default.conf` (`client_max_body_size`). Adjust both consistently and restart the affected containers.
-
-**`artisan` command not found / composer errors inside the container**
-Make sure you're running commands with `docker compose exec app ...` (inside the container), not directly on the host, unless PHP/Composer are also installed natively there.
-
-**"Unsupported cipher or incorrect key length" on every page**
-`APP_KEY` got corrupted — usually two base64 keys concatenated on the same line in `.env`. This happens if `php artisan key:generate` is run more than once at the same time (for example, right after `docker compose up -d`, while the `app` entrypoint is still generating it automatically — see the note under [Docker (development)](#started)). Fix: `docker compose exec app php artisan key:generate --force` once the container is idle (check `docker compose logs app` shows no output for a few seconds), then `docker compose up -d --force-recreate app`. A plain `docker compose restart app` is **not** enough: `env_file` variables are only re-read when the container is (re)created, not on restart.
-
 <h2 id="notes"> 📌 Final Notes</h2>
 
 - This project was developed as a custom CMS for a municipal institution in Pernambuco.
