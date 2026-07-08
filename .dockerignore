@@ -35,9 +35,14 @@ images
 banners.pen
 estrutura.txt
 
-# Acervo de fotos dos seeders (~280MB) — usado so em desenvolvimento (onde
-# chega via bind mount, nao pelo build context) e nunca em producao.
-database/fake_media
+# NAO excluir database/fake_media (~280MB) apesar do tamanho: PagesSeeder,
+# PublicationsSeeder e GalleriesSeeder leem arquivos de la incondicionalmente
+# (ex.: fake_media/governo_municipal/prefeita.png), e "db:seed"/"migrate
+# --seed" tambem sao o fluxo oficial de populacao em producao (ver README >
+# Database Seeding) -- ja excluir essa pasta aqui quebrou "artisan db:seed"
+# com FileDoesNotExist. Se um dia esse acervo for so decorativo/dev-only de
+# fato, mover a decisao para os seeders (ex.: pular fotos quando ausentes),
+# nao esconder o arquivo do build context.
 
 docker-compose.yml
 docker-compose.prod.yml

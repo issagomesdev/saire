@@ -274,6 +274,9 @@ sed -i "s|^APP_KEY=.*|APP_KEY=base64:$(openssl rand -base64 32)|" .env
 
 docker compose -f docker-compose.prod.yml up -d --build
 docker compose -f docker-compose.prod.yml exec app php artisan migrate --force
+
+# Populate the database (optional)
+docker compose -f docker-compose.prod.yml exec app php artisan db:seed --force
 ```
 
 `docker/php/entrypoint.prod.sh` fails fast with a clear error (instead of booting into a broken app) if `APP_KEY` is missing. Treat it like any other secret in `.env` (`DB_PASSWORD`, `MYSQL_ROOT_PASSWORD`): generate it once per environment and never regenerate it on a running deployment — a new key invalidates every existing session, cookie, and `encrypted`-cast database column.
