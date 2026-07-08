@@ -72,33 +72,33 @@ This CMS was built with a custom Laravel stack, using:
 
 ### 🌐 Public
 
-| Method | Path                          | Description                          |
-|--------|-------------------------------|--------------------------------------|
-| GET    | `/`                           | Homepage                             |
-| GET    | `/galeria`                    | Gallery page                         |
-| GET    | `/noticias`                   | News/publications list               |
-| GET    | `/noticias/{title}`           | Single publication details           |
-| GET    | `/pagina/{title}`             | Static content page view             |
-| GET    | `/pesquisa`                   | Global search                        |
-| GET    | `/pesquisa/publications`      | Fetch search for publications        |
-| GET    | `/pesquisa/pages`             | Fetch search for static pages        |
-| GET    | `/pesquisa/galleries`         | Fetch search for galleries           |
+| Path                          | Description                          |
+|-------------------------------|--------------------------------------|
+| `/`                           | Homepage                             |
+| `/galeria`                    | Gallery page                         |
+| `/noticias`                   | News/publications list               |
+| `/noticias/{title}`           | Single publication details           |
+| `/pagina/{title}`             | Static content page view             |
+| `/pesquisa`                   | Global search                        |
+| `/pesquisa/publications`      | Fetch search for publications        |
+| `/pesquisa/pages`             | Fetch search for static pages        |
+| `/pesquisa/galleries`         | Fetch search for galleries           |
 
 ### Admin (`/admin`)
 
-| Resource      | Description                            |
-|---------------|-----------------------------------------|
-| Permissions   | Manage access control permissions      |
-| Roles         | Define user roles and assign permissions |
-| Users         | Admin user management                  |
-| Audit Logs    | System activity tracking               |
-| Menus         | Main navigation structure               |
-| Submenus      | Secondary navigation structure          |
-| Pages         | Static institutional pages              |
-| Publications  | Create, edit, delete news articles      |
-| Categories    | Tag management                          |
-| Galleries     | Manage photo collections                |
-| Profile       | Password update and profile management  |
+| Path                   | Description                                 |
+|------------------------|---------------------------------------------|
+| `/admin/permissions`   | Manage access control permissions           |
+| `/admin/roles`         | Define user roles and assign permissions    |
+| `/admin/users`         | Admin user management                       |
+| `/admin/audit-logs`    | System activity tracking                    |
+| `/admin/menus`         | Main navigation structure                   |
+| `/admin/submenus`      | Secondary navigation structure              |
+| `/admin/pages`         | Static institutional pages                  |
+| `/admin/publications`  | Create, edit, delete news articles          |
+| `/admin/categories`    | Tag management                              |
+| `/admin/galleries`     | Manage photo collections                    |
+| `/admin/profile`       | Password update and profile management      |
 
 > 🔐 All admin routes are protected by authentication middleware.
 
@@ -140,7 +140,7 @@ php artisan key:generate
 #   DB_HOST=127.0.0.1
 #   REDIS_HOST=127.0.0.1
 
-# Create an empty database matching your .env DB_* variables, then run
+# Create an empty database, then run
 # migrations + seeders — this populates the whole site (menus, pages,
 # categories, ~150 publications and ~100 galleries with real sample
 # photos from database/fake_media/) in one reproducible step. See
@@ -194,200 +194,102 @@ The application will be available at **http://localhost:8000** (or whatever `APP
 
 > **Never run `composer install`, `key:generate` or `storage:link` manually while the container is still starting up** — the entrypoint already runs them, and two invocations racing on the same `.env` file can corrupt `APP_KEY` (two keys end up concatenated on the same line, causing "Unsupported cipher or incorrect key length"). If that happens, fix it with a single `docker compose exec app php artisan key:generate --force` once the container is idle, then `docker compose up -d --force-recreate app` — a plain `restart` is not enough, since environment variables from `.env` are only re-read when the container is (re)created, not restarted.
 
-<h2 id="docker">🐳 Docker Environment</h2>
+<h2 id="docker">🐳 Docker</h2>
 
-The project ships with two independent Docker Compose files, so the exact same codebase can run in either a fully-featured **development** setup or a lean, optimized **production** setup — switching between them never requires touching a Dockerfile or Nginx config, only environment variables.
+The project includes two Docker Compose configurations:
 
-### Why this structure
+| File | Purpose |
+|------|---------|
+| `docker-compose.yml` | Development (hot reload, Vite, bind mounts) |
+| `docker-compose.prod.yml` | Production (optimized, immutable images) |
 
-- **Separation of concerns**: PHP-FPM, Nginx, MySQL and Redis each run in their own container/image, following the single-responsibility principle at the infrastructure level.
-- **One Dockerfile, two targets**: `docker/php/Dockerfile` uses Docker multi-stage builds (`development` and `production` targets) instead of two separate Dockerfiles, so shared setup (system packages, PHP extensions, FPM pool config) lives in a single `base` stage — avoiding duplicated, drifting configuration (DRY).
-- **A dedicated `frontend-builder` stage** compiles Vite assets during the production image build, so the final runtime image never needs Node.js installed (keeps the production image lean).
-- **A single `.env`** is read by both Laravel and Docker Compose (Compose auto-loads a `.env` file placed next to `docker-compose.yml`). This is why `APP_PORT`, `DB_DATABASE`, etc. only need to be defined once and are shared by the app and the infrastructure.
-- **`docker/mysql/my.cnf` is baked into a small custom image (`docker/mysql/Dockerfile`) instead of bind-mounted.** MySQL silently ignores config files it considers world-writable, which is exactly how bind-mounted files are presented on Docker Desktop for Windows/macOS — the container would boot with the custom charset/tuning quietly never applied. Building it into the image sidesteps host-dependent file permissions entirely.
-- **The development PHP-FPM pool (`docker/php/www.dev.conf`) runs as root; production (`docker/php/www.conf`) runs as a real non-root user.** In development the code is bind-mounted from the host, and `chown` has no real effect on bind-mounted files under Docker Desktop, so a non-root pool would be unable to write to `storage/`. In production the code is copied into the image at build time with correct ownership, so a real non-root user works without caveats.
+Both environments share the same Dockerfiles and `.env`, making it easy to switch between development and production.
 
-### Directory layout
+### Architecture
 
-```
+The application is split into independent containers:
+
+- PHP-FPM
+- Nginx
+- MySQL
+- Redis
+- Node (development only)
+
+PHP uses a multi-stage Dockerfile, producing optimized images for development and production without duplicating configuration.
+
+### Directory
+
+```text
 docker/
 ├── php/
-│   ├── Dockerfile          # multi-stage: base -> development / frontend-builder / production
-│   ├── php.ini              # PHP settings for development
-│   ├── php.prod.ini         # PHP settings for production (OPcache tuned)
-│   ├── www.conf             # PHP-FPM pool for production (real non-root user)
-│   ├── www.dev.conf         # PHP-FPM pool for development (runs as root, see note below)
-│   ├── entrypoint.dev.sh    # composer install / key:generate / storage:link on boot
-│   └── entrypoint.prod.sh   # cache:config/route/view + publishes public/ for Nginx
 ├── nginx/
-│   ├── Dockerfile            # production image (bakes default.conf in)
-│   └── default.conf          # shared Nginx vhost (gzip, security headers, PHP-FPM upstream)
 └── mysql/
-    ├── Dockerfile             # bakes my.cnf into the image (see note below)
-    └── my.cnf                 # utf8mb4 charset/collation, connection tuning
-
-docker-compose.yml         # development stack (app, webserver, node, mysql, redis)
-docker-compose.prod.yml    # production stack (app, webserver, mysql, redis)
-.env.example                # single template, ready for Docker; comments mark what to change without Docker
-.dockerignore
 ```
 
-### Development stack (`docker-compose.yml`)
+### Environment
 
-| Service     | Description                                              | Exposed port (host)         |
-|-------------|-----------------------------------------------------------|------------------------------|
-| `app`       | PHP 8.3-FPM (Alpine), code bind-mounted for live reload    | —                             |
-| `webserver` | Nginx, serves the app and proxies `.php` to `app`          | `${APP_PORT:-8000}` → 80     |
-| `node`      | Vite dev server (hot module replacement)                   | `${VITE_PORT:-5173}` → 5173  |
-| `mysql`     | MySQL 8.0                                                   | `${FORWARD_DB_PORT:-3306}` → 3306 |
-| `redis`     | Redis 7 (available for future use, see below)               | `${FORWARD_REDIS_PORT:-6379}` → 6379 |
+Copy the example file:
 
-The project's code is bind-mounted into `app` and `webserver`, so changes to PHP/Blade files are reflected immediately — no rebuild needed. `vendor/` and `node_modules/` use **named volumes** instead of the bind mount, so dependencies installed inside the container (Linux binaries) are never shadowed or overwritten by whatever exists on the host.
-
-### Production stack (`docker-compose.prod.yml`)
-
-| Service     | Description                                                        |
-|-------------|----------------------------------------------------------------------|
-| `app`       | PHP 8.3-FPM, built from the `production` target: `composer install --no-dev --optimize-autoloader`, compiled Vite assets baked in, runs as a non-root user |
-| `webserver` | Nginx, built from `docker/nginx/Dockerfile`                          |
-| `mysql`     | MySQL 8.0 (no port published to the host by default)                 |
-| `redis`     | Redis 7 (no port published to the host by default)                   |
-
-No bind mounts in production — the image is immutable and contains everything it needs. Since `app` and `webserver` are separate containers, they don't share a filesystem by default; `docker/php/entrypoint.prod.sh` publishes `public/` into the named volume `public_assets` **on every container start** (not only once), specifically so that a redeploy with new Vite-hashed filenames always reaches Nginx — a named volume is otherwise only auto-seeded by Docker the first time it's created. User-uploaded media (`storage/app/public`) lives in its own persistent volume (`storage_public`), mounted read-write in `app` and read-only in `webserver`.
-
-### Dynamic HTTP port
-
-Because this VPS hosts multiple Docker projects, the HTTP port is never hardcoded. Both compose files map:
-
-```yaml
-ports:
-    - "${APP_PORT:-8000}:80"
+```bash
+cp .env.example .env
 ```
 
-Change it by editing a single line in `.env` — no Docker file needs to change:
+Main variables:
 
 ```env
-APP_PORT=8085
-```
-
-If `APP_PORT` is not set, it defaults to **8000**. The same pattern is used for the other host-facing ports (`FORWARD_DB_PORT`, `FORWARD_REDIS_PORT`, `VITE_PORT`) to avoid collisions with other projects on the same server.
-
-### Environment variables
-
-There is a single `.env.example`, copied to `.env` regardless of how you run the project. It ships ready for Docker; every line that needs a different value without Docker has a `# sem Docker:` comment right above it (currently `DB_HOST` and `REDIS_HOST`, since those must point to Docker service names — `mysql`/`redis` — instead of `127.0.0.1`).
-
-Key variables:
-
-```env
-APP_NAME=Saire
-APP_ENV=local            # local | production
-APP_KEY=                 # generated by `artisan key:generate`
-APP_DEBUG=true            # false in production
-APP_URL=http://localhost:${APP_PORT}
-
-APP_PORT=8000             # Nginx host port (see "Dynamic HTTP port" above)
-FORWARD_DB_PORT=3306       # MySQL host port (dev only)
-FORWARD_REDIS_PORT=6379    # Redis host port (dev only)
-VITE_PORT=5173             # Vite dev server host port (dev only)
-
-DB_CONNECTION=mysql
-DB_HOST=mysql              # the MySQL *service name*, not localhost, inside Docker — 127.0.0.1 without Docker
-DB_PORT=3306
+APP_PORT=8000
 DB_DATABASE=saire
 DB_USERNAME=saire
 DB_PASSWORD=secret
-MYSQL_ROOT_PASSWORD=root_secret   # only read by the mysql container
-
-REDIS_HOST=redis           # same idea — 127.0.0.1 without Docker
 ```
 
-> The Redis container is included so the project **can** use it, without changing current behavior: `CACHE_DRIVER`, `SESSION_DRIVER` and `QUEUE_CONNECTION` stay on `file`/`sync` by default. To adopt Redis, run `composer require predis/predis` and switch the relevant driver(s) to `redis`.
+---
 
-### Useful commands
+## Development
+
+Start:
 
 ```bash
-# Start containers (development)
 docker compose up -d
+```
 
-# Start containers (production)
+Open:
+
+```
+http://localhost:${APP_PORT}
+```
+
+---
+
+## Production
+
+Build and start:
+
+```bash
 docker compose -f docker-compose.prod.yml up -d --build
+```
 
-# Stop containers
+Run migrations:
+
+```bash
+docker compose -f docker-compose.prod.yml exec app php artisan migrate --force
+```
+
+---
+
+## Useful commands
+
+```bash
+docker compose up -d
 docker compose down
-
-# Rebuild after Dockerfile/dependency changes
 docker compose up -d --build
 
-# Open a shell inside the app container
-docker exec -it saire_app bash
-
-# Run migrations
 docker compose exec app php artisan migrate
-
-# Run seeders
 docker compose exec app php artisan db:seed
-
-# Clear all caches
 docker compose exec app php artisan optimize:clear
 
-# Generate the application key
-docker compose exec app php artisan key:generate
-
-# Tail logs
 docker compose logs -f app
-docker compose logs -f webserver
 ```
-
-### Deploying 
-
-1. **Install Docker** (if not already present):
-    ```bash
-    curl -fsSL https://get.docker.com | sh
-    sudo usermod -aG docker $USER
-    ```
-2. **Clone the repository** into the server:
-    ```bash
-    git clone https://github.com/issagomesdev/saire.git
-    cd saire
-    ```
-3. **Configure the environment**:
-    ```bash
-    cp .env.example .env
-    ```
-    Edit `.env` and set at least:
-    ```env
-    APP_ENV=production
-    APP_DEBUG=false
-    APP_URL=https://your-domain.gov.br
-    APP_PORT=8000            # pick a free port if this VPS already runs other Docker apps
-    APP_KEY=                 # leave empty, generated in the next step
-    DB_DATABASE=saire
-    DB_USERNAME=saire
-    DB_PASSWORD=<strong-password>
-    MYSQL_ROOT_PASSWORD=<strong-password>
-    ```
-4. **Build and start the production stack**:
-    ```bash
-    docker compose -f docker-compose.prod.yml up -d --build
-    ```
-5. **Generate the application key** (first deploy only):
-    ```bash
-    docker compose -f docker-compose.prod.yml exec app php artisan key:generate --force
-    ```
-6. **Run migrations** (first deploy, or set `RUN_MIGRATIONS=true` in `.env` to run them automatically on every container start):
-    ```bash
-    docker compose -f docker-compose.prod.yml exec app php artisan migrate --force
-    ```
-7. Put the server behind a reverse proxy with TLS (e.g. an existing Nginx/Traefik/Caddy on the host, or Certbot) pointing at `127.0.0.1:${APP_PORT}` — the container itself only serves plain HTTP, which is the standard setup when a VPS hosts several Dockerized sites behind one HTTPS-terminating proxy.
-
-**Updating a running deployment:**
-
-```bash
-git pull
-docker compose -f docker-compose.prod.yml up -d --build
-```
-
-Rebuilding recreates the `app` and `webserver` images with the new code, recompiled assets, and republishes `public/` to the shared volume automatically (see [Production stack](#docker) above) — the database and uploaded media persist untouched in their volumes.
 
 <h2 id="seeding">🌱 Database Seeding</h2>
 
