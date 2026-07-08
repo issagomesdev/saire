@@ -263,17 +263,20 @@ http://localhost:${APP_PORT}
 
 ## Production
 
-Build and start:
+The production image never has a physical `.env` file inside it — `.dockerignore` excludes it from the build context on purpose, so the secret never ends up baked into an image layer. Everything the app needs (`DB_*`, `APP_KEY`, etc.) is injected as real environment variables via `env_file` in `docker-compose.prod.yml`, which is how the rest of the app already works fine without that file. The only command this breaks is `artisan key:generate`, since it tries to write directly to `.env` on disk — so `APP_KEY` is generated once on the **host**, before the first boot, instead:
 
 ```bash
+cp .env.example .env
+# edit DB_PASSWORD, MYSQL_ROOT_PASSWORD, APP_URL, etc.
+
+# Generate APP_KEY directly into .env (no container needed for this):
+sed -i "s|^APP_KEY=.*|APP_KEY=base64:$(openssl rand -base64 32)|" .env
+
 docker compose -f docker-compose.prod.yml up -d --build
-```
-
-Run migrations:
-
-```bash
 docker compose -f docker-compose.prod.yml exec app php artisan migrate --force
 ```
+
+`docker/php/entrypoint.prod.sh` fails fast with a clear error (instead of booting into a broken app) if `APP_KEY` is missing. Treat it like any other secret in `.env` (`DB_PASSWORD`, `MYSQL_ROOT_PASSWORD`): generate it once per environment and never regenerate it on a running deployment — a new key invalidates every existing session, cookie, and `encrypted`-cast database column.
 
 ---
 

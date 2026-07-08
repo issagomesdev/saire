@@ -11,6 +11,26 @@
 # comando artisan e antes do processo final do php-fpm.
 set -e
 
+# Esta imagem nao tem (e nao deve ter) um .env fisico: .dockerignore
+# exclui o arquivo do build context de proposito, para que o segredo
+# nunca fique gravado numa camada da imagem. Toda a config chega via
+# env_file no docker-compose.prod.yml, que o Docker ja injeta como
+# variavel de ambiente real do processo -- por isso NENHUM comando aqui
+# pode depender de reescrever o .env (ex.: "artisan key:generate" sem
+# --show), so leitura via getenv()/$_ENV.
+#
+# APP_KEY especificamente precisa ser gerado uma unica vez no .env do
+# HOST, antes do primeiro boot (README > Docker > Production): gerar de
+# novo a cada recreate invalidaria sessoes, cookies e qualquer coluna
+# "encrypted" ja gravada no banco. Falhar cedo aqui evita subir com uma
+# app "quebrada" que só daria erro no primeiro request autenticado.
+if [ -z "$APP_KEY" ]; then
+    echo "[entrypoint] ERRO: APP_KEY nao esta definida no ambiente." >&2
+    echo "[entrypoint] Gere uma e coloque no .env do host antes de subir o container:" >&2
+    echo '  sed -i "s|^APP_KEY=.*|APP_KEY=base64:$(openssl rand -base64 32)|" .env' >&2
+    exit 1
+fi
+
 mkdir -p storage/framework/{cache,sessions,testing,views} storage/logs bootstrap/cache
 chown -R appuser:appgroup storage bootstrap/cache
 

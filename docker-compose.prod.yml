@@ -25,6 +25,15 @@ services:
             target: production
         container_name: saire_app
         restart: unless-stopped
+        # Nao existe (e nao deve existir) um .env fisico dentro deste
+        # container: env_file injeta as variaveis direto no ambiente do
+        # processo, sem depender de um arquivo em disco. Isso mantem a
+        # imagem imutavel e o segredo fora de qualquer camada/registry
+        # (ver .dockerignore). Por isso APP_KEY precisa ser gerado uma
+        # vez no .env do HOST antes do primeiro "up" -- ver README >
+        # Docker > Production -- e nao via "artisan key:generate" dentro
+        # do container (docker/php/entrypoint.prod.sh falha cedo se
+        # APP_KEY vier vazio).
         env_file:
             - .env
         environment:
