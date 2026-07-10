@@ -13,7 +13,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Permission">
+            <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Permission">
                 <thead>
                     <tr>
                         <th width="10">
@@ -24,19 +24,6 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($permissions as $key => $permission)
-                        <tr data-entry-id="{{ $permission->id }}">
-                            <td>
-
-                            </td>
-                            <td>
-                                {{ $permission->lab ?? '' }}
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
             </table>
         </div>
     </div>
@@ -57,49 +44,21 @@
 @parent
 <script>
     $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+        initAdminDataTable('.datatable-Permission', {
+            ajax: "{{ route('admin.permissions.index') }}",
+            columns: [
+                { data: 'placeholder', name: 'placeholder', orderable: false, searchable: false },
+                { data: 'id', name: 'id', visible: false, searchable: false },
+                { data: 'lab', name: 'lab' },
+            ],
+            order: [[2, 'desc']],
 @can('permission_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.permissions.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
-          return $(entry).data('entry-id')
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
+            deleteRoute: "{{ route('admin.permissions.massDestroy') }}",
+            deleteButtonLabel: '{{ trans('global.datatables.delete') }}',
+            zeroSelectedLabel: '{{ trans('global.datatables.zero_selected') }}',
+            areYouSureLabel: '{{ trans('global.areYouSure') }}',
 @endcan
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  });
-  let table = $('.datatable-Permission:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-          .columns.adjust();
-  });
-  
-})
-
+        });
+    });
 </script>
 @endsection

@@ -8,7 +8,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-AuditLog">
+            <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-AuditLog">
                 <thead>
                     <tr>
                         <th width="10">
@@ -40,62 +40,6 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($auditLogs as $key => $auditLog)
-                        <tr data-entry-id="{{ $auditLog->id }}">
-                            <td>
-
-                            </td>
-                            <td>
-                                {{ $auditLog->id ?? '' }}
-                            </td>
-                            <td>
-                                {{ $auditLog->description ?? '' }}
-                            </td>
-                            <td>
-                                @if($auditLog->subject_id)
-                                    @if(strcmp(substr($auditLog->subject_type, -1), "y") == 0)
-                                    <a href="{{ route('admin.' . strtolower( rtrim($auditLog->subject_type, "y") ) . 'ies.show', $auditLog->subject_id ) }}">
-                                    #{{$auditLog->subject_id}}
-                                    </a>
-                                    @else
-                                    <a href="{{ route('admin.' . strtolower($auditLog->subject_type) . 's.show', $auditLog->subject_id ) }}">
-                                    #{{$auditLog->subject_id}}
-                                    </a>
-                                    @endif
-                                @endif
-                            </td>
-                            <td>
-                            {{ trans('cruds.' . strtolower($auditLog->subject_type) . '.title') }}
-                                
-                            </td>
-                            <td>
-                            @if($auditLog->user_id)
-                            <a href="{{ route('admin.users.show', $auditLog->user_id ) }}">
-                                {{ $auditLog->user->name ?? '' }}
-                                </a>
-                            @endif
-                            </td>
-                            <td>
-                                {{ $auditLog->host ?? '' }}
-                            </td>
-                            <td>
-                                {{ $auditLog->created_at ?? '' }}
-                            </td>
-                            <td>
-                                @can('audit_log_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.audit-logs.show', $auditLog->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-
-
-
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
             </table>
         </div>
     </div>
@@ -108,20 +52,21 @@
 @parent
 <script>
     $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-  
-  $.extend(true, $.fn.dataTable.defaults, {
-    orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  });
-  let table = $('.datatable-AuditLog:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-          .columns.adjust();
-  });
-  
-})
-
+        initAdminDataTable('.datatable-AuditLog', {
+            ajax: "{{ route('admin.audit-logs.index') }}",
+            columns: [
+                { data: 'placeholder', name: 'placeholder', orderable: false, searchable: false },
+                { data: 'id', name: 'id' },
+                { data: 'description', name: 'description' },
+                { data: 'subject_id', name: 'subject_id' },
+                { data: 'subject_type', name: 'subject_type' },
+                { data: 'user_id', name: 'user_id' },
+                { data: 'host', name: 'host' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'actions', name: 'actions', orderable: false, searchable: false },
+            ],
+            order: [[1, 'desc']],
+        });
+    });
 </script>
 @endsection

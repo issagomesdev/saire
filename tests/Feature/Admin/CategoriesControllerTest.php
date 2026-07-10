@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\BuildsDataTablesRequests;
 use Tests\Concerns\CreatesAdminUser;
 use Tests\TestCase;
 
@@ -11,6 +12,7 @@ class CategoriesControllerTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesAdminUser;
+    use BuildsDataTablesRequests;
 
     public function test_guest_is_redirected_to_login(): void
     {
@@ -117,5 +119,28 @@ class CategoriesControllerTest extends TestCase
         foreach ($categories as $category) {
             $this->assertSoftDeleted('categories', ['id' => $category->id]);
         }
+    }
+
+    /**
+     * Regressão: "placeholder" e "actions" são colunas virtuais (sem
+     * coluna real no banco) presentes em toda listagem server-side do
+     * admin. Sem "searchable: false" nelas, a busca global do Yajra
+     * gerava "WHERE placeholder LIKE ..." e quebrava com erro de SQL —
+     * em qualquer módulo, mesmo pesquisando um termo válido.
+     */
+    public function test_ajax_global_search_does_not_error_on_virtual_columns(): void
+    {
+        $this->actingAsUserWithPermissions(['category_access']);
+        Category::factory()->create(['title' => 'Saúde Pública']);
+        Category::factory()->create(['title' => 'Educação']);
+
+        $url = $this->dataTablesUrl(
+            route('admin.categories.index'),
+            ['placeholder', 'id', 'title', 'created_at', 'updated_at', 'actions'],
+            'Saúde'
+        );
+
+        $response = $this->getDataTablesJson($url)->assertOk();
+        $this->assertSame(1, $response->json('recordsFiltered'));
     }
 }

@@ -72,117 +72,52 @@
 @parent
 <script>
     $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+        const table = initAdminDataTable('.datatable-Menu', {
+            ajax: "{{ route('admin.menus.index') }}",
+            columns: [
+                { data: 'placeholder', name: 'placeholder', orderable: false, searchable: false },
+                { data: 'id', name: 'id' },
+                { data: 'title', name: 'title' },
+                { data: 'link_type', name: 'link_type' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false },
+            ],
+            order: [[2, 'desc']],
+            extra: {
+                rowReorder: {
+                    selector: 'tr td:not(:first-of-type,:last-of-type)',
+                    dataSrc: 'position',
+                },
+            },
 @can('menu_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.menus.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-          return entry.id
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
+            deleteRoute: "{{ route('admin.menus.massDestroy') }}",
+            deleteButtonLabel: '{{ trans('global.datatables.delete') }}',
+            zeroSelectedLabel: '{{ trans('global.datatables.zero_selected') }}',
+            areYouSureLabel: '{{ trans('global.areYouSure') }}',
 @endcan
+        });
 
-  let dtOverrideGlobals = {
-    buttons: dtButtons,
-    processing: true,
-    serverSide: true,
-    retrieve: true,
-    aaSorting: [],
-    ajax: "{{ route('admin.menus.index') }}",
-    columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'title', name: 'title' },
-{ data: 'link_type', name: 'link_type' },
-{ data: 'created_at', name: 'created_at' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
-    ],
-    orderCellsTop: true,
-    order: [[ 2, 'desc' ]],
-    pageLength: 100,
-    rowReorder: {
-        selector: 'tr td:not(:first-of-type,:last-of-type)',
-        dataSrc: 'position'
-    },
-  };
+        table.on('row-reorder', function (e, details) {
+            if (!details.length) {
+                return;
+            }
 
-  
-  let table = $('.datatable-Menu').DataTable(dtOverrideGlobals);
-  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-          .columns.adjust();
-  });
-  
-let visibleColumnsIndexes = null;
-$('.datatable thead').on('input', '.search', function () {
-      let strict = $(this).attr('strict') || false
-      let value = strict && this.value ? "^" + this.value + "$" : this.value
-
-      let index = $(this).parent().index()
-      if (visibleColumnsIndexes !== null) {
-        index = visibleColumnsIndexes[index]
-      }
-
-      table
-        .column(index)
-        .search(value, strict)
-        .draw()
-  });
-
-table.on('column-visibility.dt', function(e, settings, column, state) {
-      visibleColumnsIndexes = []
-      table.columns(":visible").every(function(colIdx) {
-          visibleColumnsIndexes.push(colIdx);
-      });
-  })
-
-  let datatable = $('.datatable-Menu').DataTable(dtOverrideGlobals);
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-
-  datatable.on('row-reorder', function (e, details) {
-        if(details.length) {
-            let rows = [];
-            details.forEach(element => {
-                rows.push({
-                    id: datatable.row(element.node).data().id,
-                    position: element.newData
-                });
+            const rows = details.map(function (element) {
+                return {
+                    id: table.row(element.node).data().id,
+                    position: element.newData,
+                };
             });
+
             $.ajax({
-                headers: {'x-csrf-token': _token},
+                headers: { 'x-csrf-token': _token },
                 method: 'POST',
                 url: "{{ route('admin.menus.reorder') }}",
-                data: { rows }
-            }).done(function () { datatable.ajax.reload() });
-        }
+                data: { rows },
+            }).done(function () {
+                table.ajax.reload();
+            });
+        });
     });
-
-});
-
-
 </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\AuthGates;
 use App\Http\Requests\MassDestroyRoleRequest;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
@@ -10,17 +11,68 @@ use App\Models\Permission;
 use App\Models\Role;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class RolesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::with(['permissions'])->get();
+        if ($request->ajax()) {
+            $query = Role::with(['permissions'])->select(sprintf('%s.*', (new Role)->table));
+            $table = Datatables::of($query);
 
-        return view('admin.roles.index', compact('roles'));
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) {
+                $viewGate      = 'role_show';
+                $editGate      = 'role_edit';
+                $deleteGate    = 'role_delete';
+                $crudRoutePart = 'roles';
+
+                return view('partials.datatablesActions', compact(
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
+            });
+
+            $table->editColumn('title', function ($row) {
+                return $row->title ? $row->title : '';
+            });
+            $table->editColumn('permissions', function ($row) {
+                $labels = [];
+                foreach ($row->permissions as $permission) {
+                    $labels[] = sprintf('<span class="badge badge-info">%s</span>', $permission->lab);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            // "permissions" nao e uma coluna real da tabela roles (vem de
+            // permission_role via belongsToMany) — sem isso, a busca
+            // global gera "WHERE permissions.lab LIKE ..." contra uma
+            // tabela nunca joinada e quebra com erro de SQL. Sem uso de
+            // ordenacao por essa coluna hoje, marcada orderable:false na
+            // view em vez de implementar orderColumn.
+            $table->filterColumn('permissions', function ($query, $keyword) {
+                $query->whereHas('permissions', function ($permissionsQuery) use ($keyword) {
+                    $permissionsQuery->where('permissions.lab', 'like', "%{$keyword}%");
+                });
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'permissions']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.roles.index');
     }
 
     public function create()
@@ -36,6 +88,7 @@ class RolesController extends Controller
     {
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return redirect()->route('admin.roles.index');
     }
@@ -55,6 +108,7 @@ class RolesController extends Controller
     {
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return redirect()->route('admin.roles.index');
     }
@@ -73,6 +127,7 @@ class RolesController extends Controller
         abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $role->delete();
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return back();
     }
@@ -84,6 +139,7 @@ class RolesController extends Controller
         foreach ($roles as $role) {
             $role->delete();
         }
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

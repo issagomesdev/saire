@@ -24,7 +24,11 @@ class GalleryController extends Controller
         abort_if(Gate::denies('gallery_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Gallery::with(['categories'])->select(sprintf('%s.*', (new Gallery)->table));
+            // "media" (nao "photos") e o nome real da relacao do Spatie
+            // Media Library; "photos" e so um accessor (getPhotosAttribute)
+            // por cima dela. Eager-carregar "media" evita 1 query extra por
+            // linha quando editColumn('photos') acessa $row->photos abaixo.
+            $query = Gallery::with(['categories', 'media'])->select(sprintf('%s.*', (new Gallery)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -68,12 +72,32 @@ class GalleryController extends Controller
                 return implode(' ', $labels);
             });
 
+            // "categories" nao e uma coluna real da tabela galleries (vem
+            // de category_gallery via belongsToMany) — sem isso, a busca
+            // global/por coluna gera "WHERE categories.title LIKE ..."
+            // contra uma tabela nunca joinada e quebra com erro de SQL.
+            $table->filterColumn('categories', function ($query, $keyword) {
+                $query->whereHas('categories', function ($categoriesQuery) use ($keyword) {
+                    $categoriesQuery->where('categories.title', 'like', "%{$keyword}%");
+                });
+            });
+            $table->orderColumn('categories', function ($query, $order) {
+                $query->orderBy(
+                    Category::select('title')
+                        ->join('category_gallery', 'category_gallery.category_id', '=', 'categories.id')
+                        ->whereColumn('category_gallery.gallery_id', 'galleries.id')
+                        ->orderBy('title')
+                        ->limit(1),
+                    $order
+                );
+            });
+
             $table->rawColumns(['actions', 'placeholder', 'photos', 'categories']);
 
             return $table->make(true);
         }
 
-        $categories = Category::get();
+        $categories = Category::select('id', 'title')->get();
 
         return view('admin.galleries.index', compact('categories'));
     }

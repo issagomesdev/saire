@@ -23,7 +23,11 @@ class PageController extends Controller
         abort_if(Gate::denies('page_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Page::query()->select(sprintf('%s.*', (new Page)->table));
+            // "media" (nao "photos") e o nome real da relacao do Spatie
+            // Media Library; "photos" e so um accessor por cima dela.
+            // Eager-carregar "media" evita 1 query extra por linha quando
+            // editColumn('photos') acessa $row->photos abaixo.
+            $query = Page::with(['media'])->select(sprintf('%s.*', (new Page)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');

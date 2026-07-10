@@ -2,9 +2,11 @@
 
 namespace Tests\Concerns;
 
+use App\Http\Middleware\AuthGates;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Autorização no projeto não usa Policies nem middleware `permission:xxx` —
@@ -35,6 +37,12 @@ trait CreatesAdminUser
 
         $user->roles()->sync([$role->id]);
 
+        // AuthGates agora cacheia roles/permissions (10 min) — sem isso, o
+        // primeiro request deste teste poderia reaproveitar o cache
+        // "quente" de um teste anterior na mesma execucao do PHPUnit (o
+        // driver "array" persiste durante todo o processo).
+        Cache::forget(AuthGates::CACHE_KEY);
+
         $this->actingAs($user);
 
         return $user;
@@ -47,6 +55,7 @@ trait CreatesAdminUser
     protected function actingAsUserWithoutPermissions(): User
     {
         $user = User::factory()->create();
+        Cache::forget(AuthGates::CACHE_KEY);
         $this->actingAs($user);
 
         return $user;

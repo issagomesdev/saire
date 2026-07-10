@@ -5,6 +5,7 @@ namespace Tests\Feature\Admin;
 use App\Models\Category;
 use App\Models\Publication;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\BuildsDataTablesRequests;
 use Tests\Concerns\CreatesAdminUser;
 use Tests\TestCase;
 
@@ -12,6 +13,7 @@ class PublicationsControllerTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesAdminUser;
+    use BuildsDataTablesRequests;
 
     public function test_index_is_forbidden_without_publication_access(): void
     {
@@ -118,6 +120,33 @@ class PublicationsControllerTest extends TestCase
         $this->delete(route('admin.publications.destroy', $publication))->assertRedirect();
 
         $this->assertSoftDeleted('publications', ['id' => $publication->id]);
+    }
+
+    /**
+     * Regressão: a coluna virtual "fav" (addColumn, sem coluna real) e as
+     * colunas "placeholder"/"actions" quebravam a busca global do Yajra
+     * com "Unknown column" antes do searchable:false; "categories" tem o
+     * mesmo problema de relação sem JOIN que Gallery/Users.
+     */
+    public function test_ajax_global_search_and_categories_sort_do_not_error(): void
+    {
+        $this->actingAsUserWithPermissions(['publication_access']);
+        $category = Category::factory()->create(['title' => 'Educação']);
+        $publication = Publication::factory()->create(['title' => 'Escola nova é inaugurada']);
+        $publication->categories()->sync([$category->id]);
+        Publication::factory()->create(['title' => 'Outra notícia']);
+
+        $columns = ['placeholder', 'fav', 'id', 'title', 'categories', 'created_at', 'updated_at', 'actions'];
+
+        $searchUrl = $this->dataTablesUrl(route('admin.publications.index'), $columns, 'Escola');
+        $searchResponse = $this->getDataTablesJson($searchUrl)->assertOk();
+        $this->assertSame(1, $searchResponse->json('recordsFiltered'));
+
+        // indice 4 = "categories" nesta view (tem uma coluna "fav" a mais
+        // que as outras, entao o indice do id/categories nao e o mesmo
+        // das demais listagens)
+        $orderUrl = $this->dataTablesUrl(route('admin.publications.index'), $columns, '', [], [4, 'asc']);
+        $this->getDataTablesJson($orderUrl)->assertOk();
     }
 
     /**

@@ -63,7 +63,7 @@ class SubmenuController extends Controller
             return $table->make(true);
         }
 
-        $pages = Page::get();
+        $pages = Page::select('id', 'title')->get();
 
         return view('admin.submenus.index', compact('pages'));
     }

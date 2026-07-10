@@ -5,6 +5,7 @@ namespace Tests\Feature\Admin;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\BuildsDataTablesRequests;
 use Tests\Concerns\CreatesAdminUser;
 use Tests\TestCase;
 
@@ -12,6 +13,7 @@ class UsersControllerTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesAdminUser;
+    use BuildsDataTablesRequests;
 
     public function test_index_is_forbidden_without_user_access_permission(): void
     {
@@ -97,5 +99,28 @@ class UsersControllerTest extends TestCase
         $user = User::factory()->create();
 
         $this->delete(route('admin.users.destroy', $user))->assertForbidden();
+    }
+
+    /**
+     * Regressão: "roles" é declarada com nome dot-notation
+     * ("roles.title") mas a query base só faz with(), sem JOIN — sem
+     * filterColumn/orderColumn, buscar ou ordenar por essa coluna gerava
+     * "Unknown column" no MySQL.
+     */
+    public function test_ajax_search_and_sort_by_roles_relation_does_not_error(): void
+    {
+        $this->actingAsUserWithPermissions(['user_access']);
+        $role = Role::factory()->create(['title' => 'Financeiro Municipal']);
+        $user = User::factory()->create(['name' => 'Marcos Contador']);
+        $user->roles()->sync([$role->id]);
+
+        $columns = ['placeholder', 'id', 'name', 'email', 'roles', 'created_at', 'updated_at', 'actions'];
+
+        $searchUrl = $this->dataTablesUrl(route('admin.users.index'), $columns, 'Financeiro Municipal');
+        $searchResponse = $this->getDataTablesJson($searchUrl)->assertOk();
+        $this->assertGreaterThanOrEqual(1, $searchResponse->json('recordsFiltered'));
+
+        $orderUrl = $this->dataTablesUrl(route('admin.users.index'), $columns, '', [], [4, 'asc']);
+        $this->getDataTablesJson($orderUrl)->assertOk();
     }
 }

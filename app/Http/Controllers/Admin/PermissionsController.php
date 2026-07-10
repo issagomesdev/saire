@@ -3,23 +3,37 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\AuthGates;
 use App\Http\Requests\MassDestroyPermissionRequest;
 use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
 use App\Models\Permission;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class PermissionsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('permission_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $permissions = Permission::all();
+        if ($request->ajax()) {
+            $query = Permission::query()->select(sprintf('%s.*', (new Permission)->table));
+            $table = Datatables::of($query);
 
-        return view('admin.permissions.index', compact('permissions'));
+            $table->addColumn('placeholder', '&nbsp;');
+
+            $table->editColumn('lab', function ($row) {
+                return $row->lab ? $row->lab : '';
+            });
+
+            return $table->make(true);
+        }
+
+        return view('admin.permissions.index');
     }
 
     public function create()
@@ -32,6 +46,7 @@ class PermissionsController extends Controller
     public function store(StorePermissionRequest $request)
     {
         $permission = Permission::create($request->all());
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return redirect()->route('admin.permissions.index');
     }
@@ -46,6 +61,7 @@ class PermissionsController extends Controller
     public function update(UpdatePermissionRequest $request, Permission $permission)
     {
         $permission->update($request->all());
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return redirect()->route('admin.permissions.index');
     }
@@ -62,6 +78,7 @@ class PermissionsController extends Controller
         abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return back();
     }
@@ -73,6 +90,7 @@ class PermissionsController extends Controller
         foreach ($permissions as $permission) {
             $permission->delete();
         }
+        Cache::forget(AuthGates::CACHE_KEY);
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

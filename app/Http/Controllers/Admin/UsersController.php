@@ -58,12 +58,32 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
 
+            // "roles" nao e uma coluna real da tabela users (vem de
+            // role_user via belongsToMany) — sem isso, a busca global/por
+            // coluna gera "WHERE roles.title LIKE ..." contra uma tabela
+            // nunca joinada e quebra com erro de SQL.
+            $table->filterColumn('roles', function ($query, $keyword) {
+                $query->whereHas('roles', function ($rolesQuery) use ($keyword) {
+                    $rolesQuery->where('roles.title', 'like', "%{$keyword}%");
+                });
+            });
+            $table->orderColumn('roles', function ($query, $order) {
+                $query->orderBy(
+                    Role::select('title')
+                        ->join('role_user', 'role_user.role_id', '=', 'roles.id')
+                        ->whereColumn('role_user.user_id', 'users.id')
+                        ->orderBy('title')
+                        ->limit(1),
+                    $order
+                );
+            });
+
             $table->rawColumns(['actions', 'placeholder', 'roles']);
 
             return $table->make(true);
         }
 
-        $roles = Role::get();
+        $roles = Role::select('id', 'title')->get();
 
         return view('admin.users.index', compact('roles'));
     }

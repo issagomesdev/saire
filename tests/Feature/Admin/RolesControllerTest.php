@@ -5,6 +5,7 @@ namespace Tests\Feature\Admin;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\BuildsDataTablesRequests;
 use Tests\Concerns\CreatesAdminUser;
 use Tests\TestCase;
 
@@ -12,6 +13,7 @@ class RolesControllerTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesAdminUser;
+    use BuildsDataTablesRequests;
 
     public function test_index_is_forbidden_without_role_access_permission(): void
     {
@@ -73,5 +75,27 @@ class RolesControllerTest extends TestCase
         $this->delete(route('admin.roles.destroy', $role))->assertRedirect();
 
         $this->assertSoftDeleted('roles', ['id' => $role->id]);
+    }
+
+    /**
+     * index() era client-side (Role::with('permissions')->get()) — agora
+     * usa Yajra server-side como os demais módulos. "permissions" é uma
+     * coluna de relação (permission_role) sem JOIN na query base, então
+     * precisa de filterColumn para a busca global não quebrar.
+     */
+    public function test_ajax_global_search_matches_by_permission_label(): void
+    {
+        $this->actingAsUserWithPermissions(['role_access']);
+        $permission = Permission::factory()->create(['lab' => 'Gerenciar Finanças']);
+        $role = Role::factory()->create(['title' => 'Financeiro']);
+        $role->permissions()->sync([$permission->id]);
+        Role::factory()->create(['title' => 'Outro papel']);
+
+        $columns = ['placeholder', 'id', 'title', 'permissions', 'actions'];
+        $response = $this->getDataTablesJson($this->dataTablesUrl(route('admin.roles.index'), $columns, 'Finanças'))->assertOk();
+
+        $this->assertSame(1, $response->json('recordsFiltered'));
+        $row = collect($response->json('data'))->firstWhere('id', $role->id);
+        $this->assertStringContainsString('Gerenciar Finanças', $row['permissions']);
     }
 }

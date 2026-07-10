@@ -21,7 +21,10 @@ class MenusController extends Controller
         abort_if(Gate::denies('menu_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Menu::with(['submenuses', 'page'])->select(sprintf('%s.*', (new Menu)->table));
+            // Nem "submenuses" nem "page" sao usados nas colunas exibidas
+            // abaixo (a view so mostra title/link_type/created_at) — sem
+            // eager load aqui evita 2 queries desperdicadas por pagina.
+            $query = Menu::query()->select(sprintf('%s.*', (new Menu)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -61,8 +64,8 @@ class MenusController extends Controller
             return $table->make(true);
         }
 
-        $submenus = Submenu::get();
-        $pages    = Page::get();
+        $submenus = Submenu::select('id', 'title')->get();
+        $pages    = Page::select('id', 'title')->get();
 
         return view('admin.menus.index', compact('submenus', 'pages'));
     }

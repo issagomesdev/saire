@@ -63,8 +63,28 @@ class PublicationsController extends Controller
                 if($row->status == 1){
                     return '<div id=' . $row->id . " ". 'onclick="favItem(this)" class="fav"> <i class="fa-solid fa-star"></i> </div>';
                 } elseif($row->status == 0) {
-                    return '<div id=' . $row->id . " ". 'onclick="favItem(this)" class="fav"> <i class="fa-regular fa-star"></i> </div>';                   
-                }                                       
+                    return '<div id=' . $row->id . " ". 'onclick="favItem(this)" class="fav"> <i class="fa-regular fa-star"></i> </div>';
+                }
+            });
+
+            // "categories" nao e uma coluna real da tabela publications
+            // (vem de category_publication via belongsToMany) — sem isso,
+            // a busca global/por coluna gera "WHERE categories.title LIKE
+            // ..." contra uma tabela nunca joinada e quebra com erro de SQL.
+            $table->filterColumn('categories', function ($query, $keyword) {
+                $query->whereHas('categories', function ($categoriesQuery) use ($keyword) {
+                    $categoriesQuery->where('categories.title', 'like', "%{$keyword}%");
+                });
+            });
+            $table->orderColumn('categories', function ($query, $order) {
+                $query->orderBy(
+                    Category::select('title')
+                        ->join('category_publication', 'category_publication.category_id', '=', 'categories.id')
+                        ->whereColumn('category_publication.publication_id', 'publications.id')
+                        ->orderBy('title')
+                        ->limit(1),
+                    $order
+                );
             });
 
             $table->rawColumns(['actions', 'placeholder', 'categories', 'fav']);
@@ -72,7 +92,7 @@ class PublicationsController extends Controller
             return $table->make(true);
         }
 
-        $categories = Category::get();
+        $categories = Category::select('id', 'title')->get();
 
         return view('admin.publications.index', compact('categories'));
     }

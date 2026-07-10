@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Permission;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\BuildsDataTablesRequests;
 use Tests\Concerns\CreatesAdminUser;
 use Tests\TestCase;
 
@@ -17,6 +18,7 @@ class PermissionsControllerTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesAdminUser;
+    use BuildsDataTablesRequests;
 
     public function test_index_is_forbidden_without_permission_access(): void
     {
@@ -67,5 +69,23 @@ class PermissionsControllerTest extends TestCase
         $permission = Permission::factory()->create();
 
         $this->delete(route('admin.permissions.massDestroy'), ['ids' => [$permission->id]])->assertForbidden();
+    }
+
+    /**
+     * index() era client-side (Permission::all()) — agora usa Yajra
+     * server-side como os demais módulos, para não crescer sem limite.
+     */
+    public function test_ajax_index_returns_matching_permissions(): void
+    {
+        $this->actingAsUserWithPermissions(['permission_access']);
+        $permission = Permission::factory()->create(['lab' => 'Gerenciar Finanças']);
+        Permission::factory()->create(['lab' => 'Outra permissão']);
+
+        $columns = ['placeholder', 'id', 'lab'];
+        $response = $this->getDataTablesJson($this->dataTablesUrl(route('admin.permissions.index'), $columns, 'Finanças'))->assertOk();
+
+        $this->assertSame(1, $response->json('recordsFiltered'));
+        $row = collect($response->json('data'))->firstWhere('id', $permission->id);
+        $this->assertSame('Gerenciar Finanças', $row['lab']);
     }
 }
