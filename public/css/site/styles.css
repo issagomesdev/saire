@@ -27,6 +27,7 @@ section#fav {
     flex-wrap: wrap;
     width: 45%;
     align-items: center;
+    row-gap: 10px;
 }
 
 .banner {

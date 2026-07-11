@@ -1,16 +1,17 @@
 const publicationscontent = document.querySelector('.publications-content');
+Skeleton.clear(publicationscontent);
 
 
 const publicationItems = publications.map(function(publication) {
 
     const publicationItem = document.createElement("div");
     publicationItem.classList.add("publication-item");
-    
+
     const publicationsImg = document.createElement("div");
     publicationsImg.classList.add("publication-img");
-    (publication.photos).length == 0? 
-    publicationsImg.style.backgroundImage = "url('" + imageDefault + "')" :  
-    publicationsImg.style.backgroundImage = "url('" + publication.photos[0] + "')";
+    (publication.photos).length == 0?
+    Skeleton.setImage(publicationsImg, imageDefault, 'background') :
+    Skeleton.setImage(publicationsImg, publication.photos[0], 'background');
     publicationItem.append(publicationsImg);
 
     const publicationsContent = document.createElement("div");

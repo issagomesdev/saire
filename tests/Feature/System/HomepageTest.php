@@ -18,6 +18,21 @@ class HomepageTest extends TestCase
     }
 
     /**
+     * Skeleton Loading: os containers de destaques/galeria/notícias
+     * precisam vir com skeleton já no HTML inicial (antes de qualquer
+     * JS rodar) — é isso que evita o "flash" de conteúdo vazio.
+     */
+    public function test_homepage_renders_skeleton_placeholders_before_js_runs(): void
+    {
+        $html = $this->get(route('site.index'))->assertOk()->getContent();
+
+        $this->assertStringContainsString('skeleton', $html);
+        $this->assertMatchesRegularExpression('/<div class="features">.*?skeleton.*?<\/div>/s', $html);
+        $this->assertMatchesRegularExpression('/<div class="images">.*?skeleton.*?<\/div>/s', $html);
+        $this->assertMatchesRegularExpression('/<div class="publications">.*?skeleton.*?<\/div>/s', $html);
+    }
+
+    /**
      * A home renderiza os cards via JS lendo os blocos JSON embutidos no
      * <script> (site/script.js) — o HTML retornado pelo servidor não contém
      * os títulos como texto visível, então o teste decodifica o mesmo JSON

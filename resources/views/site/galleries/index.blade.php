@@ -45,8 +45,12 @@
   <div class="change-image" id="next"> <i class="fa-solid fa-circle-chevron-right"></i> </div>
 </div>
 
-<div class="galleries"> </div>
-<div class="pagination"> </div>
+<div class="galleries">
+    @for ($i = 0; $i < 8; $i++)
+        <x-skeleton.card variant="gallery-item" />
+    @endfor
+</div>
+<div class="pagination"><x-skeleton.pagination /></div>
 
 </div>
 </div> <!-- content close -->

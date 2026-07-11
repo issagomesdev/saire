@@ -689,10 +689,22 @@ function loadGalleries(p, s) {
   });
 }
 
+// Substitui o antigo spinner generico: mostra 3 cards skeleton (mesma
+// forma dos resultados reais) enquanto o AJAX esta em voo — tanto no
+// carregamento inicial quanto em cada clique de paginacao (a busca
+// nunca recarrega a pagina inteira).
 function showSpinner(id) {
-  document.querySelector(`.spinner#${id}`).style.display = "block";
+  const content = document.querySelector(`.items-content#${id}`);
+  if (!content) {
+    return;
+  }
+  content.innerHTML = '';
+  for (let i = 0; i < 3; i++) {
+    content.appendChild(Skeleton.searchResultCard());
+  }
 }
 
 function hideSpinner(id) {
-  document.querySelector(`.spinner#${id}`).style.display = "none";
+  // no-op: o proprio handler de sucesso/erro ja substitui o conteudo
+  // (content.empty() + content.append(...)) antes de chamar hideSpinner.
 }

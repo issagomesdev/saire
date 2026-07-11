@@ -44,20 +44,22 @@
 	<!-- publications -->
 	<div class="items-conteiner" id="publications">
 	<div class="search-lab"> Notícias  <div class="lab-color"> </div> </div>
-		<div class="spinner-conteiner">
-			<div id="publications" class="spinner"></div>
+		<div class="items-content" id="publications">
+			@for ($i = 0; $i < 3; $i++)
+				<x-skeleton.card variant="search-result" />
+			@endfor
 		</div>
-		<div class="items-content" id="publications"> </div>
 		<div class="pagination" id="publications">  </div>
 	</div>
 
 	<!-- page -->
 	<div class="items-conteiner" id="page">
 	<div class="search-lab"> Páginas <div class="lab-color"> </div> </div>
-		<div class="spinner-conteiner">
-			<div id="page" class="spinner"></div>
+		<div class="items-content" id="page">
+			@for ($i = 0; $i < 3; $i++)
+				<x-skeleton.card variant="search-result" />
+			@endfor
 		</div>
-		<div class="items-content" id="page"> </div>
 		<div class="pagination" id="page">  </div>
 	</div>
 </div>
@@ -66,15 +68,12 @@
 
 <div class="items-conteiner" id="galleries">
 	<div class="search-lab"> Galeria <div class="lab-color"> </div> </div>
-		<div class="spinner-conteiner">
-			<div id="galleries" class="spinner"></div>
-		</div>
-	<div class="items-content" id="galleries"> </div>
+	<div class="items-content" id="galleries">
+		@for ($i = 0; $i < 3; $i++)
+			<x-skeleton.card variant="search-result" />
+		@endfor
+	</div>
 	<div class="pagination" id="galleries">  </div>
-</div>
-
-<div class="spinner-conteiner">
-	<div id="galleries" class="spinner"></div>
 </div>
 
 </div> <!-- content close -->

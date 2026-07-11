@@ -24,13 +24,14 @@ const addGalleriesItems = galleries.map(function(gallery){
 
 const galleriesItems = [].concat(...addGalleriesItems);
 const galleriesContent = document.querySelector(".galleries");
+Skeleton.clear(galleriesContent);
 
 const items_in_gallery = galleriesItems.map(function(item){
 
     const item_in_gallery = document.createElement("div");
     item_in_gallery.classList.add("item-in-gallery");
     const itemImagen = document.createElement("img")
-    itemImagen.src = item.photo;
+    Skeleton.setImage(itemImagen, item.photo, 'src');
     item_in_gallery.append(itemImagen);
 
     item_in_gallery.addEventListener("click", () => {

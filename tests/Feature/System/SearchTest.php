@@ -23,6 +23,21 @@ class SearchTest extends TestCase
         $this->get(route('site.search', ['search' => 'praça']))->assertOk();
     }
 
+    /**
+     * A busca não embute os resultados no HTML (são 3 endpoints AJAX
+     * reais) — o shell inicial precisa vir com skeleton cards em vez do
+     * spinner genérico antigo, já que os 3 blocos (notícias/páginas/
+     * galerias) demoram um round-trip de rede pra aparecer.
+     */
+    public function test_search_page_renders_skeleton_placeholders_before_ajax_resolves(): void
+    {
+        $html = $this->get(route('site.search', ['search' => 'praça']))->assertOk()->getContent();
+
+        $this->assertMatchesRegularExpression('/<div class="items-content" id="publications">.*?skeleton.*?<\/div>/s', $html);
+        $this->assertMatchesRegularExpression('/<div class="items-content" id="page">.*?skeleton.*?<\/div>/s', $html);
+        $this->assertMatchesRegularExpression('/<div class="items-content" id="galleries">.*?skeleton.*?<\/div>/s', $html);
+    }
+
     public function test_publications_search_endpoint_filters_by_title(): void
     {
         Publication::factory()->create(['title' => 'Prefeitura inaugura nova praça']);

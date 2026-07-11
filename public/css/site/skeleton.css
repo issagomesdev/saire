@@ -1,0 +1,102 @@
+/**
+ * Skeleton Loading — site público.
+ * Classe base ".skeleton" + modificadores de forma. Cada bloco já
+ * nasce com o tamanho do conteúdo final que vai substituí-lo (evita
+ * layout shift quando o conteúdo real chega).
+ */
+
+.skeleton {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background-color: #e2e2e2;
+    background-image: linear-gradient(90deg, #e2e2e2 25%, #eeeeee 37%, #e2e2e2 63%);
+    background-size: 400% 100%;
+    animation: skeleton-shimmer 1.4s ease infinite;
+    border-radius: 4px;
+}
+
+@keyframes skeleton-shimmer {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton {
+        animation: none;
+        background-image: none;
+        background-color: #e6e6e6;
+    }
+}
+
+.skeleton--circle {
+    border-radius: 50%;
+}
+
+.skeleton--pill {
+    border-radius: 999px;
+}
+
+.skeleton--text {
+    height: 0.9em;
+    margin: 0.35em 0;
+}
+
+.skeleton--text:last-child {
+    width: 70%;
+}
+
+.skeleton-title {
+    height: 1.4em;
+    width: 80%;
+    margin-bottom: 0.6em;
+}
+
+/* Container de card: empilha os blocos internos como o card real faz. */
+.skeleton-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton-card__body {
+    padding: 10px;
+}
+
+.skeleton-pagination {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.skeleton-pagination .skeleton {
+    width: 2em;
+    height: 2em;
+}
+
+/* Estado transitório de uma imagem individual (usado por Skeleton.setImage
+   em skeleton.js): a imagem/elemento de fundo fica com o shimmer até o
+   arquivo real terminar de baixar, depois a classe é removida. */
+.skeleton-image-loading {
+    display: block;
+    /* Muitas imagens do site (ex.: grade de galeria, tira de fotos da
+       home) usam largura/altura automáticas (baseadas na proporção
+       real, que só existe depois que a imagem carrega) — sem um
+       tamanho mínimo aqui, o shimmer colapsa pra 0px enquanto a
+       imagem ainda não chegou. É especialmente crítico dentro de
+       containers "display:flex" (ex. .images da home): sem min-width,
+       um item sem largura intrínseca encolhe a 0px mesmo com altura
+       definida, ficando invisível mesmo com o shimmer "aplicado". */
+    min-width: 14em;
+    min-height: 12em;
+    background-color: #e2e2e2;
+    background-image: linear-gradient(90deg, #e2e2e2 25%, #eeeeee 37%, #e2e2e2 63%);
+    background-size: 400% 100%;
+    animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-image-loading {
+        animation: none;
+        background-image: none;
+    }
+}

@@ -26,4 +26,12 @@ class PublicationsListingTest extends TestCase
             return $publications->count() === 12 && $publications->total() === 15;
         });
     }
+
+    public function test_listing_renders_skeleton_placeholders_before_js_runs(): void
+    {
+        $html = $this->get(route('site.publications'))->assertOk()->getContent();
+
+        $this->assertMatchesRegularExpression('/<div class="publications-content">.*?skeleton.*?<\/div>/s', $html);
+        $this->assertMatchesRegularExpression('/<div class="pagination">.*?skeleton.*?<\/div>/s', $html);
+    }
 }

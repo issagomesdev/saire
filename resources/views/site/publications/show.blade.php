@@ -7,8 +7,14 @@
     <div class="publication-content">
 
         <div class="publication-imagen">
-        <a> </a>
-        <div class="publication-imagens"> </div>
+        <a>@if($publication->photos->isNotEmpty())<x-skeleton.image width="30em" height="22em" />@endif</a>
+        <div class="publication-imagens">
+            @if($publication->photos->isNotEmpty())
+                @foreach($publication->photos as $media)
+                    <x-skeleton.image width="110px" height="110px" />
+                @endforeach
+            @endif
+        </div>
         </div>
 
         <div class="publication-title">

@@ -1,5 +1,6 @@
 
 const pagination = document.querySelector('.pagination');
+Skeleton.clear(pagination);
 
 const pagesnext = document.createElement("div");
 pagesnext.classList.add("pages");

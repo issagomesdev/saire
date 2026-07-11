@@ -6,9 +6,11 @@
 	<link href="{{ asset('css/site/header.css') }}" rel="stylesheet" />
 	<link href="{{ asset('css/site/footer.css') }}" rel="stylesheet" />
 	<link href="{{ asset('css/site/search.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/site/skeleton.css') }}" rel="stylesheet" />
 	<meta charset="UTF-8" content="width=device-width, initial-scale=1" name="viewport">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="{{ asset('js/site/skeleton.js') }}"></script>
 </head>
 <body>
 

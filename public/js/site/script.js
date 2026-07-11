@@ -4,6 +4,7 @@
 if(featuredPublications.length > 0){
 
   const features = document.querySelector(".features");
+  Skeleton.clear(features);
 
 const photoDots = document.createElement("div");
 photoDots.classList.add("photo-dots");
@@ -84,9 +85,9 @@ photoCard.append(card);
 function displayCard() {
   
   if((featuredPublications[index].photos).length == 0) {
-    photoCard.style.backgroundImage = "url('" +  imageDefault + "')";
+    Skeleton.setImage(photoCard, imageDefault, 'background');
   } else {
-    photoCard.style.backgroundImage = "url('" + featuredPublications[index].photos[0] + "')";
+    Skeleton.setImage(photoCard, featuredPublications[index].photos[0], 'background');
   }
 
 
@@ -128,12 +129,14 @@ setInterval(nextCard, 5000);
 
 } else {
 
+  Skeleton.clear(document.querySelector(".features"));
 
 }
 
 // Gallery
 
 const images = document.querySelector('.images');
+Skeleton.clear(images);
 
 if(galleries.length > 0){
 
@@ -141,7 +144,7 @@ const imgs = galleries.map(function(gallery) {
   const photos = [];
   for(let i = 0; i < (gallery.photos).length; i++) {
     const img = document.createElement("img");
-    img.src = gallery.photos[i];
+    Skeleton.setImage(img, gallery.photos[i], 'src');
     photos.push(img);
   }
   return photos;
@@ -158,9 +161,15 @@ images.append(...[].concat(...imgs));
     images.append(empty)
 };
 
+// Banners: <img> estaticas, ja vem prontas no HTML (sem AJAX/JS
+// montando o conteudo) -- so falta limpar o shimmer de cada uma quando
+// ela terminar de carregar (ou de imediato, se ja veio do cache).
+Skeleton.watchImages(document.querySelector('.banners'));
+
 // publications
 
 const publicationsDiv = document.querySelector('.publications');
+Skeleton.clear(publicationsDiv);
 
 if(publications.length > 0){
 
@@ -170,14 +179,14 @@ const cards = publications.map(function(publication) {
 
   card.addEventListener("click", () => {
     window.location.href = `noticias/${(publication.title).replace(/\s+/g, '_')}`
-    
+
   });
-  
+
 
   if((publication.photos).length == 0) {
-    card.style.backgroundImage = "url('" + imageDefault + "')";;  
+    Skeleton.setImage(card, imageDefault, 'background');
   } else {
-    card.style.backgroundImage = "url('" + publication.photos[0] + "')";
+    Skeleton.setImage(card, publication.photos[0], 'background');
   }
   
   const content = document.createElement("div");

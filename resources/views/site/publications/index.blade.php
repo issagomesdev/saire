@@ -4,9 +4,13 @@
 <link href="{{ asset('css/site/publications/styles.css') }}" rel="stylesheet" />
 
 <div class="page-content">
-    <div class="publications-content"> </div>
-</div> 
-<div class="pagination"> </div>
+    <div class="publications-content">
+        @for ($i = 0; $i < 6; $i++)
+            <x-skeleton.card variant="list-publication" />
+        @endfor
+    </div>
+</div>
+<div class="pagination"><x-skeleton.pagination /></div>
 
 </div> <!-- content close -->
 

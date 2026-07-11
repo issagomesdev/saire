@@ -26,4 +26,12 @@ class GalleriesListingTest extends TestCase
             return $galleries->count() === 10 && $galleries->total() === 13;
         });
     }
+
+    public function test_listing_renders_skeleton_placeholders_before_js_runs(): void
+    {
+        $html = $this->get(route('site.gallery'))->assertOk()->getContent();
+
+        $this->assertMatchesRegularExpression('/<div class="galleries">.*?skeleton.*?<\/div>/s', $html);
+        $this->assertMatchesRegularExpression('/<div class="pagination">.*?skeleton.*?<\/div>/s', $html);
+    }
 }
