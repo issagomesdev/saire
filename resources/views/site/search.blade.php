@@ -1,7 +1,7 @@
 @include('site.layouts.header')
-<link href="{{ asset('css/site/page.css') }}" rel="stylesheet" />
-<link href="{{ asset('css/site/search/styles.css') }}" rel="stylesheet" />
-<link href="{{ asset('css/site/galleries/styles.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/page.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/search/styles.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/galleries/styles.css') }}" rel="stylesheet" />
 
 <div class="search-content">
 	
@@ -109,8 +109,8 @@
 </style>
 
 @include('site.layouts.footer')
-<script src="{{ asset('js/site/search/script.js') }}"> </script>
-<script src="{{ asset('js/he-master/he.js') }}"> </script>
+<script src="{{ asset_v('js/site/search/script.js') }}"> </script>
+<script src="{{ asset_v('js/he-master/he.js') }}"> </script>
 <script>
 	// showSpinner('publications')
 	// showSpinner('page')

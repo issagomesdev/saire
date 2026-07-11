@@ -68,7 +68,7 @@
     </div>
 </div>
 
-<script src="{{ asset('js/ckeditor/build/ckeditor.js') }}"></script>
+<script src="{{ asset_v('js/ckeditor/build/ckeditor.js') }}"></script>
 
 @endsection
 

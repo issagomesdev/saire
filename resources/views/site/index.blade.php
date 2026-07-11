@@ -1,5 +1,5 @@
 @include('site.layouts.header')
-	<link href="{{ asset('css/site/styles.css') }}" rel="stylesheet" />
+	<link href="{{ asset_v('css/site/styles.css') }}" rel="stylesheet" />
 
 <main>
 	<div class="fav-gallery-content">
@@ -92,8 +92,8 @@
 
 		const galleries = @json($galleriesJs);
 	</script>
-<script src="{{ asset('js/he-master/he.js') }}"> </script>
-<script src="{{ asset('js/site/script.js') }}"> </script>
+<script src="{{ asset_v('js/he-master/he.js') }}"> </script>
+<script src="{{ asset_v('js/site/script.js') }}"> </script>
 
 	<style>
 	

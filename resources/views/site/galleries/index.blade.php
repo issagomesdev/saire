@@ -1,7 +1,7 @@
 @include('site.layouts.header')
 
-<link href="{{ asset('css/site/page.css') }}" rel="stylesheet" />
-<link href="{{ asset('css/site/galleries/styles.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/page.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/galleries/styles.css') }}" rel="stylesheet" />
 
 <div class="gallery-content">
 <div class="display-imagen" visible="false">
@@ -83,7 +83,7 @@ for(let i = ({{ $galleries->currentPage() }} + 1); i <= ({{ $galleries->currentP
   }
 
 </script>
-<script src="{{ asset('js/site/page.js') }}"> </script>
+<script src="{{ asset_v('js/site/page.js') }}"> </script>
 <script>
 
 @php
@@ -101,6 +101,6 @@ for(let i = ({{ $galleries->currentPage() }} + 1); i <= ({{ $galleries->currentP
 const galleries = @json($galleriesJs);
 
 </script>
-<script src="{{ asset('js/site/galleries/script.js') }}"> </script>
+<script src="{{ asset_v('js/site/galleries/script.js') }}"> </script>
 </body>
 </html>

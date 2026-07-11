@@ -1,7 +1,7 @@
 @include('site.layouts.header')
 
-<link href="{{ asset('css/site/page.css') }}" rel="stylesheet" />
-<link href="{{ asset('css/site/publications/styles.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/page.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/publications/styles.css') }}" rel="stylesheet" />
 
 <div class="page-content">
     <div class="publications-content">
@@ -17,7 +17,7 @@
 @include('site.layouts.footer') 
 
 
-<script src="{{ asset('js/he-master/he.js') }}"> </script>
+<script src="{{ asset_v('js/he-master/he.js') }}"> </script>
 <script>
 
 	const url = "{{Request::url()}}"
@@ -44,7 +44,7 @@
 	}
 
 </script>
-<script src="{{ asset('js/site/page.js') }}"> </script>
+<script src="{{ asset_v('js/site/page.js') }}"> </script>
 
 <script>
 
@@ -66,7 +66,7 @@
 		var imageDefault = "/media/img/default.png";
         
 </script>
-<script src="{{ asset('js/site/publications/script.js') }}"> </script>
+<script src="{{ asset_v('js/site/publications/script.js') }}"> </script>
 
 </body>
 </html>

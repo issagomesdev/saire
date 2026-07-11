@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Prefeitura Municipal de Sairé</title>
-	<link href="{{ asset('css/site/header.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/site/footer.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/site/search.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/site/skeleton.css') }}" rel="stylesheet" />
+	<link href="{{ asset_v('css/site/header.css') }}" rel="stylesheet" />
+	<link href="{{ asset_v('css/site/footer.css') }}" rel="stylesheet" />
+	<link href="{{ asset_v('css/site/search.css') }}" rel="stylesheet" />
+	<link href="{{ asset_v('css/site/skeleton.css') }}" rel="stylesheet" />
 	<meta charset="UTF-8" content="width=device-width, initial-scale=1" name="viewport">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<script src="{{ asset('js/site/skeleton.js') }}"></script>
+	<script src="{{ asset_v('js/site/skeleton.js') }}"></script>
 </head>
 <body>
 
@@ -89,4 +89,4 @@
 	</header>
 
 
-	<script src="{{ asset('js/site/parentMenu.js') }}"> </script>
+	<script src="{{ asset_v('js/site/parentMenu.js') }}"> </script>

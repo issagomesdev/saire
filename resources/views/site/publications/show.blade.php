@@ -1,6 +1,6 @@
 @include('site.layouts.header')
 
-<link href="{{ asset('css/site/publications/show.css') }}" rel="stylesheet" />
+<link href="{{ asset_v('css/site/publications/show.css') }}" rel="stylesheet" />
 
 <div class="page-content">
 
@@ -77,7 +77,7 @@ const publication_imagens = [
 			]
 </script>
 
-<script src="{{ asset('js/site/publications/show.js') }}"> </script>
+<script src="{{ asset_v('js/site/publications/show.js') }}"> </script>
 
 </body>
 </html>

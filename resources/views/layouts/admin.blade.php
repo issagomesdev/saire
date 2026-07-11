@@ -19,8 +19,8 @@
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css" rel="stylesheet" />
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/admin-datatable.css') }}" rel="stylesheet" />
+    <link href="{{ asset_v('css/custom.css') }}" rel="stylesheet" />
+    <link href="{{ asset_v('css/admin-datatable.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
 
@@ -121,8 +121,8 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/admin/datatable.js') }}"></script>
+    <script src="{{ asset_v('js/main.js') }}"></script>
+    <script src="{{ asset_v('js/admin/datatable.js') }}"></script>
     <script>
         $(function () {
   let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
@@ -135,7 +135,7 @@
   let selectNoneButtonTrans = '{{ trans('global.deselect_all') }}'
 
   let languages = {
-    'pt-br': "{{ asset('js/i18n/datatables-pt-br.json') }}"
+    'pt-br': "{{ asset_v('js/i18n/datatables-pt-br.json') }}"
   };
 
   $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })
