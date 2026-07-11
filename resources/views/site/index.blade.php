@@ -41,13 +41,13 @@
 		<div class="lab">
 			<a href="{{ route('site.publications') }}"> últimas notícias <i class="fa-solid fa-link"> </i> </a> 
 		</div>
+		<div class="view-more"  id="publications">
+			<a href="{{ route('site.publications') }}"> ver todas as notícias <i class="fa-solid fa-arrow-up-right-from-square"></i> </a>
+		</div>
 		<div class="publications">
 			@for ($i = 0; $i < 6; $i++)
 				<x-skeleton.card variant="home-publication" />
 			@endfor
-		</div>
-		<div class="view-more"  id="publications">
-			<a href="{{ route('site.publications') }}"> ver todas as notícias <i class="fa-solid fa-arrow-up-right-from-square"></i> </a>
 		</div>
 	</section>
 		</div> <!-- content close -->
