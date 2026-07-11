@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,22 +26,11 @@ class UsersController extends Controller
             $query = User::with(['roles'])->select(sprintf('%s.*', (new User)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'user_show';
-                $editGate      = 'user_edit';
-                $deleteGate    = 'user_delete';
-                $crudRoutePart = 'users';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'user_show', 'user_edit', 'user_delete', 'users');
             });
 
             $table->editColumn('name', function ($row) {

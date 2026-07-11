@@ -9,6 +9,7 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -25,22 +26,11 @@ class RolesController extends Controller
             $query = Role::with(['permissions'])->select(sprintf('%s.*', (new Role)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'role_show';
-                $editGate      = 'role_edit';
-                $deleteGate    = 'role_delete';
-                $crudRoutePart = 'roles';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'role_show', 'role_edit', 'role_delete', 'roles');
             });
 
             $table->editColumn('title', function ($row) {

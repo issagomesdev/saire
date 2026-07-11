@@ -19,6 +19,13 @@ services:
         working_dir: /var/www/html
         env_file:
             - .env
+        environment:
+            # Permite ligar o Xdebug por sessao sem editar nada:
+            #   XDEBUG_MODE=debug docker compose up -d --force-recreate app
+            # A var so chega ao container por essa referencia explicita --
+            # "env_file" nao repassa variaveis do shell do host, so as que
+            # ja estao escritas dentro do proprio .env.
+            XDEBUG_MODE: ${XDEBUG_MODE:-off}
         volumes:
             - .:/var/www/html
             - vendor_data:/var/www/html/vendor

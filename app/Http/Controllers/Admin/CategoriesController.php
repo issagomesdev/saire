@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyCategoryRequest;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,22 +23,11 @@ class CategoriesController extends Controller
             $query = Category::query()->select(sprintf('%s.*', (new Category)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'category_show';
-                $editGate      = 'category_edit';
-                $deleteGate    = 'category_delete';
-                $crudRoutePart = 'categories';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'category_show', 'category_edit', 'category_delete', 'categories');
             });
 
             $table->editColumn('title', function ($row) {

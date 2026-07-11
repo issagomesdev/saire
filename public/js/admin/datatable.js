@@ -51,6 +51,29 @@
     }
 
     /**
+     * Cria (uma vez por tabela) o overlay de carregamento moderno que
+     * substitui o ".dataTables_processing" padrao, e liga/desliga via o
+     * evento "processing.dt" -- disparado pelo proprio DataTables a cada
+     * inicio/fim de requisicao AJAX (busca, ordenacao, paginacao).
+     */
+    function buildLoadingOverlay(tableSelector, table) {
+        const $wrapper = $(tableSelector).closest('.dataTables_wrapper');
+        if ($wrapper.length === 0 || $wrapper.find('> .admin-datatable-overlay').length > 0) {
+            return;
+        }
+
+        const $overlay = $(
+            '<div class="admin-datatable-overlay" aria-hidden="true">' +
+            '<div class="admin-datatable-overlay__spinner"></div>' +
+            '</div>'
+        ).appendTo($wrapper);
+
+        table.on('processing.dt', function (e, settings, processing) {
+            $overlay.toggleClass('is-visible', Boolean(processing));
+        });
+    }
+
+    /**
      * @param {string} tableSelector seletor do <table>, ex: '.datatable-Gallery'
      * @param {object} options
      *   ajax: url do endpoint (obrigatorio)
@@ -59,6 +82,7 @@
      *   deleteRoute / deleteButtonLabel / zeroSelectedLabel / areYouSureLabel: exclusao em massa (opcional)
      *   extra: config adicional do DataTables mesclada por cima (ex: rowReorder)
      *   searchDebounceMs: atraso do debounce da busca por coluna (default: 400)
+     *   globalSearchDelayMs: atraso do debounce da busca global nativa do DataTables (default: 400)
      */
     window.initAdminDataTable = function (tableSelector, options) {
         options = options || {};
@@ -79,9 +103,26 @@
             orderCellsTop: true,
             order: options.order || [[1, 'desc']],
             pageLength: 100,
+            // Sem isso, o input de busca global nativo do DataTables
+            // (renderizado pelo "f" do dom) dispara 1 requisicao AJAX
+            // por tecla digitada -- com N requisicoes concorrentes de
+            // uma palavra de N letras competindo entre si, a busca
+            // parece travada/quebrada. searchDelay debounca no proprio
+            // DataTables, sem precisar reimplementar o binding do input.
+            searchDelay: options.globalSearchDelayMs || 400,
         }, options.extra || {});
 
         const table = $(tableSelector).DataTable(config);
+
+        // Com serverSide:true o wrapper (".dataTables_wrapper", onde o
+        // overlay e anexado) so fica pronto no DOM depois que o primeiro
+        // draw AJAX resolve -- criar o overlay direto apos ".DataTable()"
+        // falha silenciosamente (wrapper ainda nao existe). "init.dt" e o
+        // evento que o proprio DataTables dispara quando a inicializacao
+        // (inclusive esse primeiro draw) termina.
+        table.on('init.dt', function () {
+            buildLoadingOverlay(tableSelector, table);
+        });
 
         $('a[data-toggle="tab"]').on('shown.bs.tab click', function () {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust();

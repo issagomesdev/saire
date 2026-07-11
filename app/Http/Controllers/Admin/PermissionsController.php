@@ -24,7 +24,7 @@ class PermissionsController extends Controller
             $query = Permission::query()->select(sprintf('%s.*', (new Permission)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
 
             $table->editColumn('lab', function ($row) {
                 return $row->lab ? $row->lab : '';

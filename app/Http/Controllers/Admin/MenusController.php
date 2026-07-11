@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Submenu;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,23 +28,12 @@ class MenusController extends Controller
             $query = Menu::query()->select(sprintf('%s.*', (new Menu)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-            $table->addColumn('position', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
+            $table->addColumn('position', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'menu_show';
-                $editGate      = 'menu_edit';
-                $deleteGate    = 'menu_delete';
-                $crudRoutePart = 'menus';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'menu_show', 'menu_edit', 'menu_delete', 'menus');
             });
 
             $table->editColumn('id', function ($row) {

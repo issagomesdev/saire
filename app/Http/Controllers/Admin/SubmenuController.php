@@ -8,6 +8,7 @@ use App\Http\Requests\StoreSubmenuRequest;
 use App\Http\Requests\UpdateSubmenuRequest;
 use App\Models\Page;
 use App\Models\Submenu;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,22 +24,11 @@ class SubmenuController extends Controller
             $query = Submenu::with(['page'])->select(sprintf('%s.*', (new Submenu)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'submenu_show';
-                $editGate      = 'submenu_edit';
-                $deleteGate    = 'submenu_delete';
-                $crudRoutePart = 'submenus';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'submenu_show', 'submenu_edit', 'submenu_delete', 'submenus');
             });
 
             $table->editColumn('id', function ($row) {

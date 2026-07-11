@@ -23,8 +23,13 @@ class AuditLogsController extends Controller
             $query = AuditLog::with('user')->select(sprintf('%s.*', (new AuditLog)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            // Yajra so evita a pipeline de compilacao Blade (que checa
+            // view()->exists() a cada chamada) quando o conteudo passado
+            // e um Closure -- uma string literal como '&nbsp;' e tratada
+            // como possivel template Blade e recompilada em toda linha,
+            // ~12ms/chamada mesmo sem nenhuma sintaxe Blade de verdade.
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
                 if (Gate::denies('audit_log_show')) {

@@ -9,6 +9,7 @@ use App\Http\Requests\StorePublicationRequest;
 use App\Http\Requests\UpdatePublicationRequest;
 use App\Models\Category;
 use App\Models\Publication;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -27,23 +28,12 @@ class PublicationsController extends Controller
             $query = Publication::with(['categories'])->select(sprintf('%s.*', (new Publication)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-            $table->addColumn('fav', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
+            $table->addColumn('fav', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'publication_show';
-                $editGate      = 'publication_edit';
-                $deleteGate    = 'publication_delete';
-                $crudRoutePart = 'publications';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'publication_show', 'publication_edit', 'publication_delete', 'publications');
             });
 
             $table->editColumn('title', function ($row) {

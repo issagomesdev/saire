@@ -243,6 +243,33 @@ DB_USERNAME=saire
 DB_PASSWORD=secret
 ```
 
+### Xdebug
+
+Xdebug ships installed in the development image but **off by default**
+(`xdebug.mode = off` in `docker/php/php.ini`). Xdebug 3's own default mode
+(`develop,debug,coverage`) instruments every PHP function call, which adds
+seconds of overhead per request even with no debugger attached — noticeable
+on anything that does non-trivial work per request, like the admin
+DataTables listings.
+
+To debug for real, turn it on for the running container without editing
+`php.ini` (env vars only apply to the process they're set for, so this
+needs a recreate, not just a `restart`):
+
+```bash
+XDEBUG_MODE=debug docker compose up -d --force-recreate app
+```
+
+To go back to the fast default:
+
+```bash
+docker compose up -d --force-recreate app
+```
+
+`php.ini` itself is baked into the image at build time (`docker/php/Dockerfile`
+`COPY`s it in) — if you change `xdebug.mode` in the file itself, `--force-recreate`
+won't pick it up; you need `docker compose up -d --build app` instead.
+
 ---
 
 ## Development

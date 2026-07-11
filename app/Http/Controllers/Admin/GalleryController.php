@@ -9,6 +9,7 @@ use App\Http\Requests\StoreGalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
 use App\Models\Category;
 use App\Models\Gallery;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -31,22 +32,11 @@ class GalleryController extends Controller
             $query = Gallery::with(['categories', 'media'])->select(sprintf('%s.*', (new Gallery)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'gallery_show';
-                $editGate      = 'gallery_edit';
-                $deleteGate    = 'gallery_delete';
-                $crudRoutePart = 'galleries';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'gallery_show', 'gallery_edit', 'gallery_delete', 'galleries');
             });
 
             $table->editColumn('title', function ($row) {

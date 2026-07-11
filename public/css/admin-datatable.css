@@ -1,0 +1,59 @@
+/**
+ * Overlay de carregamento das listagens admin (DataTables). Substitui o
+ * ".dataTables_processing" padrao (pequeno, discreto, so dentro da area
+ * da tabela) por um indicador central, visivel, que cobre toda a area
+ * da listagem e bloqueia interacao enquanto uma requisicao AJAX esta em
+ * andamento. Injetado/controlado por public/js/admin/datatable.js via
+ * o evento "processing.dt" do DataTables.
+ */
+
+.dataTables_wrapper {
+    position: relative;
+}
+
+/* O indicador de texto padrao do DataTables fica escondido: o overlay
+   abaixo assume esse papel de forma mais visivel. */
+.dataTables_wrapper .dataTables_processing {
+    display: none !important;
+}
+
+.admin-datatable-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.admin-datatable-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.admin-datatable-overlay__spinner {
+    width: 3em;
+    height: 3em;
+    border: 0.35em solid rgba(50, 31, 219, 0.15);
+    border-top-color: #321fdb;
+    border-radius: 50%;
+    animation: admin-datatable-spin 0.7s linear infinite;
+}
+
+@keyframes admin-datatable-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .admin-datatable-overlay__spinner {
+        animation-duration: 1.6s;
+    }
+}

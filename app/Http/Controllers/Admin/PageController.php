@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyPageRequest;
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
 use App\Models\Page;
+use App\Support\DataTables\RowActionsHtml;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -30,22 +31,11 @@ class PageController extends Controller
             $query = Page::with(['media'])->select(sprintf('%s.*', (new Page)->table));
             $table = Datatables::of($query);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('placeholder', fn () => '&nbsp;');
+            $table->addColumn('actions', fn () => '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'page_show';
-                $editGate      = 'page_edit';
-                $deleteGate    = 'page_delete';
-                $crudRoutePart = 'pages';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return RowActionsHtml::make($row, 'page_show', 'page_edit', 'page_delete', 'pages');
             });
 
             $table->editColumn('id', function ($row) {
